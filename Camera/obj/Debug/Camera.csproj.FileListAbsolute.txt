@@ -1,0 +1,6 @@
+D:\GitHub\FinalProject\Camera\obj\Debug\Camera.csprojResolveAssemblyReference.cache
+D:\GitHub\FinalProject\Camera\obj\Debug\Camera.ImageForm.resources
+D:\GitHub\FinalProject\Camera\obj\Debug\Camera.MainForm.resources
+D:\GitHub\FinalProject\Camera\obj\Debug\Camera.Properties.Resources.resources
+D:\GitHub\FinalProject\Camera\obj\Debug\Camera.csproj.GenerateResource.Cache
+D:\GitHub\FinalProject\Camera\obj\Debug\Camera.csproj.CoreCompileInputs.cache
