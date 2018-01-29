@@ -1,6 +1,7 @@
 D:\GitHub\FinalProject\FinalProject\bin\x64\Debug\FinalProject.exe.config
 D:\GitHub\FinalProject\FinalProject\bin\x64\Debug\FinalProject.exe
 D:\GitHub\FinalProject\FinalProject\bin\x64\Debug\FinalProject.pdb
+D:\GitHub\FinalProject\FinalProject\obj\x64\Debug\FinalProject.csprojResolveAssemblyReference.cache
 D:\GitHub\FinalProject\FinalProject\obj\x64\Debug\FinalProject.Properties.Resources.resources
 D:\GitHub\FinalProject\FinalProject\obj\x64\Debug\FinalProject.csproj.GenerateResource.Cache
 D:\GitHub\FinalProject\FinalProject\obj\x64\Debug\FinalProject.csproj.CoreCompileInputs.cache

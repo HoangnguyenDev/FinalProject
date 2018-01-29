@@ -1,0 +1,164 @@
+﻿@model WebManager.Models.ContactViewModels.CreateContactViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_ContactLayout.cshtml";
+}
+<div class="page-header">
+    <h1>
+        Cập nhật th&#244;ng tin thí sinh
+
+    </h1>
+</div>
+<div class="alert alert-block alert-warning">
+    <p>* Thí sinh vui lòng cập nhật thông tin đầy đủ</p>
+</div>
+<style>
+    .control-label {
+        font-weight: bold;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Thông tin đầy đủ</h4>
+    </div>
+    <div class="panel-body">
+        <form asp-action="Create">
+            <div class="form-horizontal">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Code"/>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">
+                            @Html.DisplayNameFor(p => p.FirstMidName)
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-md-8">
+                            <input asp-for="FirstMidName" class="form-control" />
+                            <span asp-validation-for="FirstMidName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">
+                            @Html.DisplayNameFor(p => p.LastName)
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-md-8">
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">
+                            @Html.DisplayNameFor(p => p.Sex)
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-md-8">
+                            <select asp-for="Sex" class="form-control">
+                                <option selected disabled>Chưa chọn</option>
+                                <option value="0">Nam</option>
+                                <option value="1">Nữ</option>
+                            </select>
+                            <span asp-validation-for="Sex" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Landline" class="col-md-4 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="Landline" type="number" class="form-control" />
+                            <span asp-validation-for="Landline" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MobilePhone" type="number" class="col-md-4 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="MobilePhone" class="form-control" />
+                            <span asp-validation-for="MobilePhone" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">
+                            @Html.DisplayNameFor(p => p.DateIdentityCard)
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-md-8">
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input  asp-for="DateIdentityCard" type="text" class="form-control pull-right datepicker">
+                            </div>
+                            <span asp-validation-for="DateIdentityCard" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">
+                            @Html.DisplayNameFor(p => p.WhereIdentityCard)
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-md-8">
+                            <input asp-for="WhereIdentityCard" class="form-control" />
+                            <span asp-validation-for="WhereIdentityCard" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">
+                            @Html.DisplayNameFor(p => p.DateofBirth)
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-md-8">
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input asp-for="DateofBirth" type="text" class="form-control pull-right datepicker">
+                            </div>
+                            <span asp-validation-for="DateofBirth" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Zip" class="col-md-4 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="Zip" class="form-control" />
+                            <span asp-validation-for="Zip" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="col-md-4 control-label"></label>
+                        <div class="col-md-8">
+                            <textarea asp-for="Address" class="form-control"></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center" class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Styles{
+<link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <style>
+        .datetimepicker{
+            padding: 0px;
+        }
+    </style>
+}
+@section Scripts{
+<script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datepicker({
+                autoclose: true,
+                format: 'dd/mm/yyyy',
+            });
+        });
+    </script>
+}
+
