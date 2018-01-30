@@ -34,13 +34,8 @@
             this.Image_Xe_Vao_Sau = new System.Windows.Forms.PictureBox();
             this.Image_Xe_Ra_Truoc = new System.Windows.Forms.PictureBox();
             this.Image_Xe_Ra_Sau = new System.Windows.Forms.PictureBox();
-            this.groupBox = new System.Windows.Forms.GroupBox();
             this.lbStartTime = new System.Windows.Forms.Label();
-            this.lbDirector = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnPlate = new System.Windows.Forms.Button();
             this.btnFace = new System.Windows.Forms.Button();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
@@ -51,145 +46,82 @@
             this.lbID = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lbNotify = new MetroFramework.Controls.MetroLabel();
+            this.pVao = new System.Windows.Forms.Panel();
+            this.pInfo = new System.Windows.Forms.Panel();
+            this.btnSave = new MetroFramework.Controls.MetroButton();
+            this.pRa = new System.Windows.Forms.Panel();
+            this.pMenu = new System.Windows.Forms.Panel();
+            this.btnMi = new System.Windows.Forms.Button();
+            this.btnMax = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Vao_Truoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Vao_Sau)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Ra_Truoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Ra_Sau)).BeginInit();
-            this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Plate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_ID)).BeginInit();
+            this.pVao.SuspendLayout();
+            this.pInfo.SuspendLayout();
+            this.pRa.SuspendLayout();
+            this.pMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // Image_Xe_Vao_Truoc
             // 
-            this.Image_Xe_Vao_Truoc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Image_Xe_Vao_Truoc.Location = new System.Drawing.Point(41, 63);
+            this.Image_Xe_Vao_Truoc.Location = new System.Drawing.Point(14, 43);
             this.Image_Xe_Vao_Truoc.Name = "Image_Xe_Vao_Truoc";
-            this.Image_Xe_Vao_Truoc.Size = new System.Drawing.Size(400, 260);
+            this.Image_Xe_Vao_Truoc.Size = new System.Drawing.Size(381, 227);
             this.Image_Xe_Vao_Truoc.TabIndex = 0;
             this.Image_Xe_Vao_Truoc.TabStop = false;
             // 
             // Image_Xe_Vao_Sau
             // 
-            this.Image_Xe_Vao_Sau.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Image_Xe_Vao_Sau.Location = new System.Drawing.Point(41, 376);
+            this.Image_Xe_Vao_Sau.Location = new System.Drawing.Point(14, 298);
             this.Image_Xe_Vao_Sau.Name = "Image_Xe_Vao_Sau";
-            this.Image_Xe_Vao_Sau.Size = new System.Drawing.Size(400, 260);
+            this.Image_Xe_Vao_Sau.Size = new System.Drawing.Size(381, 297);
             this.Image_Xe_Vao_Sau.TabIndex = 1;
             this.Image_Xe_Vao_Sau.TabStop = false;
             // 
             // Image_Xe_Ra_Truoc
             // 
-            this.Image_Xe_Ra_Truoc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Image_Xe_Ra_Truoc.Image = ((System.Drawing.Image)(resources.GetObject("Image_Xe_Ra_Truoc.Image")));
-            this.Image_Xe_Ra_Truoc.Location = new System.Drawing.Point(681, 63);
+            this.Image_Xe_Ra_Truoc.Location = new System.Drawing.Point(17, 40);
             this.Image_Xe_Ra_Truoc.Name = "Image_Xe_Ra_Truoc";
-            this.Image_Xe_Ra_Truoc.Size = new System.Drawing.Size(450, 260);
+            this.Image_Xe_Ra_Truoc.Size = new System.Drawing.Size(367, 227);
             this.Image_Xe_Ra_Truoc.TabIndex = 2;
             this.Image_Xe_Ra_Truoc.TabStop = false;
             // 
             // Image_Xe_Ra_Sau
             // 
-            this.Image_Xe_Ra_Sau.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Image_Xe_Ra_Sau.Image = ((System.Drawing.Image)(resources.GetObject("Image_Xe_Ra_Sau.Image")));
-            this.Image_Xe_Ra_Sau.Location = new System.Drawing.Point(681, 376);
+            this.Image_Xe_Ra_Sau.Location = new System.Drawing.Point(17, 295);
             this.Image_Xe_Ra_Sau.Name = "Image_Xe_Ra_Sau";
-            this.Image_Xe_Ra_Sau.Size = new System.Drawing.Size(450, 260);
+            this.Image_Xe_Ra_Sau.Size = new System.Drawing.Size(367, 297);
+            this.Image_Xe_Ra_Sau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Image_Xe_Ra_Sau.TabIndex = 3;
             this.Image_Xe_Ra_Sau.TabStop = false;
-            // 
-            // groupBox
-            // 
-            this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.groupBox.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox.Controls.Add(this.lbNotify);
-            this.groupBox.Controls.Add(this.lbStartTime);
-            this.groupBox.Controls.Add(this.lbDirector);
-            this.groupBox.Controls.Add(this.label2);
-            this.groupBox.Controls.Add(this.comboBox1);
-            this.groupBox.Controls.Add(this.label1);
-            this.groupBox.Controls.Add(this.btnSave);
-            this.groupBox.Controls.Add(this.btnPlate);
-            this.groupBox.Controls.Add(this.btnFace);
-            this.groupBox.Controls.Add(this.metroLabel2);
-            this.groupBox.Controls.Add(this.btnStart);
-            this.groupBox.Controls.Add(this.lbPlate);
-            this.groupBox.Controls.Add(this.Image_Plate);
-            this.groupBox.Controls.Add(this.Image_ID);
-            this.groupBox.Controls.Add(this.lbID);
-            this.groupBox.Controls.Add(this.metroLabel1);
-            this.groupBox.Location = new System.Drawing.Point(447, 63);
-            this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(228, 573);
-            this.groupBox.TabIndex = 4;
-            this.groupBox.TabStop = false;
             // 
             // lbStartTime
             // 
             this.lbStartTime.AutoSize = true;
-            this.lbStartTime.Location = new System.Drawing.Point(30, 343);
+            this.lbStartTime.Location = new System.Drawing.Point(20, 335);
             this.lbStartTime.Name = "lbStartTime";
             this.lbStartTime.Size = new System.Drawing.Size(82, 13);
             this.lbStartTime.TabIndex = 15;
             this.lbStartTime.Text = "Thời gian gửi xe";
             // 
-            // lbDirector
-            // 
-            this.lbDirector.AutoSize = true;
-            this.lbDirector.Location = new System.Drawing.Point(94, 368);
-            this.lbDirector.Name = "lbDirector";
-            this.lbDirector.Size = new System.Drawing.Size(0, 13);
-            this.lbDirector.TabIndex = 14;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 368);
+            this.label2.Location = new System.Drawing.Point(23, 360);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 13;
             this.label2.Text = "Hướng Xe";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(79, 543);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 12;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 546);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Chế độ";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(94, 503);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 10;
-            this.btnSave.Text = "Lưu lại";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnPlate
             // 
-            this.btnPlate.Location = new System.Drawing.Point(125, 460);
+            this.btnPlate.Location = new System.Drawing.Point(115, 452);
             this.btnPlate.Name = "btnPlate";
             this.btnPlate.Size = new System.Drawing.Size(75, 23);
             this.btnPlate.TabIndex = 9;
@@ -199,7 +131,7 @@
             // 
             // btnFace
             // 
-            this.btnFace.Location = new System.Drawing.Point(33, 460);
+            this.btnFace.Location = new System.Drawing.Point(23, 452);
             this.btnFace.Name = "btnFace";
             this.btnFace.Size = new System.Drawing.Size(75, 23);
             this.btnFace.TabIndex = 8;
@@ -210,7 +142,7 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(13, 227);
+            this.metroLabel2.Location = new System.Drawing.Point(3, 251);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(51, 19);
             this.metroLabel2.TabIndex = 7;
@@ -218,7 +150,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(94, 412);
+            this.btnStart.Location = new System.Drawing.Point(84, 404);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 5;
@@ -231,7 +163,7 @@
             this.lbPlate.AutoSize = true;
             this.lbPlate.BackColor = System.Drawing.Color.White;
             this.lbPlate.ForeColor = System.Drawing.Color.Transparent;
-            this.lbPlate.Location = new System.Drawing.Point(69, 227);
+            this.lbPlate.Location = new System.Drawing.Point(59, 251);
             this.lbPlate.Name = "lbPlate";
             this.lbPlate.Size = new System.Drawing.Size(34, 19);
             this.lbPlate.TabIndex = 4;
@@ -241,7 +173,7 @@
             // Image_Plate
             // 
             this.Image_Plate.Image = ((System.Drawing.Image)(resources.GetObject("Image_Plate.Image")));
-            this.Image_Plate.Location = new System.Drawing.Point(70, 135);
+            this.Image_Plate.Location = new System.Drawing.Point(60, 159);
             this.Image_Plate.Name = "Image_Plate";
             this.Image_Plate.Size = new System.Drawing.Size(100, 89);
             this.Image_Plate.TabIndex = 3;
@@ -250,7 +182,7 @@
             // Image_ID
             // 
             this.Image_ID.Image = ((System.Drawing.Image)(resources.GetObject("Image_ID.Image")));
-            this.Image_ID.Location = new System.Drawing.Point(69, 22);
+            this.Image_ID.Location = new System.Drawing.Point(59, 46);
             this.Image_ID.Name = "Image_ID";
             this.Image_ID.Size = new System.Drawing.Size(100, 89);
             this.Image_ID.TabIndex = 2;
@@ -259,7 +191,7 @@
             // lbID
             // 
             this.lbID.AutoSize = true;
-            this.lbID.Location = new System.Drawing.Point(104, 114);
+            this.lbID.Location = new System.Drawing.Point(94, 138);
             this.lbID.Name = "lbID";
             this.lbID.Size = new System.Drawing.Size(45, 19);
             this.lbID.TabIndex = 1;
@@ -268,7 +200,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(51, 114);
+            this.metroLabel1.Location = new System.Drawing.Point(41, 138);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(21, 19);
             this.metroLabel1.TabIndex = 0;
@@ -278,36 +210,137 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // lbNotify
+            // pVao
             // 
-            this.lbNotify.AutoSize = true;
-            this.lbNotify.Location = new System.Drawing.Point(79, 280);
-            this.lbNotify.Name = "lbNotify";
-            this.lbNotify.Size = new System.Drawing.Size(0, 0);
-            this.lbNotify.TabIndex = 16;
+            this.pVao.Controls.Add(this.Image_Xe_Vao_Sau);
+            this.pVao.Controls.Add(this.Image_Xe_Vao_Truoc);
+            this.pVao.Location = new System.Drawing.Point(0, 4);
+            this.pVao.Name = "pVao";
+            this.pVao.Size = new System.Drawing.Size(411, 610);
+            this.pVao.TabIndex = 5;
+            // 
+            // pInfo
+            // 
+            this.pInfo.Controls.Add(this.btnSave);
+            this.pInfo.Controls.Add(this.Image_Plate);
+            this.pInfo.Controls.Add(this.lbStartTime);
+            this.pInfo.Controls.Add(this.metroLabel1);
+            this.pInfo.Controls.Add(this.lbID);
+            this.pInfo.Controls.Add(this.label2);
+            this.pInfo.Controls.Add(this.Image_ID);
+            this.pInfo.Controls.Add(this.lbPlate);
+            this.pInfo.Controls.Add(this.btnStart);
+            this.pInfo.Controls.Add(this.metroLabel2);
+            this.pInfo.Controls.Add(this.btnPlate);
+            this.pInfo.Controls.Add(this.btnFace);
+            this.pInfo.Location = new System.Drawing.Point(414, 4);
+            this.pInfo.Name = "pInfo";
+            this.pInfo.Size = new System.Drawing.Size(200, 610);
+            this.pInfo.TabIndex = 6;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(115, 349);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 16;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.UseSelectable = true;
+            // 
+            // pRa
+            // 
+            this.pRa.Controls.Add(this.Image_Xe_Ra_Sau);
+            this.pRa.Controls.Add(this.Image_Xe_Ra_Truoc);
+            this.pRa.Location = new System.Drawing.Point(617, 7);
+            this.pRa.Name = "pRa";
+            this.pRa.Size = new System.Drawing.Size(397, 607);
+            this.pRa.TabIndex = 17;
+            // 
+            // pMenu
+            // 
+            this.pMenu.Controls.Add(this.btnMi);
+            this.pMenu.Controls.Add(this.btnMax);
+            this.pMenu.Controls.Add(this.btnExit);
+            this.pMenu.Location = new System.Drawing.Point(0, 7);
+            this.pMenu.Name = "pMenu";
+            this.pMenu.Size = new System.Drawing.Size(1017, 27);
+            this.pMenu.TabIndex = 18;
+            // 
+            // btnMi
+            // 
+            this.btnMi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnMi.FlatAppearance.BorderSize = 0;
+            this.btnMi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnMi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.btnMi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMi.Location = new System.Drawing.Point(912, 0);
+            this.btnMi.Name = "btnMi";
+            this.btnMi.Size = new System.Drawing.Size(34, 27);
+            this.btnMi.TabIndex = 12;
+            this.btnMi.Text = "_";
+            this.btnMi.UseVisualStyleBackColor = false;
+            this.btnMi.Click += new System.EventHandler(this.btnMi_Click);
+            // 
+            // btnMax
+            // 
+            this.btnMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnMax.FlatAppearance.BorderSize = 0;
+            this.btnMax.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnMax.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.btnMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMax.Location = new System.Drawing.Point(947, 0);
+            this.btnMax.Name = "btnMax";
+            this.btnMax.Size = new System.Drawing.Size(34, 27);
+            this.btnMax.TabIndex = 11;
+            this.btnMax.Text = "□";
+            this.btnMax.UseVisualStyleBackColor = false;
+            this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(982, 0);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(34, 27);
+            this.btnExit.TabIndex = 13;
+            this.btnExit.Text = "X";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // MainForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 676);
-            this.Controls.Add(this.groupBox);
-            this.Controls.Add(this.Image_Xe_Ra_Sau);
-            this.Controls.Add(this.Image_Xe_Ra_Truoc);
-            this.Controls.Add(this.Image_Xe_Vao_Sau);
-            this.Controls.Add(this.Image_Xe_Vao_Truoc);
+            this.ClientSize = new System.Drawing.Size(1017, 615);
+            this.ControlBox = false;
+            this.Controls.Add(this.pMenu);
+            this.Controls.Add(this.pInfo);
+            this.Controls.Add(this.pRa);
+            this.Controls.Add(this.pVao);
+            this.DisplayHeader = false;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm2";
-            this.Text = "Quản lý xe ";
-            this.ResizeBegin += new System.EventHandler(this.MainForm2_ResizeBegin);
+            this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
+            this.Resize += new System.EventHandler(this.MainForm2_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Vao_Truoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Vao_Sau)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Ra_Truoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Ra_Sau)).EndInit();
-            this.groupBox.ResumeLayout(false);
-            this.groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Plate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_ID)).EndInit();
+            this.pVao.ResumeLayout(false);
+            this.pInfo.ResumeLayout(false);
+            this.pInfo.PerformLayout();
+            this.pRa.ResumeLayout(false);
+            this.pMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -318,7 +351,6 @@
         private System.Windows.Forms.PictureBox Image_Xe_Vao_Sau;
         private System.Windows.Forms.PictureBox Image_Xe_Ra_Truoc;
         private System.Windows.Forms.PictureBox Image_Xe_Ra_Sau;
-        private System.Windows.Forms.GroupBox groupBox;
         private MetroFramework.Controls.MetroLabel lbID;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel lbPlate;
@@ -329,12 +361,15 @@
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private System.Windows.Forms.Button btnPlate;
         private System.Windows.Forms.Button btnFace;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lbStartTime;
-        private System.Windows.Forms.Label lbDirector;
         private System.Windows.Forms.Label label2;
-        private MetroFramework.Controls.MetroLabel lbNotify;
+        private System.Windows.Forms.Panel pVao;
+        private System.Windows.Forms.Panel pRa;
+        private System.Windows.Forms.Panel pInfo;
+        private System.Windows.Forms.Panel pMenu;
+        private System.Windows.Forms.Button btnMi;
+        private System.Windows.Forms.Button btnMax;
+        private System.Windows.Forms.Button btnExit;
+        private MetroFramework.Controls.MetroButton btnSave;
     }
 }

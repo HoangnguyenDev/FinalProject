@@ -17,6 +17,8 @@ using System.Xml.Serialization;
 using System.Drawing.Imaging;
 using System.Drawing;
 using Emgu.CV.Face;
+using System.Data.Entity;
+using Camera;
 
 /// <summary>
 /// Desingned to remove the training a EigenObjectRecognizer code from the main form
@@ -46,6 +48,11 @@ class Classifier_Train : IDisposable
 
     #endregion
 
+    public enum LoadClassifierType
+    {
+        Face,
+    }
+
     #region Constructors
     /// <summary>
     /// Default Constructor, Looks in (Application.StartupPath + "\\TrainedFaces") for traing data.
@@ -53,6 +60,10 @@ class Classifier_Train : IDisposable
     public Classifier_Train()
     {
         _IsTrained = LoadTrainingData(Application.StartupPath + "\\TrainedFaces");
+    }
+    public Classifier_Train(LoadClassifierType loadClassifierType)
+    {
+        _IsTrained = LoadTrainingDataFace();
     }
 
     /// <summary>
@@ -322,6 +333,100 @@ class Classifier_Train : IDisposable
         }
         else return false;
     }
+    private bool LoadTrainingDataFace()
+    {
+        try
+        {
+            trainingImages.Clear();
+            Names_List_ID.Clear();
+            Names_List.Clear();
+            NumLabels = 0;
+            admin_dangkythitoeicEntities database = new admin_dangkythitoeicEntities();
+            var list = database.GoLeaves.ToList();
+            int number = 0;
+            foreach (var item in list)
+            {
+                trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "\\"+ item.GoAvatar));
+                
+                Names_List_ID.Add(number);
+                Names_List.Add(item.OwnerID);
+                number++;
+                NumLabels += 1;
+            }
+            if (trainingImages.ToArray().Length != 0)
+            {
+                recognizer = new FisherFaceRecognizer(0, 3500);//4000
+
+                recognizer.Train(trainingImages.ToArray(), Names_List_ID.ToArray());
+
+                return true;
+            }
+            else return false;
+        }
+        catch (Exception ex)
+        {
+            Error = ex.ToString();
+            return false;
+        }
+    }
+        private bool LoadTrainingDataAdmin()
+    {
+        admin_dangkythitoeicEntities database = new admin_dangkythitoeicEntities();
+        
+        //database.
+
+        //        //message_bar.Text = "";
+        //Names_List.Clear();
+        //Names_List_ID.Clear();
+        //trainingImages.Clear();
+        //trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "\\TrainedFaces\\" + xmlreader.Value.Trim()));
+
+        //ContTrain = NumLabels;
+
+        //if (trainingImages.ToArray().Length != 0)
+        //{
+
+        //    //Eigen face recognizer
+        //    //Parameters:	
+        //    //      num_components – The number of components (read: Eigenfaces) kept for this Prinicpal 
+        //    //          Component Analysis. As a hint: There’s no rule how many components (read: Eigenfaces) 
+        //    //          should be kept for good reconstruction capabilities. It is based on your input data, 
+        //    //          so experiment with the number. Keeping 80 components should almost always be sufficient.
+        //    //
+        //    //      threshold – The threshold applied in the prediciton. This still has issues as it work inversly to LBH and Fisher Methods.
+        //    //          if you use 0.0 recognizer.Predict will always return -1 or unknown if you use 5000 for example unknow won't be reconised.
+        //    //          As in previous versions I ignore the built in threhold methods and allow a match to be found i.e. double.PositiveInfinity
+        //    //          and then use the eigen distance threshold that is return to elliminate unknowns. 
+        //    //
+        //    //NOTE: The following causes the confusion, sinc two rules are used. 
+        //    //--------------------------------------------------------------------------------------------------------------------------------------
+        //    //Eigen Uses
+        //    //          0 - X = unknown
+        //    //          > X = Recognised
+        //    //
+        //    //Fisher and LBPH Use
+        //    //          0 - X = Recognised
+        //    //          > X = Unknown
+        //    //
+        //    // Where X = Threshold value
+
+
+        //    recognizer = new FisherFaceRecognizer(0, 3500);//4000
+
+        //    recognizer.Train(trainingImages.ToArray(), Names_List_ID.ToArray());
+
+        //    return true;
+        //}
+        //else return false;
+        return false;
+    }
+    //catch (Exception ex)
+    //{
+    //    Error = ex.ToString();
+    //    return false;
+    //}
+
     #endregion
 }
+
 

@@ -30,7 +30,7 @@ namespace Camera
         Image<Gray, byte> result, TrainedFace = null; //used to store the result image and trained face
         Image<Gray, byte> gray_frameFace = null; //grayscale current image aquired from webcam for processing
 
-        VideoCapture captureFace; //This is our capture variable
+        
 
         private int _fpsPlate;
 
@@ -50,42 +50,88 @@ namespace Camera
         private bool _exPlate = true;
 
         //int current = 0;
-        VideoCapture capturePlate = null;
+        VideoCapture _capturePlateIn = null;
+        VideoCapture _captureFaceIn = null; //This is our capture variable
+        VideoCapture _capturePlateOut = null;
+        VideoCapture _captureFaceOut = null; //This is our capture variable
+        int _countErrorPR = 0;
+        int _fpsFaceIn = 30;
+        int _fpsFaceOut = 30;
+        int _fpsPlateOut = 30;
 
+        int _fpsPlateIn = 30;
+#region variable demo
+        int _totalFramePlateIn;
+        int _totalFramePlateOut;
+        int _totalFrameFaceIn;
+        int _totalFrameFaceOut;
+        int _currentFramePlateIn = 0;
+        int _currentFramePlateOut = 0;
+        int _currentFrameFaceIn = 0;
+        int _currentFrameFaceOut = 0;
         DateTime startTime;
         DateTime endTime;
-        int FPS = 30;
+#endregion
 
 
         public bool isFinish = false;
         public bool isStartFace = false;
         public bool isStartPlate = false;
         public bool isEx = false;
+        public bool isDemo = true;
         #endregion
         public MainForm2()
         {
-            Thread t = new Thread(new ThreadStart(Loading));
-            t.Start();
-            for (int i = 0; i <= 1000; i++)
-                Thread.Sleep(10);
-            t.Abort();
+            //Thread t = new Thread(new ThreadStart(Loading));
+            //t.Start();
+            //for (int i = 0; i <= 1000; i++)
+            //    Thread.Sleep(10);
+           // t.Abort();
             InitializeComponent();
             lbID.Text = "";
             //this.Image_ID.Location = new System.Drawing.Point(69, 22);
             lbPlate.Text = "";
-            capturePlate = new Emgu.CV.VideoCapture("a.mp4");
-            capturePlate.SetCaptureProperty(CapProp.FrameWidth, 640);
-            capturePlate.SetCaptureProperty(CapProp.FrameHeight, 480);
-            captureFace = new Emgu.CV.VideoCapture(1);
-            captureFace.SetCaptureProperty(CapProp.FrameWidth, 320);
-            captureFace.SetCaptureProperty(CapProp.FrameHeight, 240);
-            _fpsPlate = Convert.ToInt32(capturePlate.GetCaptureProperty(CapProp.Fps));
+            if (isDemo)
+            {
+                _capturePlateIn = new Emgu.CV.VideoCapture("Demo\\XeRaBienSo.mp4");
+                _capturePlateIn.SetCaptureProperty(CapProp.FrameWidth, 640);
+                _capturePlateIn.SetCaptureProperty(CapProp.FrameHeight, 480);
+                //_capturePlateIn.SetCaptureProperty(CapProp., 480);
+                _fpsPlateIn = (Int32) _capturePlateIn.GetCaptureProperty(CapProp.Fps);
+                _totalFramePlateIn = Convert.ToInt32(_capturePlateIn.GetCaptureProperty(CapProp.FrameCount)) - 4;
+
+                _captureFaceIn = new Emgu.CV.VideoCapture("Demo\\XeRaMat.mp4");
+                _captureFaceIn.SetCaptureProperty(CapProp.FrameWidth, 320);
+                _captureFaceIn.SetCaptureProperty(CapProp.FrameHeight, 240);
+                _fpsFaceIn = (Int32)_captureFaceIn.GetCaptureProperty(CapProp.Fps);
+                _totalFrameFaceIn = (Int32) _captureFaceIn.GetCaptureProperty(CapProp.FrameCount) -4 ;
+            }
+            else
+            {
+                _capturePlateIn = new Emgu.CV.VideoCapture(1);
+                _capturePlateIn.SetCaptureProperty(CapProp.FrameWidth, 640);
+                _capturePlateIn.SetCaptureProperty(CapProp.FrameHeight, 480);
+                _captureFaceIn = new Emgu.CV.VideoCapture(0);
+                _captureFaceIn.SetCaptureProperty(CapProp.FrameWidth, 320);
+                _captureFaceIn.SetCaptureProperty(CapProp.FrameHeight, 240);
+            }
             //timer1.Enabled = true;
+            if (_captureFaceOut == null)
+            {
+                Image_Xe_Ra_Truoc.Image = (new Image<Bgr, byte>("Picture\\camera_not_found.png")).Bitmap;
+                Image_Xe_Ra_Truoc.Update();
+            }
+            if (_capturePlateOut == null)
+            {
+                Image_Xe_Ra_Sau.Image = (new Image<Bgr, byte>("Picture\\camera_not_found.png")).Bitmap;
+                Image_Xe_Ra_Truoc.Update();
+            }
             Application.Idle += new EventHandler(FrameGrabber);
             startTime = DateTime.Now;
-            timer1.Interval = 1000 / FPS;
-            timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Start();
+            //timer1.Interval = 1000 / _fpsFaceIn;
+            //timer1.Tick += new EventHandler(timer1_Tick);
+            //timer1.Start();
+            
         }
         void Loading()
         {
@@ -98,57 +144,165 @@ namespace Camera
         {
             try
             {
-                Mat cap = capturePlate.QueryFrame();
-                if (cap != null)
+                Image<Bgr, byte> capPrImageIn = null;
+                Image<Bgr, byte> capFaceImageIn = null;
+                if (isDemo)
                 {
-                    //MethodInvoker mi = async delegate
-                    //{
+                    if(_currentFrameFaceIn < _totalFrameFaceIn)
+                    { 
+                    
+                        _currentFrameFaceIn++;
+                    }
+                    
+                    if (_currentFramePlateIn < _totalFramePlateIn)
+                    {
+                        
+                        _currentFramePlateIn++;
+                    }
+                    capFaceImageIn = _captureFaceIn.QueryFrame().ToImage<Bgr, byte>();
+                    capPrImageIn = _capturePlateIn.QueryFrame().ToImage<Bgr, byte>();
+                    Image_Xe_Vao_Truoc.Image = capPrImageIn.Resize(Image_Xe_Vao_Truoc.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
+                    Image_Xe_Vao_Sau.Image = capFaceImageIn.Resize(Image_Xe_Vao_Sau.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
+                    Image_Xe_Vao_Truoc.Update();
+                    Image_Xe_Vao_Sau.Update();
+                    await Task.Delay(1000 / _fpsFaceIn/4);
+                }
+                else
+                {
+                    capPrImageIn = _capturePlateIn.QueryFrame().ToImage<Bgr, byte>();
+                    capFaceImageIn = _captureFaceIn.QueryFrame().ToImage<Bgr, byte>();
+                    Image_Xe_Vao_Truoc.Image = capPrImageIn.Resize(Image_Xe_Vao_Truoc.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
+                    Image_Xe_Vao_Sau.Image = capFaceImageIn.Resize(Image_Xe_Vao_Sau.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
+                    Image_Xe_Vao_Truoc.Update();
+                    Image_Xe_Vao_Sau.Update();
+                }
+                //if (isStart)
+                //{
+                //lbNotify.Text = "Đang Tiến Hành";
+                if (capPrImageIn != null && isStartPlate)
+                {
                     try
                     {
 
-                        Image_Xe_Vao_Truoc.Image = cap.ToImage<Bgr,byte>().Resize(260, 200, Inter.Cubic).Bitmap;
-                        Image_Xe_Vao_Truoc.Update();
+                        //Image_Xe_Vao_Truoc.Update();
                         Bitmap temp1;
                         string temp2, temp3;
 
 
                         endTime = DateTime.Now;
-                        if (endTime.Subtract(startTime).Milliseconds > 1000)
-                        {
-                            _exPlate = true;
-                            startTime = DateTime.Now;
-                        }
-                        
-                            Reconize(cap.Bitmap, out temp1, out temp2, out temp3);
-                            //if (!_exPlate)
-                            //    CvInvoke.Imshow(DateTime.Now.ToString(),new Image<Bgr,byte>(temp1));
-                        
-
-                        //pictureBox_WC.Update();
+                        //if (endTime.Subtract(startTime).Milliseconds > 1000)
+                        //{
+                        //    _exPlate = true;
+                        //    startTime = DateTime.Now;
+                        //}
+                        //Image<Bgr, byte> image = new Image<Bgr, byte>("ImageTest\\HV-002.bmp");
+                        Reconize(capPrImageIn.Bitmap, out temp1, out temp2, out temp3);
+                        //if (temp3 !="")
+                        //{
+                        Image_Plate.Image = new Image<Gray, byte>(temp1).Resize(100, 67, Inter.Cubic).Bitmap;
+                        isStartPlate = false;
+                        //}
+                        //if (!_exPlate)
+                        //    CvInvoke.Imshow(DateTime.Now.ToString(), new Image<Bgr, byte>(temp1));
                         //await Task.Delay(1000 / _fpsPlate);
+
+                        //image_PR.Image = temp1;
+                        if (temp3 == "")
+                            lbPlate.Text = "Cannot recognize license plate !";
+                        else
+                            lbPlate.Text = temp3;
                     }
                     catch (Exception ex)
-                    { }
-                    //};
-                    //if (InvokeRequired)
-                    //    Invoke(mi);
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
+
+                if (capFaceImageIn != null && isStartFace)
+                {
+                    gray_frameFace = capFaceImageIn.Convert<Gray, Byte>();
+
+                    //Face Detector
+                    Rectangle[] facesDetected = _face.DetectMultiScale(gray_frameFace, 1.2, 10, new Size(50, 50), Size.Empty);
+
+                    //Action for each element detected
+                    Parallel.For(0, facesDetected.Length, i =>
+                    {
+                        try
+                        {
+                            //facesDetected[i].X += (int)(facesDetected[i].Height * 0.15);
+                            //facesDetected[i].Y += (int)(facesDetected[i].Width * 0.22);
+                            //facesDetected[i].Height -= (int)(facesDetected[i].Height * 0.3);
+                            //facesDetected[i].Width -= (int)(facesDetected[i].Width * 0.35);
+
+                            result = capFaceImageIn.Copy(facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.Inter.Cubic);
+                            result._EqualizeHist();
+                            //draw the face detected in the 0th (gray) channel with blue color
+                            capFaceImageIn.Draw(facesDetected[i], new Bgr(Color.Red), 2);
+                            //ToeicExam toeicExam = new ToeicExam();
+                            //toeicExam.Show();
+                            //Hide();
+                            //if (_recognition.IsTrained)
+                            //{
+                            //    string name = _recognition.Recognise(result);
+                            //    int match_value = (int)_recognition.Get_Fisher_Distance;
+
+                            //    //Draw the label for each face detected and recognized
+                            //    //currentFrame.Draw(name + " ", new Point(facesDetected[i].X - 2, facesDetected[i].Y - 2), Emgu.CV.CvEnum.FontFace.HersheyComplex, 1, new Bgr(Color.LightGreen));
+                            //    //ADD_Face_Found(result, name, match_value);
+                            //}
+                            Image_ID.Image = result.Resize(100, 67, Inter.Cubic).Bitmap;
+                            lbID.Text = "13520558";
+                            isStartFace = false;
+
+                        }
+                        catch
+                        {
+                            //do nothing as parrellel loop buggy
+                            //No action as the error is useless, it is simply an error in 
+                            //no data being there to process and this occurss sporadically 
+                        }
+                    });
+                }
+                // }
+                //if (!isStartFace && !isStartPlate)
+                //{
+                //isStart = false;
+                //lbNotify.Text = "Đã lưu";
+                //lbNotify.BackColor = System.Drawing.Color.Green;
+                //}
+                if (!isStartPlate && !isStartFace & isEx)
+                    btnSave.Enabled = true;
             }
-            catch { }
+            catch (Exception ex){
+                MessageBox.Show(ex.ToString());
+            }
         }
         bool success = true;
         private void timer1_Tick(object sender, EventArgs e)
         {
             try
             {
-                Image<Bgr, byte> capPrImage = capturePlate.QueryFrame().ToImage<Bgr, byte>();
-                Image<Bgr, byte> capFaceImage = captureFace.QueryFrame().ToImage<Bgr, byte>();
-                Image_Xe_Vao_Truoc.Image = capPrImage.Resize(400, 260, Inter.Cubic).Bitmap;
-                Image_Xe_Vao_Sau.Image = capFaceImage.Resize(400, 260, Inter.Cubic).Bitmap;
-                //if (isStart)
+                Image<Bgr, byte> capPrImageIn = null;
+                Image<Bgr, byte> capFaceImageIn = null;
+                if (isDemo)
+                {
+                    capPrImageIn = _capturePlateIn.QueryFrame().ToImage<Bgr, byte>().Rotate(90, new Bgr());
+                    capFaceImageIn = _captureFaceIn.QueryFrame().ToImage<Bgr, byte>().Rotate(90, new Bgr());
+                    Image_Xe_Vao_Truoc.Image = capPrImageIn.Resize(400, 260, Inter.Cubic).Rotate(90, new Bgr()).Bitmap;
+                    Image_Xe_Vao_Sau.Image = capFaceImageIn.Resize(400, 260, Inter.Cubic).Rotate(90, new Bgr()).Bitmap;
+                }
+                else
+                {
+                    capPrImageIn = _capturePlateIn.QueryFrame().ToImage<Bgr, byte>();
+                    capFaceImageIn = _captureFaceIn.QueryFrame().ToImage<Bgr, byte>();
+                    Image_Xe_Vao_Truoc.Image = capPrImageIn.Resize(400, 260, Inter.Cubic).Bitmap;
+                    Image_Xe_Vao_Sau.Image = capFaceImageIn.Resize(400, 260, Inter.Cubic).Bitmap;
+                }
+                    //if (isStart)
                 //{
                     //lbNotify.Text = "Đang Tiến Hành";
-                    if (capPrImage != null && isStartPlate)
+                    if (capPrImageIn != null && isStartPlate)
                     {
                         try
                         {
@@ -165,7 +319,7 @@ namespace Camera
                             //    startTime = DateTime.Now;
                             //}
                             //Image<Bgr, byte> image = new Image<Bgr, byte>("ImageTest\\HV-002.bmp");
-                            Reconize(capPrImage.Bitmap, out temp1, out temp2, out temp3);
+                            Reconize(capPrImageIn.Bitmap, out temp1, out temp2, out temp3);
                             //if (temp3 !="")
                             //{
                             Image_Plate.Image = new Image<Gray, byte>(temp1).Resize(100, 67, Inter.Cubic).Bitmap;
@@ -185,9 +339,9 @@ namespace Camera
                         { }
                     }
 
-                    if (capFaceImage != null && isStartFace)
+                    if (capFaceImageIn != null && isStartFace)
                     {
-                        gray_frameFace = capFaceImage.Convert<Gray, Byte>();
+                        gray_frameFace = capFaceImageIn.Convert<Gray, Byte>();
 
                         //Face Detector
                         Rectangle[] facesDetected = _face.DetectMultiScale(gray_frameFace, 1.2, 10, new Size(50, 50), Size.Empty);
@@ -202,10 +356,10 @@ namespace Camera
                                 //facesDetected[i].Height -= (int)(facesDetected[i].Height * 0.3);
                                 //facesDetected[i].Width -= (int)(facesDetected[i].Width * 0.35);
 
-                                result = capFaceImage.Copy(facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.Inter.Cubic);
+                                result = capFaceImageIn.Copy(facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.Inter.Cubic);
                                 result._EqualizeHist();
                                 //draw the face detected in the 0th (gray) channel with blue color
-                                capFaceImage.Draw(facesDetected[i], new Bgr(Color.Red), 2);
+                                capFaceImageIn.Draw(facesDetected[i], new Bgr(Color.Red), 2);
                                 //ToeicExam toeicExam = new ToeicExam();
                                 //toeicExam.Show();
                                 //Hide();
@@ -500,10 +654,6 @@ namespace Camera
             isEx = true;
         }
 
-        private void MainForm2_ResizeBegin(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnFace_Click(object sender, EventArgs e)
         {
@@ -519,7 +669,7 @@ namespace Camera
 
         private void button1_Click(object sender, EventArgs e)
         {
-            btnSave.Enabled = false;
+
         }
         public void Reset()
         {
@@ -528,7 +678,53 @@ namespace Camera
             isStartFace = false;
             btnSave.Enabled = false;
             isEx = false;
-            lbNotify.Text = "Thành công";
+            lbID.Text = "";
+            lbPlate.Text = "";
+        }
+
+        private void MainForm2_Resize(object sender, EventArgs e)
+        {
+            pMenu.Size = new Size(Size.Width, pMenu.Size.Height);
+            btnExit.Location = new Point(pMenu.Size.Width - btnExit.Size.Width, btnExit.Location.Y);
+            btnMax.Location = new Point(btnExit.Location.X - btnMax.Size.Width - 1, btnMax.Location.Y);
+            btnMi.Location = new Point(btnMax.Location.X - btnMi.Size.Width - 1, btnMi.Location.Y);
+
+            pVao.Location = new Point(0, 5);
+            pVao.Size = new Size(Size.Width / 5 * 2, Size.Height);
+            pRa.Location = new Point(Size.Width/5 * 3, 5);
+            pRa.Size = new Size(Size.Width / 5 * 2, Size.Height);
+            pInfo.Location = new Point(pVao.Size.Width, 5);
+            pInfo.Size = new Size(Size.Width/5, Size.Height);
+
+            Image_Xe_Ra_Truoc.Size = new Size(pRa.Size.Width - 20, (pRa.Size.Height-30) / 2 - 20);
+            Image_Xe_Ra_Truoc.Location = new Point(pRa.Location.X + 10, pRa.Location.Y + 30);
+            Image_Xe_Ra_Sau.Size = new Size(pRa.Size.Width - 20, (pRa.Size.Height-30) / 2 - 20);
+            Image_Xe_Ra_Sau.Location = new Point(pRa.Location.X + 10, pRa.Location.Y + 30 + 20 + Image_Xe_Ra_Truoc.Height);
+
+            
+            Image_Xe_Vao_Truoc.Size = new Size(pVao.Size.Width - 20, (pVao.Size.Height-30) / 2 - 20);
+            Image_Xe_Vao_Truoc.Location = new Point(pVao.Location.X + 10, pVao.Location.Y + 30);
+            Image_Xe_Vao_Sau.Size = new Size(pVao.Size.Width - 20, (pVao.Size.Height-30) / 2 - 20);
+            Image_Xe_Vao_Sau.Location = new Point(pVao.Location.X + 10, pVao.Location.Y + 30 + 20 + Image_Xe_Vao_Truoc.Height);
+        }
+
+        private void btnMi_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMax_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else if (this.WindowState == FormWindowState.Maximized)
+                this.WindowState = FormWindowState.Normal;
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+            this.Close();
         }
 
         public int IdentifyContours(Bitmap colorImage, out Bitmap processedGray, out List<Rectangle> listRect, out List<Mat> listMat)

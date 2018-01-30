@@ -9,7 +9,6 @@ D:\GitHub\FinalProject\Camera\bin\x64\Debug\IN_AFTER.mp4
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\IN_IN.mp4
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\IN_IN_2.mp4
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\output-hv-33-x25.xml
-D:\GitHub\FinalProject\Camera\bin\x64\Debug\Temp.mp4
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageForm.resx
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\MainForm.resx
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageForm.cs
@@ -58,8 +57,6 @@ D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.csproj.GenerateResource.Cache
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.csproj.CoreCompileInputs.cache
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.exe
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.pdb
-D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.csprojResolveAssemblyReference.cache
-D:\GitHub\FinalProject\Camera\bin\x64\Debug\2.mp4
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageTest\11059925-xexin8.jpg
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageTest\11270327_896981600368358_5654267662891161986_o.jpg
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageTest\15_36_1310988590_14_vnm_2011_366495.jpg
@@ -89,7 +86,6 @@ D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageTest\HV-024.bmp
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageTest\HV-026.bmp
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageTest\HV-028.jpg
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageTest\HV-029.bmp
-D:\GitHub\FinalProject\Camera\bin\x64\Debug\a.mp4
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\Picture\avatar-sample.png
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\Picture\camera_not_found.png
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\Picture\plate-sample.jpg
@@ -102,3 +98,11 @@ D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.StepByStepForm.resources
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.LoginForm.resources
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.SplashScreenForm.resources
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.WaitingForm.resources
+D:\GitHub\FinalProject\Camera\bin\x64\Debug\Demo\2.mp4
+D:\GitHub\FinalProject\Camera\bin\x64\Debug\Demo\XeRaBienSo.mp4
+D:\GitHub\FinalProject\Camera\bin\x64\Debug\Demo\XeRaMat.mp4
+D:\GitHub\FinalProject\Camera\bin\x64\Debug\Demo\XeVaoBienSo.mp4
+D:\GitHub\FinalProject\Camera\bin\x64\Debug\Demo\XeVaoMat.mp4
+D:\GitHub\FinalProject\Camera\bin\x64\Debug\Demo\a.mp4
+D:\GitHub\FinalProject\Camera\bin\x64\Debug\Demo\Temp.mp4
+D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.csprojResolveAssemblyReference.cache

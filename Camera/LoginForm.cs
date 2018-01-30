@@ -24,9 +24,10 @@ namespace Camera
         Image<Gray, byte> result, TrainedFace = null; //used to store the result image and trained face
         Image<Gray, byte> gray_frame = null; //grayscale current image aquired from webcam for processing
 
-        VideoCapture grabber; //This is our capture variable
+        public VideoCapture grabber; //This is our capture variable
         DateTime dateTime;
         DateTime endTime;
+        bool stopCamera = false;
         #endregion
         public LoginForm()
         {
@@ -46,12 +47,14 @@ namespace Camera
             //}
             //else
             //{
-            Application.Idle += new EventHandler(FrameGrabber_Standard);
+           // if(!stopCamera)
+                Application.Idle += new EventHandler(FrameGrabber_Standard);
             //}
         }
         //Process Frame
         void FrameGrabber_Standard(object sender, EventArgs e)
         {
+            if (!stopCamera) { 
             //Get the current frame form capture device
             currentFrame = grabber.QueryFrame().ToImage<Bgr, byte>().Resize(320, 240, Emgu.CV.CvEnum.Inter.Cubic);
 
@@ -78,7 +81,9 @@ namespace Camera
                         //draw the face detected in the 0th (gray) channel with blue color
                         currentFrame.Draw(facesDetected[i], new Bgr(Color.Red), 2);
                         Thread.Sleep(500);
+                        stopCamera = true;
                         grabber.Dispose();
+                        grabber = null;
                         Hide();
                         MainForm2 main = new MainForm2();
                         main.Show();
@@ -111,6 +116,7 @@ namespace Camera
                     main.Show();
                 }
 
+            }
             }
         }
     }
