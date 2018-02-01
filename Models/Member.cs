@@ -4,12 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccess
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
-    public class Member : IdentityUser
+    public class Member
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public long ID { get; set; }
         public bool IsDeleted { get; set; }
         public List<GoLeave> ListHistory { get; set; }
         public string FirstMidName { get; set; }

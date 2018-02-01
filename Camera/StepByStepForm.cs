@@ -1,6 +1,7 @@
 ﻿using Auto_parking;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
+using Emgu.CV.ML;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
 using MetroFramework.Forms;
@@ -11,6 +12,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -25,7 +27,7 @@ namespace Camera
 
         #region định nghĩa
         List<Image<Bgr, byte>> PlateImagesList = new List<Image<Bgr, byte>>();
-        const int MARGIN_RECT = 4;
+        const int MARGIN_RECT = 3;
         Image Plate_Draw;
         List<string> PlateTextList = new List<string>();
         List<Rectangle> listRect = new List<Rectangle>();
@@ -39,16 +41,21 @@ namespace Camera
         VideoCapture capture = null;
         #endregion
 
-
-
+        public SVM svm;
         ImageForm IF;
         public StepByStepForm()
         {
-            capture = new Emgu.CV.VideoCapture(0);
-
+            //capture = new Emgu.CV.VideoCapture(0);
+           // fLANN.LoadData("D:\\GitHub\\FinalProject\\Camera\\bin\\x64\\Debug\\Picture\\FULL\\LPR");
+           // var list = fLANN.Reconize(new Image<Gray, byte>("D:\\GitHub\\FinalProject\\Camera\\bin\\x64\\Debug\\Picture\\FULL\\LPR\\BienSoXe.jpg"));
+            
             IF = new ImageForm();
-
+            svm = SVMExtension.Create();
             InitializeComponent();
+            //SVMFuntion svm = new SVMFuntion();
+            //svm.Training();
+            //LoadSVMFromFile("OCR.xml");
+            Test();
         }
         public void ProcessImage(string urlImage)
         {
@@ -170,6 +177,7 @@ namespace Camera
             {
                 Image<Bgr, byte> src = new Image<Bgr, byte>(PlateImagesList[0].ToBitmap());
                 pictureBox2.Image = PlateImagesList[0].ToBitmap();
+                CvInvoke.Imwrite("BienSoXe.jpg", PlateImagesList[0].Mat);
                 Bitmap grayframe;
                 FindContours con = new FindContours();
                 List<Rectangle> listRect = new List<Rectangle>();
@@ -197,105 +205,95 @@ namespace Camera
                 //pictureBox2.Image = grayframe.Clone(listRect[2], grayframe.PixelFormat);
                 string zz = "";
                 // Plate recoginatinon
-                if (listMat.Count == 7)
-                {
-                    for (int i = 0; i <= 3; i++)
-                    {
+                //if (listMat.Count == 7)
+                //{
+                //    for (int i = 0; i <= 3; i++)
+                //    {
 
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
-                        //char cs = character_recognition(listMat[i]);
-                        zz += cs;
-                        //IList<IndecesMapping> list = flann.Reconize(dst);
-                        //string fileName = list.OrderByDescending(p => p.Similarity).First().fileName;
-                        //int Similar = list.OrderByDescending(p => p.Similarity).First().Similarity;
-                        //CvInvoke.Imshow (i.ToString(), new Image<Bgr,byte>(
-                        //    fileName));
-                        //flann.ResetSimilarity();
-                        //text_recognition.push_back(result);
-                        //System::String ^ str = gcnew System::String(result.c_str()); // Convert std string to System String
-                        //textBox1->Text += str;
-                    }
-                    for (int i = 4; i <= 6; i++)
-                    {
+                //        ocrImage = new OcrImage(listMat[i], PATH_OCR);
+                //        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
+                //        string cs = ocrImage.Recoginatinon();
+                //        zz += cs;
+                //    }
+                //    for (int i = 4; i <= 6; i++)
+                //    {
 
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
-                        //char cs = character_recognition(listMat[i]);
-                        zz += cs;
-                    }
-                }
-                else if (listMat.Count == 8)
-                {
-                    for (int i = 0; i <= 4; i++)
-                    {
+                //        ocrImage = new OcrImage(listMat[i], PATH_OCR);
+                //        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
+                //        string cs = ocrImage.Recoginatinon();
+                //        //char cs = character_recognition(listMat[i]);
+                //        zz += cs;
+                //    }
+                //}
+                //else if (listMat.Count == 8)
+                //{
+                //    for (int i = 0; i <= 4; i++)
+                //    {
 
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.NUMBER);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                    for (int i = 5; i <= 7; i++)
-                    {
+                //        ocrImage = new OcrImage(listMat[i], PATH_OCR);
+                //        ocrImage.SetOcr(OcrImage.TypeOcr.NUMBER);
+                //        string cs = ocrImage.Recoginatinon();
+                //        zz += cs;
+                //    }
+                //    for (int i = 5; i <= 7; i++)
+                //    {
 
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                }
-                else if (listMat.Count == 9)
-                {
-                    for (int i = 0; i <= 4; i++)
-                    {
+                //        ocrImage = new OcrImage(listMat[i], PATH_OCR);
+                //        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
+                //        string cs = ocrImage.Recoginatinon();
+                //        zz += cs;
+                //    }
+                //}
+                //else if (listMat.Count == 9)
+                //{
+                //    for (int i = 0; i <= 4; i++)
+                //    {
 
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.NUMBER);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                    for (int i = 5; i <= 8; i++)
-                    {
+                //        ocrImage = new OcrImage(listMat[i], PATH_OCR);
+                //        ocrImage.SetOcr(OcrImage.TypeOcr.NUMBER);
+                //        string cs = ocrImage.Recoginatinon();
+                //        zz += cs;
+                //    }
+                //    for (int i = 5; i <= 8; i++)
+                //    {
 
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                }
-                else if (listMat.Count == 10)
-                {
-                    for (int i = 0; i <= 4; i++)
-                    {
+                //        ocrImage = new OcrImage(listMat[i], PATH_OCR);
+                //        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
+                //        string cs = ocrImage.Recoginatinon();
+                //        zz += cs;
+                //    }
+                //}
+                //else if (listMat.Count == 10)
+                //{
+                //    for (int i = 0; i <= 4; i++)
+                //    {
 
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.NUMBER);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                    for (int i = 5; i <= 9; i++)
-                    {
+                //        ocrImage = new OcrImage(listMat[i], PATH_OCR);
+                //        ocrImage.SetOcr(OcrImage.TypeOcr.NUMBER);
+                //        string cs = ocrImage.Recoginatinon();
+                //        zz += cs;
+                //    }
+                //    for (int i = 5; i <= 9; i++)
+                //    {
 
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                }
-                else
-                {
+                //        ocrImage = new OcrImage(listMat[i], PATH_OCR);
+                //        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
+                //        string cs = ocrImage.Recoginatinon();
+                //        zz += cs;
+                //    }
+                //}
+                //else
+                //{
                     for (int i = 0; i < listMat.Count; i++)
                     {
 
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
+                        //ocrImage = new OcrImage(listMat[i], PATH_OCR);
+                        //ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
+                        char cs = Recoginatinon(svm, listMat[i]);
                         zz += cs;
                     }
 
-                }
+                //}
                 string replacement = Regex.Replace(zz, @"\t|\n|\r", "");
                 txtLPR.Text = replacement;
                 char[] arr = replacement.ToCharArray();
@@ -315,10 +313,10 @@ namespace Camera
             Mat binary = new Image<Gray, byte>(grayImage.Width, grayImage.Height).Mat;
             pictureBox3.Image = grayImageBackup.Bitmap;
             Image<Bgr, byte> color = new Image<Bgr, byte>(colorImage);
-            CvInvoke.AdaptiveThreshold(grayImage, binary, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 55, 5);
+            CvInvoke.AdaptiveThreshold(grayImage, binary, 255, AdaptiveThresholdType.MeanC, ThresholdType.Binary, 55, 5);
             //Mat gray, binary;
             // CvInvoke.Imshow("binary",binary);
-            pictureBox4.Image = binary.Bitmap;
+            List<Mat> cb = new List<Mat>();
             Mat or_binary = binary.Clone();
             Mat _plate = binary.Clone();
             Mat hierachy = new Mat();
@@ -326,6 +324,7 @@ namespace Camera
             CvInvoke.Erode(binary, binary, element, new Point(0, 0), 1, BorderType.Constant, new MCvScalar());
 
             CvInvoke.Dilate(binary, binary, element, new Point(0, 0), 1, BorderType.Constant, new MCvScalar());
+            pictureBox4.Image = binary.Bitmap;
             CvInvoke.FindContours(binary, contours, hierachy, RetrType.Tree, ChainApproxMethod.ChainApproxSimple, new Point(0, 0));
             //if (contours.Size < 8)
             //    continue;
@@ -335,20 +334,26 @@ namespace Camera
             List<Rectangle> r_characters = new List<Rectangle>();
             for (int j = 0; j < contours.Size; ++j)
             {
+
                 Rectangle sub_r = CvInvoke.BoundingRectangle(contours[j]);
-                if (sub_r.Width > 50 && sub_r.Width < 160
-                       && sub_r.Height > 80 && sub_r.Height < 160)
+                if (sub_r.Width > 20 && sub_r.Width < 160
+                       && sub_r.Height > 80 && sub_r.Height < 160 && sub_r.Y > 0 && sub_r.X > 0)
                 {
                     Mat cj = new Mat(_plate, sub_r);
                     double ratio = (double)EmguCVExtension.count_pixel(cj) / (cj.Cols * cj.Rows);
                     if (ratio > 0.2 && ratio < 0.7)
                     {
-                        r_characters.Add(new Rectangle(sub_r.X + MARGIN_RECT, sub_r.Y + MARGIN_RECT, sub_r.Width + MARGIN_RECT, sub_r.Height + MARGIN_RECT));
-                        CvInvoke.Rectangle(grayImage, sub_r, new MCvScalar(0, 0, 255), 2, LineType.EightConnected, 0);
+                        int X = sub_r.X - MARGIN_RECT > 0 ? sub_r.X - MARGIN_RECT : sub_r.X;
+                        int Y = sub_r.Y - MARGIN_RECT > 0 ? sub_r.Y - MARGIN_RECT : sub_r.Y;
+                        r_characters.Add(new Rectangle(X, Y, sub_r.Width + MARGIN_RECT*2, sub_r.Height + MARGIN_RECT*2));
+                        //CvInvoke.Rectangle(grayImage, sub_r, new MCvScalar(0, 0, 255), 2, LineType.EightConnected, 0);
+                        //CvInvoke.Rectangle(binary, sub_r, new MCvScalar(0, 0, 255), 2, LineType.EightConnected, 0);
                     }
                 }
+                               
+                
             }
-            pictureBox5.Image = grayImage.Bitmap;
+            pictureBox5.Image = binary.Bitmap;
             if (r_characters.Count >= 7)
             {
                 //sap xep
@@ -365,6 +370,8 @@ namespace Camera
                 //        }
                 //    }
                 //}
+
+
                 List<Rectangle> listUp = new List<Rectangle>();
                 List<Rectangle> listDown = new List<Rectangle>();
                 bool r0 = false;
@@ -425,28 +432,51 @@ namespace Camera
                     //  CvInvoke.Imshow(i.ToString() + ".jpg", new Mat(_plate, r_characters[i]));
                     //CvInvoke.Imwrite(i.ToString()+".jpg", new Mat(binary, r_characters[i]));
                     c.Add(cj);
+
+                }
+                //r_characters.Clear();
+                
+                foreach (var item in c)
+                {
+                    double maxArea = 0.0;
+                    VectorOfVectorOfPoint contours2 = new VectorOfVectorOfPoint();
+                    Mat hierachy2 = new Mat();
+                    CvInvoke.FindContours(item, contours2, hierachy2, RetrType.External, ChainApproxMethod.ChainApproxSimple, new Point(0, 0));
+                    Mat result = new Mat();
+                    int savedContour = -1;
+                    for (int i = 0; i < contours2.Size; i++)
+                    {
+                        double area = CvInvoke.ContourArea(contours2[i]);
+                        if (area > maxArea)
+                        {
+                            maxArea = area;
+                            savedContour = i;
+                        }
+                    }
+                    // Create mask
+                    CvInvoke.DrawContours(item, contours2, savedContour, new MCvScalar(255));
+
+                    // apply the mask:
+                    cb.Add(item);
+                   // r_characters.Add(new Rectangle(max.X - MARGIN_RECT, max.Y - MARGIN_RECT, max.Width + MARGIN_RECT * 2, max.Height + MARGIN_RECT * 2));
+                    //CvInvoke.Rectangle(grayImage, sub_r, new MCvScalar(0, 0, 255), 2, LineType.EightConnected, 0);
+                   // CvInvoke.Rectangle(binary, max, new MCvScalar(0, 0, 255), 2, LineType.EightConnected, 0);
+                    
+                }
+                for (int f = 0; f < cb.Count; ++f)
+                {
+                   // Mat cj = new Mat(_plate, r_characters[f]);
+                    //  CvInvoke.Imshow(i.ToString() + ".jpg", new Mat(_plate, r_characters[i]));
+                    CvInvoke.Imwrite(f.ToString() + ".jpg", cb[f]);
+
                 }
             }
-            // Plate recoginatinon
-            //for (int i = 0; i < c.Count; i++)
-            //{
-            //    string result;
-            //    for (int j = 0; j < c[i].; ++j)
-            //    {
-
-            //        char cs = character_recognition(c[i]);
-            //        //result.push_back(cs);
-
-            //    }
-            //    //text_recognition.push_back(result);
-            //    //System::String ^ str = gcnew System::String(result.c_str()); // Convert std string to System String
-            //    //textBox1->Text += str;
-            //}
-
-            //rectangle(image, r, Scalar(0, 255, 0), 2, 8, 0);
+           
+ 
             listRect = r_characters;
             processedGray = grayImage.ToBitmap();
-            listMat = c;
+
+            listMat = cb;
             return 1;
 
         }
@@ -468,5 +498,249 @@ namespace Camera
             pictureBox1.Image = (new Image<Bgr, byte>(dlg.FileName)).Bitmap;
             Reconize(startupPath, out temp1, out temp2, out temp3);
         }
+
+        public static Image<Bgr, Byte> Resize(Image<Bgr, Byte> im)
+        {
+            return im.Resize(64, 128, Inter.Linear);
+        }
+        public static float[] GetVector(Image<Bgr, Byte> im)
+        {
+            HOGDescriptor hog = new HOGDescriptor();    // with defaults values
+            Image<Bgr, Byte> imageOfInterest = Resize(im);
+            Point[] p = new Point[imageOfInterest.Width * imageOfInterest.Height];
+            int k = 0;
+            for (int i = 0; i < imageOfInterest.Width; i++)
+            {
+                for (int j = 0; j < imageOfInterest.Height; j++)
+                {
+                    Point p1 = new Point(i, j);
+                    p[k++] = p1;
+                }
+            }
+
+            return hog.Compute(imageOfInterest, new Size(8, 8), new Size(0, 0), p);
+        }
+        public void traning()
+        {
+            //GetVector - function from people detection file 
+            //float[] hog = GetVector(new Image<Bgr, byte>(image));
+            //SVM svm = new SVM();
+
+          //  svm.TrainAuto(new TrainData(training_mat, Emgu.CV.ML.MlEnum.DataLayoutType.RowSample, lables));
+        }
+        public char Recoginatinon(SVM svm, Mat img_character)
+        {
+
+            List<float> feature = EmguCVExtension.calculate_feature(img_character);
+            // Open CV3.1
+            Mat m = new Mat(1, 32, DepthType.Cv32F, 1);
+            for (int i = 0; i < feature.Count(); ++i)
+            {
+                float temp = feature[i];
+                m.SetValue(0, i, temp);
+            }
+            char c = '*';
+
+            int ri = (int)(svm.Predict(m)); // Open CV 3.1
+                                            /*int ri = int(svmNew.predict(m));*/
+            if (ri >= 0 && ri <= 9)
+                c = (char)(ri + 48); //ma ascii 0 = 48
+            if (ri >= 10 && ri < 18)
+                c = (char)(ri + 55); //ma accii A = 5, --> tu A-H
+            if (ri >= 18 && ri < 22)
+                c = (char)(ri + 55 + 2); //K-N, bo I,J
+            if (ri == 22) c = 'P';
+            if (ri == 23) c = 'S';
+            if (ri >= 24 && ri < 27)
+                c = (char)(ri + 60); //T-V,  
+            if (ri >= 27 && ri < 30)
+                c = (char)(ri + 61); //X-Z
+            return c;
+        }
+        public static SVM LoadSVMFromFile(String path)
+        {
+            SVM svm = new SVM();
+            svm.Type = SVM.SvmType.CSvc; 
+            FileStorage fs = new FileStorage(path, FileStorage.Mode.Read);
+            svm.Read(fs.GetNode("opencv_ml_svm"));
+            fs.ReleaseAndGetString();
+            return svm;
+        }
+        //private void LoadTrainData()
+        //{
+        //    List<float[]> trainList = new List<float[]>();
+        //    List<int> trainLabel = new List<int>();
+
+        //    StreamReader reader = new StreamReader(TraingDataPath);
+
+        //    string line = "";
+        //    if (!File.Exists(TraingDataPath))
+        //    {
+        //        throw new Exception("File Not found");
+        //    }
+
+        //    while ((line = reader.ReadLine()) != null)
+        //    {
+        //        int firstIndex = line.IndexOf(',');
+        //        int currentLabel = Convert.ToInt32(line.Substring(0, firstIndex));
+        //        string currentData = line.Substring(firstIndex + 1);
+        //        float[] data = currentData.Split(',').Select(x => float.Parse(x)).ToArray();
+
+        //        trainList.Add(data);
+        //        trainLabel.Add(currentLabel);
+
+        //    }
+
+        //    TrainData = new Matrix<float>(To2D<float>(trainList.ToArray()));
+        //    TrainLabel = new Matrix<int>(trainLabel.ToArray());
+
+        //}
+
+
+        private T[,] To2D<T>(T[][] source)
+        {
+            try
+            {
+                int FirstDim = source.Length;
+                int SecondDim = source.GroupBy(row => row.Length).Single().Key; // throws InvalidOperationException if source is not rectangular
+
+                var result = new T[FirstDim, SecondDim];
+                for (int i = 0; i < FirstDim; ++i)
+                    for (int j = 0; j < SecondDim; ++j)
+                        result[i, j] = source[i][j];
+
+                return result;
+            }
+            catch (InvalidOperationException)
+            {
+                throw new InvalidOperationException("The given jagged array is not rectangular.");
+            }
+        }
+        
+        public void Test()
+        {
+            SVM svm = new SVM();
+            FileStorage file = new FileStorage("sdf.txt", FileStorage.Mode.Read);
+            svm.Read(file.GetNode("opencv_ml_svm"));
+
+
+            //svm = new SVM();
+            //svm.C = 100;
+            //svm.Type = SVM.SvmType.CSvc;
+            //svm.Gamma = 0.005;
+            //svm.SetKernel(SVM.SvmKernelType.Linear);
+            //svm.TermCriteria = new MCvTermCriteria(1000, 1e-6);
+            //svm.Train(TrainData, Emgu.CV.ML.MlEnum.DataLayoutType.RowSample, TrainLabel);
+            //svm.Save("svm.txt");
+
+            //for (int i = 0; i < TestData.Rows; i++)
+            //{
+            //    Matrix<float> row = TestData.GetRow(i);
+            //    float predict = svm.Predict(row);
+            //}
+            Mat img_character = new Mat("D:\\GitHub\\FinalProject\\Camera\\bin\\x64\\Debug\\1.jpg",ImreadModes.AnyDepth);
+
+            List<float> feature = EmguCVExtension.calculate_feature(img_character);
+            // Open CV3.1
+            Mat m = new Mat(1, 32, DepthType.Cv32F, 1);
+            for (int i = 0; i < feature.Count(); ++i)
+            {
+                float temp = feature[i];
+                m.SetValue(0,i,temp);
+            }
+
+           
+
+            char c = '*';
+
+                    int ri = (int)(svm.Predict(m)); // Open CV 3.1
+                                                                /*int ri = int(svmNew.predict(m));*/
+                    if (ri >= 0 && ri <= 9)
+                        c = (char)(ri + 48); //ma ascii 0 = 48
+                    if (ri >= 10 && ri < 18)
+                        c = (char)(ri + 55); //ma accii A = 5, --> tu A-H
+                    if (ri >= 18 && ri < 22)
+                        c = (char)(ri + 55 + 2); //K-N, bo I,J
+                    if (ri == 22) c = 'P';
+                    if (ri == 23) c = 'S';
+                    if (ri >= 24 && ri < 27)
+                        c = (char)(ri + 60); //T-V,  
+                    if (ri >= 27 && ri < 30)
+                        c = (char)(ri + 61); //X-Z
+        }
+        public char character_recognition(Mat img_character)
+        {
+
+            return '*';
+        }
+
+
+
+
+        //public static void SaveSVMToFile(SVM model, String path)
+        //{
+        //    if (File.Exists(path)) File.Delete(path);
+        //    FileStorage fs = new FileStorage(path, FileStorage.Mode.Write);
+        //    model.Write(fs);
+        //    fs.ReleaseAndGetString();
+        //}
+        //public void Traning()
+        //{
+        //    Emgu.CV.ML.SVM model = new Emgu.CV.ML.SVM();
+        //    model.SetKernel(Emgu.CV.ML.SVM.SvmKernelType.Linear);
+        //    model.Type = Emgu.CV.ML.SVM.SvmType.CSvc;
+        //    model.C = 1;
+        //    model.TermCriteria = new MCvTermCriteria(100, 0.00001);
+        //    bool trained = model.TrainAuto(my_trainData, 5);
+        //    model.Save("SVM_Model.xml");
+        //}
+        //private string character_recognition(Mat img_character)
+        //{
+        //    Matrix<float> matrix = new Matrix<float>(10,10,1);
+        //    Matrix<float> reponse = new Matrix<float>(10, 10, 1);
+        //    Matrix<float> sample = new Matrix<float>(1, 2);
+        //    Image<Bgr, Byte> img = new Image<Bgr, byte>(500, 500);
+
+        //    TrainData trainData = new TrainData(matrix,Emgu.CV.ML.MlEnum.DataLayoutType.ColSample, reponse);
+        //    //Load SVM training file OpenCV 3.1
+        //    //SVM svm = new SVM().;
+        //    FileStorage fs = new FileStorage(Application.StartupPath +"\\"+ "svm.txt", FileStorage.Mode.Read);
+        //    //svm.  .Read(fs.GetRoot());
+        //    bool trained = svm.TrainAuto(trainData, 5);
+        //    //svm.Save("SVM_Model.xml");
+        //    //SVM svmNew;
+        //    //svmNew.load("D:/svm.txt");
+
+        //    char c = '*';
+        //    for (int i = 0; i < img_character.Height; i++)
+        //    {
+        //        for (int j = 0; j < img_character.Width; j++)
+        //        {
+        //            sample.Data[0, 0] = j;
+        //            sample.Data[0, 1] = i;
+
+
+        //            int ri = (int)(svm.Predict(img_character)); // Open CV 3.1
+        //                                                        /*int ri = int(svmNew.predict(m));*/
+        //            if (ri >= 0 && ri <= 9)
+        //                c = (char)(ri + 48); //ma ascii 0 = 48
+        //            if (ri >= 10 && ri < 18)
+        //                c = (char)(ri + 55); //ma accii A = 5, --> tu A-H
+        //            if (ri >= 18 && ri < 22)
+        //                c = (char)(ri + 55 + 2); //K-N, bo I,J
+        //            if (ri == 22) c = 'P';
+        //            if (ri == 23) c = 'S';
+        //            if (ri >= 24 && ri < 27)
+        //                c = (char)(ri + 60); //T-V,  
+        //            if (ri >= 27 && ri < 30)
+        //                c = (char)(ri + 61); //X-Z
+        //        }
+        //    }
+
+
+
+        //    return c.ToString();
+
+        //}
     }
 }

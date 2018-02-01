@@ -342,26 +342,26 @@ class Classifier_Train : IDisposable
             Names_List.Clear();
             NumLabels = 0;
             admin_dangkythitoeicEntities database = new admin_dangkythitoeicEntities();
-            var list = database.GoLeaves.ToList();
-            int number = 0;
-            foreach (var item in list)
-            {
-                trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "\\"+ item.GoAvatar));
+            //var list = database.GoLeaves.ToList();
+            //int number = 0;
+            //foreach (var item in list)
+            //{
+            //    trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "\\"+ item.GoAvatar));
                 
-                Names_List_ID.Add(number);
-                Names_List.Add(item.OwnerID);
-                number++;
-                NumLabels += 1;
-            }
-            if (trainingImages.ToArray().Length != 0)
-            {
-                recognizer = new FisherFaceRecognizer(0, 3500);//4000
+            //    Names_List_ID.Add(number);
+            //    Names_List.Add(item.OwnerID);
+            //    number++;
+            //    NumLabels += 1;
+            //}
+            //if (trainingImages.ToArray().Length != 0)
+            //{
+            //    recognizer = new FisherFaceRecognizer(0, 3500);//4000
 
-                recognizer.Train(trainingImages.ToArray(), Names_List_ID.ToArray());
+            //    recognizer.Train(trainingImages.ToArray(), Names_List_ID.ToArray());
 
-                return true;
-            }
-            else return false;
+            //    return true;
+            //}
+             return false;
         }
         catch (Exception ex)
         {

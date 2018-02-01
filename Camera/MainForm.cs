@@ -488,53 +488,53 @@ namespace Camera
                 /*Ptr<SVM> svmNew = SVM::create();
                 svmNew = SVM::load("D:/svm.txt");*/
 
-                SVM svm = new SVM();
-                FileStorage file = new FileStorage("svm.txt", FileStorage.Mode.Read);
-                svm.Read(file.GetNode("opencv_ml_svm"));
-                char c = '*';
+                //SVMFuntion svm = new SVMFuntion();
+                //FileStorage file = new FileStorage("svm.txt", FileStorage.Mode.Read);
+                //svm.Read(file.GetNode("opencv_ml_svm"));
+                //char c = '*';
 
-                List<float> feature = calculate_feature(img_character);
-                // Open CV3.1
-                Mat m = new Mat(30, 1, DepthType.Cv32F, 0);
-                for (int i = 0; i < feature.Count; ++i)
-                {
-                    float temp = feature[i];
-
-                    var element = new float[1];
-                    element[0] = temp;
-                    var target = element;
-                    Marshal.Copy(target, 0, (IntPtr)((int)m.DataPointer + (0 * m.Cols + i) * m.ElementSize), 1);
-
-
-
-                    //m.SetValue(0, i,temp);
-                }
-                //Mat m = Mat(number_of_feature,1, CV_32FC1);		// Open CV 2.4
-                //for (size_t i = 0; i < feature.size(); ++i)
+                //List<float> feature = calculate_feature(img_character);
+                //// Open CV3.1
+                //Mat m = new Mat(30, 1, DepthType.Cv32F, 0);
+                //for (int i = 0; i < feature.Count; ++i)
                 //{
-                //float temp = feature[i];
-                //m.at<float>(i,0) = temp;
+                //    float temp = feature[i];
+
+                //    var element = new float[1];
+                //    element[0] = temp;
+                //    var target = element;
+                //    Marshal.Copy(target, 0, (IntPtr)((int)m.DataPointer + (0 * m.Cols + i) * m.ElementSize), 1);
+
+
+
+                //    //m.SetValue(0, i,temp);
                 //}
-                //Mat testingSVMBud = CvInvoke.Imread("D:\\licPlaterec_Data\\licPlaterec_Data\\Data\\00\\1.jpg", 0);
-                //Mat fV = CvInvoke.ExtractFeatures(testingSVMBud).clone();
-                //float prediction = svm.Predict(testingSVMBud);
-                //convert 2d to 1d
-                //Mat testDataMat(1, 2, CV_32FC1, testingSVMBud);
-                int ri = (int)(svm.Predict(m)); // Open CV 3.1
-                                                  /*int ri = int(svmNew.predict(m));*/
-                if (ri >= 0 && ri <= 9)
-                    c = (char)(ri + 48); //ma ascii 0 = 48
-                if (ri >= 10 && ri < 18)
-                    c = (char)(ri + 55); //ma accii A = 5, --> tu A-H
-                if (ri >= 18 && ri < 22)
-                    c = (char)(ri + 55 + 2); //K-N, bo I,J
-                if (ri == 22) c = 'P';
-                if (ri == 23) c = 'S';
-                if (ri >= 24 && ri < 27)
-                    c = (char)(ri + 60); //T-V,  
-                if (ri >= 27 && ri < 30)
-                    c = (char)(ri + 61); //X-Z
-                return c;
+                ////Mat m = Mat(number_of_feature,1, CV_32FC1);		// Open CV 2.4
+                ////for (size_t i = 0; i < feature.size(); ++i)
+                ////{
+                ////float temp = feature[i];
+                ////m.at<float>(i,0) = temp;
+                ////}
+                ////Mat testingSVMBud = CvInvoke.Imread("D:\\licPlaterec_Data\\licPlaterec_Data\\Data\\00\\1.jpg", 0);
+                ////Mat fV = CvInvoke.ExtractFeatures(testingSVMBud).clone();
+                ////float prediction = svm.Predict(testingSVMBud);
+                ////convert 2d to 1d
+                ////Mat testDataMat(1, 2, CV_32FC1, testingSVMBud);
+                //int ri = (int)(svm.Predict(m)); // Open CV 3.1
+                //                                  /*int ri = int(svmNew.predict(m));*/
+                //if (ri >= 0 && ri <= 9)
+                //    c = (char)(ri + 48); //ma ascii 0 = 48
+                //if (ri >= 10 && ri < 18)
+                //    c = (char)(ri + 55); //ma accii A = 5, --> tu A-H
+                //if (ri >= 18 && ri < 22)
+                //    c = (char)(ri + 55 + 2); //K-N, bo I,J
+                //if (ri == 22) c = 'P';
+                //if (ri == 23) c = 'S';
+                //if (ri >= 24 && ri < 27)
+                //    c = (char)(ri + 60); //T-V,  
+                //if (ri >= 27 && ri < 30)
+                //    c = (char)(ri + 61); //X-Z
+                return ' ';
             }
             catch(Exception e)
             {

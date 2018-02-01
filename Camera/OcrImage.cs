@@ -138,23 +138,23 @@ namespace Camera
                 if (ocr.Recognize() != 0)
                     throw new Exception("Failed to recognizer image");
                 Tesseract.Character[] characters = ocr.GetCharacters();
-                if (characters.Length == 0)
-                {
-                    Mat imgGrey = new Mat();
-                    CvInvoke.CvtColor(image, imgGrey, ColorConversion.Bgr2Gray);
-                    Mat imgThresholded = new Mat();
-                    CvInvoke.Threshold(imgGrey, imgThresholded, 65, 255, ThresholdType.Binary);
-                    ocr.SetImage(imgThresholded);
-                    characters = ocr.GetCharacters();
-                    imageColor = imgThresholded;
-                    if (characters.Length == 0)
-                    {
-                        CvInvoke.Threshold(image, imgThresholded, 190, 255, ThresholdType.Binary);
-                        ocr.SetImage(imgThresholded);
-                        characters = ocr.GetCharacters();
-                        imageColor = imgThresholded;
-                    }
-                }
+                //if (characters.Length == 0)
+                //{
+                //    Mat imgGrey = new Mat();
+                //    CvInvoke.CvtColor(image, imgGrey, ColorConversion.Bgr2Gray);
+                //    Mat imgThresholded = new Mat();
+                //    CvInvoke.Threshold(imgGrey, imgThresholded, 65, 255, ThresholdType.Binary);
+                //    ocr.SetImage(imgThresholded);
+                //    characters = ocr.GetCharacters();
+                //    imageColor = imgThresholded;
+                //    if (characters.Length == 0)
+                //    {
+                //        CvInvoke.Threshold(image, imgThresholded, 190, 255, ThresholdType.Binary);
+                //        ocr.SetImage(imgThresholded);
+                //        characters = ocr.GetCharacters();
+                //        imageColor = imgThresholded;
+                //    }
+                //}
                 foreach (Tesseract.Character c in characters)
                 {
                     CvInvoke.Rectangle(imageColor, c.Region, drawCharColor.MCvScalar);

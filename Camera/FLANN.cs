@@ -1,4 +1,5 @@
 ﻿using Emgu.CV;
+using Emgu.CV.Features2D;
 using Emgu.CV.Flann;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
@@ -39,7 +40,7 @@ namespace Camera
         }
         public Matrix<float> LoadData(string path)
         {
-            List<String> list = DirSearch(path);
+            List<String> list = DirSearch(Application.StartupPath + "\\" + path);
             imap = new List<IndecesMapping>();
             string queryImage = "D:\\bien-so-xe-cac-tinh_0.jpg";
 
@@ -59,6 +60,7 @@ namespace Camera
 
             return imap;
         }
+
         public void ResetSimilarity()
         {
             foreach (var item in imap)
@@ -86,7 +88,7 @@ namespace Camera
 
             return imap;
         }
-        public IList<IndecesMapping> Match(Image<Gray,byte> image)
+        public IList<IndecesMapping> Match(Image<Gray, byte> image)
         {
             List<String> list = DirSearch("D:\\test");
 
@@ -114,8 +116,8 @@ namespace Camera
         {
             Mat descsTmp = new Mat();
 
-            using (Image <Gray,byte> img = new Image<Gray, byte> (fileName))
-{
+            using (Image<Gray, byte> img = new Image<Gray, byte>(fileName))
+            {
                 #region depreciated
                 //VectorOfKeyPoint keyPoints = detector.DetectKeyPointsRaw(img, null);
                 //descs = detector.ComputeDescriptorsRaw(img, null, keyPoints);
@@ -130,17 +132,17 @@ namespace Camera
 
             return descs;
         }
-        public Matrix<float> ComputeSingleDescriptors(Image<Gray,byte> image) // old return Matrix<float>
+        public Matrix<float> ComputeSingleDescriptors(Image<Gray, byte> image) // old return Matrix<float>
         {
             Mat descsTmp = new Mat();
 
-                #region depreciated
-                //VectorOfKeyPoint keyPoints = detector.DetectKeyPointsRaw(img, null);
-                //descs = detector.ComputeDescriptorsRaw(img, null, keyPoints);
-                #endregion
+            #region depreciated
+            //VectorOfKeyPoint keyPoints = detector.DetectKeyPointsRaw(img, null);
+            //descs = detector.ComputeDescriptorsRaw(img, null, keyPoints);
+            #endregion
 
-                VectorOfKeyPoint keyPoints = new VectorOfKeyPoint();
-                detector.DetectAndCompute(image, null, keyPoints, descsTmp, false);
+            VectorOfKeyPoint keyPoints = new VectorOfKeyPoint();
+            detector.DetectAndCompute(image, null, keyPoints, descsTmp, false);
 
             Matrix<float> descs = new Matrix<float>(descsTmp.Rows, descsTmp.Cols);
             descsTmp.CopyTo(descs);
@@ -192,6 +194,7 @@ namespace Camera
 
             // create FLANN index with 4 kd-trees and perform KNN search over it look for 2 nearest neighbours
             var flannIndex = new Index(dbDescriptors, new KdTreeIndexParams(4));
+           // FlannBasedMatcher flannBasedMatcher = new FlannBasedMatcher(new KdTreeIndexParams(4), );
             flannIndex.KnnSearch(queryDescriptors, indices, dists, 2, 24);
 
             for (int i = 0; i < indices.Rows; i++)
@@ -229,11 +232,11 @@ namespace Camera
             foreach (var descriptor in descriptors)
             {
                 // append new descriptors
-                
-                    Buffer.BlockCopy(descriptor.ManagedArray, 0, concatedDescs, offset, sizeof(float) * descriptor.ManagedArray.Length);
-                    offset += sizeof(float) * descriptor.ManagedArray.Length;
-                
-              
+
+                Buffer.BlockCopy(descriptor.ManagedArray, 0, concatedDescs, offset, sizeof(float) * descriptor.ManagedArray.Length);
+                offset += sizeof(float) * descriptor.ManagedArray.Length;
+
+
             }
 
             return new Matrix<float>(concatedDescs);
@@ -247,6 +250,6 @@ namespace Camera
         }
         private const double surfHessianThresh = 300;
         private const bool surfExtendedFlag = true;
-        private SURF detector = new SURF(surfHessianThresh);
+        private SURF detector = new SURF(1000);
     }
 }

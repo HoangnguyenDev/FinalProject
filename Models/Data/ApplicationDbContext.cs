@@ -7,13 +7,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess
 {
-    public class ApplicationDbContext : IdentityDbContext<Member>
+    public class ApplicationDbContext: DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
         public DbSet<GoLeave> GoLeave { get; set; }
+        public DbSet<Member> Member { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

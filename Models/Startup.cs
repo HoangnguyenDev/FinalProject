@@ -36,9 +36,7 @@ namespace DataAccess
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("VPSConnection")));
 
-            services.AddIdentity<Member, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+          
             services.AddMvc();
 
         }

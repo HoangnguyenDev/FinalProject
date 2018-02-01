@@ -45,7 +45,7 @@
             this.Image_ID = new System.Windows.Forms.PictureBox();
             this.lbID = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timerFaceIn = new System.Windows.Forms.Timer(this.components);
             this.pVao = new System.Windows.Forms.Panel();
             this.pInfo = new System.Windows.Forms.Panel();
             this.btnSave = new MetroFramework.Controls.MetroButton();
@@ -54,6 +54,7 @@
             this.btnMi = new System.Windows.Forms.Button();
             this.btnMax = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.timerPlateIn = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Vao_Truoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Vao_Sau)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Ra_Truoc)).BeginInit();
@@ -206,9 +207,9 @@
             this.metroLabel1.TabIndex = 0;
             this.metroLabel1.Text = "ID";
             // 
-            // timer1
+            // timerFaceIn
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timerFaceIn.Tick += new System.EventHandler(this.timerFaceIn_Tick);
             // 
             // pVao
             // 
@@ -314,6 +315,10 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // timerPlateIn
+            // 
+            this.timerPlateIn.Tick += new System.EventHandler(this.timerPlateIn_Tick);
+            // 
             // MainForm2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -356,7 +361,7 @@
         private MetroFramework.Controls.MetroLabel lbPlate;
         private System.Windows.Forms.PictureBox Image_Plate;
         private System.Windows.Forms.PictureBox Image_ID;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timerFaceIn;
         private System.Windows.Forms.Button btnStart;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private System.Windows.Forms.Button btnPlate;
@@ -371,5 +376,6 @@
         private System.Windows.Forms.Button btnMax;
         private System.Windows.Forms.Button btnExit;
         private MetroFramework.Controls.MetroButton btnSave;
+        private System.Windows.Forms.Timer timerPlateIn;
     }
 }
