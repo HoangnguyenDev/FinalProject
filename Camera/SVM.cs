@@ -14,16 +14,13 @@ using System.Windows.Forms;
 namespace Camera
 {
     public static class SVMExtension
-    {
-        
+    {     
         public static SVM Create()
         {
             SVM svm = new SVM();
-            FileStorage file = new FileStorage("a.txt", FileStorage.Mode.Read);
+            FileStorage file = new FileStorage("svm.txt", FileStorage.Mode.Read);
             svm.Read(file.GetNode("opencv_ml_svm"));
-
             return svm;
-                   
         }
         private static List<String> List_folder(string sDir)
         {

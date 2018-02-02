@@ -1,5 +1,7 @@
-﻿using Emgu.CV;
+﻿using Auto_parking;
+using Emgu.CV;
 using Emgu.CV.CvEnum;
+using Emgu.CV.ML;
 using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
@@ -14,31 +16,34 @@ namespace Camera
 {
     public class LPR
     {
+        SVM _svm;
+        public LPR(SVM svm)
+        {
+            _svm = svm;
+        }
         public List<Image<Bgr, byte>> PlateImagesList = new List<Image<Bgr, byte>>();
         Image Plate_Draw;
 
         OcrImage ocrImage;
         static string PATH_OCR = "";
-        public void ProcessImage(Bitmap image, out Image Plate_Draw, out Image<Bgr, byte> PlateImagesResize)
+        public List<Image<Bgr, byte>> ProcessImage(Bitmap image, out Image Plate_Draw, out Image<Bgr, byte> PlateImagesResize, CascadeClassifier plate)
         {
             PlateImagesList.Clear();
-            FindLicensePlate(image, out Plate_Draw, out PlateImagesResize);
+            return FindLicensePlateNew(image, out Plate_Draw, out PlateImagesResize, plate);
         }
         public void ProcessImageWithCrop(Bitmap image, out Image Plate_Draw, out Image<Bgr, byte> PlateImagesResize)
         {
             PlateImagesList.Clear();
             FindLicensePlateCrop(image, out Plate_Draw, out PlateImagesResize);
         }
-        public void FindLicensePlate(Bitmap image, out System.Drawing.Image plateDraw, out Image<Bgr, byte> PlateImagesResize)
+        public List<Image<Bgr, byte>> FindLicensePlate(Bitmap image, out System.Drawing.Image plateDraw, out Image<Bgr, byte> PlateImagesResize)
         {
             plateDraw = null;
             PlateImagesResize = null;
             Image<Bgr, byte> frame;
             bool isface = false;
             Bitmap src;
-            //pictureBox2.Image = new Image<Gray, byte>(image).ToBitmap();
             System.Drawing.Image dst = image;
-            //HaarCascade haar = new HaarCascade(Application.StartupPath + "\\output-hv-33-x25.xml");
             for (float i = 0; i <= 20; i = i + 3)
             {
                 for (float s = -1; s <= 1 && s + i != 1; s += 2)
@@ -51,7 +56,7 @@ namespace Camera
                         CascadeClassifier cascadeClassifier = new CascadeClassifier(Application.StartupPath + "\\output-hv-33-x25.xml");
 
 
-                        Rectangle[] faces = cascadeClassifier.DetectMultiScale(grayframe, 1.1, 8, new Size(0, 0));
+                        Rectangle[] faces = cascadeClassifier.DetectMultiScale(grayframe, 1.1, 3, new Size(0, 0));
                         foreach (var face in faces)
                         {
                             Image<Bgr, byte> tmp = frame.Copy();
@@ -66,9 +71,6 @@ namespace Camera
                         {
                             Image<Bgr, byte> showimg = frame.Clone();
                             plateDraw = (Image)showimg.ToBitmap();
-                            //showimg = frame.Resize(imageBox1.Width, imageBox1.Height, 0);
-                            //pictureBox1.Image = showimg.ToBitmap();
-                            //IF.pictureBox2.Image = showimg.ToBitmap();
                             if (PlateImagesList.Count > 1)
                             {
                                 for (int k = 1; k < PlateImagesList.Count; k++)
@@ -80,13 +82,50 @@ namespace Camera
                                 }
                             }
                             PlateImagesResize = PlateImagesList[0] = PlateImagesList[0].Resize(400, 400, Inter.Linear);
-                            return;
+                            return PlateImagesList;
                         }
-
-                        //CvInvoke.Imshow("12345", PlateImagesList[0]);
                     }
                 }
             }
+            return PlateImagesList;
+
+
+        }
+        public List<Image<Bgr, byte>> FindLicensePlateNew(Bitmap image, out System.Drawing.Image plateDraw, out Image<Bgr, byte> PlateImagesResize, CascadeClassifier _plate)
+        {
+            plateDraw = null;
+            PlateImagesResize = null;
+
+            Image<Bgr, byte> frame = new Image<Bgr, byte>(image);
+            bool isFound = false;
+            Image<Gray, byte> grayframe = frame.Convert<Gray, byte>();
+            Rectangle[] faces = _plate.DetectMultiScale(grayframe, 1.1, 8, new Size(0, 0));
+            Parallel.For(0, faces.Length, i =>
+            {
+                try
+                {
+                    Image<Bgr, byte> tmp = frame.Copy();
+                    tmp.ROI = faces[i];
+                    frame.Draw(faces[i], new Bgr(Color.Blue), 2);
+
+                    PlateImagesList.Add(tmp);
+                    if (PlateImagesList.Count > 1)
+                    {
+                        for (int k = 1; k < PlateImagesList.Count; k++)
+                        {
+                            if (PlateImagesList[0].Width < PlateImagesList[k].Width)
+                            {
+                                PlateImagesList[0] = PlateImagesList[k];
+                            }
+                        }
+                    }
+                    isFound = true;
+                }
+                catch { }
+            });
+            if(isFound)
+                PlateImagesResize = PlateImagesList[0] = PlateImagesList[0].Resize(400, 400, Inter.Linear);
+            return PlateImagesList;
 
 
         }
@@ -160,7 +199,6 @@ namespace Camera
             if (image == null)
                 throw new ArgumentNullException("image");
             PointF offset = new PointF((float)image.Width / 2, (float)image.Height / 2);
-            //ORBTest
             //create a new empty bitmap to hold rotated image
             Bitmap rotatedBmp = new Bitmap(image.Width, image.Height);
             rotatedBmp.SetResolution(image.HorizontalResolution, image.VerticalResolution);
@@ -182,15 +220,20 @@ namespace Camera
 
             return rotatedBmp;
         }
-
-        private void Reconize(Bitmap link, out Bitmap hinhbienso, out string bienso, out string bienso_text)
+        
+        /// <summary>
+        /// Phương thức được sử dụng để xuất biển số xe ra màn hình
+        /// </summary>
+        /// <param name="link">Đường dẫn tới hình</param>
+        /// <param name="hinhbienso">Giá trị xuất ra hình biển số</param>
+        /// <param name="bienso_text">Giá trị xuất ra chữ số dưới dạng text</param>
+        private void Reconize(Bitmap link, out Bitmap hinhbienso, out string bienso_text, CascadeClassifier plate)
         {
             hinhbienso = null;
-            bienso = "";
             bienso_text = "";
             Image Plate_Draw;
             Image<Bgr, byte> PlateImagesResize;
-            ProcessImage(link,out Plate_Draw,out PlateImagesResize);
+            ProcessImage(link, out Plate_Draw, out PlateImagesResize, plate);
             if (PlateImagesList.Count != 0)
             {
                 Image<Bgr, byte> src = new Image<Bgr, byte>(PlateImagesList[0].ToBitmap());
@@ -198,138 +241,66 @@ namespace Camera
                 List<Rectangle> listRect = new List<Rectangle>();
                 List<Mat> listMat = new List<Mat>();
 
-                //CvInvoke.Imshow("tEST",src);
-                //Image<Bgr, byte> imageAAA = new Image<Bgr, byte>("D:\\Test\\Test\\1.jpg");
                 FindContours con = new FindContours();
                 con.IdentifyContours(src.Bitmap, out grayframe, out listRect, out listMat);
                 hinhbienso = grayframe;
-                //int c = con.IdentifyContours(src.ToBitmap(), 50, false, out grayframe, out color, out listRect);
-                ////int z = con.count;
-                //pictureBox_BiensoVAO.Image = color;
-                //IF.pictureBox1.Image = color;
-                //hinhbienso = Plate_Draw;
-                //pictureBox_BiensoRA.Image = grayframe;
-                //IF.pictureBox3.Image = grayframe;
-                ////textBox2.Text = c.ToString();
                 Image<Gray, byte> dst = new Image<Gray, byte>(grayframe);
-                //dst = dst.Dilate(2);
-                //dst = dst.Erode(3);
                 grayframe = dst.ToBitmap();
-                //pictureBox2.Image = grayframe.Clone(listRect[2], grayframe.PixelFormat);
                 string zz = "";
-                // Plate recoginatinon
 
-                if (listMat.Count == 7)
-                {
-                    for (int i = 0; i <= 3; i++)
-                    {
-
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
-                        //char cs = character_recognition(listMat[i]);
-                        zz += cs;
-                        //IList<IndecesMapping> list = flann.Reconize(dst);
-                        //string fileName = list.OrderByDescending(p => p.Similarity).First().fileName;
-                        //int Similar = list.OrderByDescending(p => p.Similarity).First().Similarity;
-                        //CvInvoke.Imshow (i.ToString(), new Image<Bgr,byte>(
-                        //    fileName));
-                        //flann.ResetSimilarity();
-                        //text_recognition.push_back(result);
-                        //System::String ^ str = gcnew System::String(result.c_str()); // Convert std string to System String
-                        //textBox1->Text += str;
-                    }
-                    for (int i = 4; i <= 6; i++)
-                    {
-
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
-                        //char cs = character_recognition(listMat[i]);
-                        zz += cs;
-                    }
-                }
-                else if (listMat.Count == 8)
-                {
-                    for (int i = 0; i <= 4; i++)
-                    {
-
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.NUMBER);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                    for (int i = 5; i <= 7; i++)
-                    {
-
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                }
-                else if (listMat.Count == 9)
-                {
-                    for (int i = 0; i <= 4; i++)
-                    {
-
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.NUMBER);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                    for (int i = 5; i <= 8; i++)
-                    {
-
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                }
-                else if (listMat.Count == 10)
-                {
-                    for (int i = 0; i <= 4; i++)
-                    {
-
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.NUMBER);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                    for (int i = 5; i <= 9; i++)
-                    {
-
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
-                        zz += cs;
-                    }
-                }
-                else if (listMat.Count == 6)
+                grayframe = dst.ToBitmap();
+                if (listMat.Count >= 7)
                 {
                     for (int i = 0; i < listMat.Count; i++)
                     {
 
-                        ocrImage = new OcrImage(listMat[i], PATH_OCR);
-                        ocrImage.SetOcr(OcrImage.TypeOcr.BOTH);
-                        string cs = ocrImage.Recoginatinon();
+                        char cs = Recoginatinon(_svm, listMat[i]);
                         zz += cs;
                     }
-
-
                 }
-                //else
+
                 string replacement = Regex.Replace(zz, @"\t|\n|\r", "");
-                //lbPlate.Text = replacement;
                 char[] arr = replacement.ToCharArray();
                 Array.Reverse(arr);
-
+                bienso_text = new string(arr);
             }
         }
 
+        /// <summary>
+        /// Phương thức được sử dụng để xuất biển số xe ra màn hình
+        /// </summary>
+        /// <param name="PlateImagesList">Danh sách khung xe lấy được</param>
+        /// <param name="hinhbienso">Giá trị xuất Hình ảnh khung xe</param>
+        public string GetRecoginatinon(List<Image<Bgr, byte>> PlateImagesList, out Bitmap hinhbienso)
+        {
+            Image<Bgr, byte> src = new Image<Bgr, byte>(PlateImagesList[0].ToBitmap());
+            Bitmap grayframe;
+            List<Rectangle> listRect = new List<Rectangle>();
+            List<Mat> listMat = new List<Mat>();
 
+            FindContours con = new FindContours();
+            con.IdentifyContours(src.Bitmap, out grayframe, out listRect, out listMat);
+            hinhbienso = grayframe;
+            Image<Gray, byte> dst = new Image<Gray, byte>(grayframe);
+            grayframe = dst.ToBitmap();
+            string zz = "";
 
+            grayframe = dst.ToBitmap();
+            if (listMat.Count >= 7)
+            {
+                for (int i = 0; i < listMat.Count; i++)
+                {
+
+                    char cs = Recoginatinon(_svm, listMat[i]);
+                    zz += cs;
+                }
+            }
+
+            string replacement = Regex.Replace(zz, @"\t|\n|\r", "");
+            char[] arr = replacement.ToCharArray();
+            Array.Reverse(arr);
+            return new string(arr);
+        }
         /// <summary>
         /// Phương thức được sử dụng để xác định vùng bao quanh tất cả các con số trong biển số xe
         /// </summary>
@@ -337,12 +308,12 @@ namespace Camera
         /// <param name="hinhbienso">Giá trị xuất ra hình biển số</param>
         /// <param name="listRect">Giá trị xuất ra danh sách vùng bao quanh các chữ số xe</param>
         /// <param name="listMat">Giá trị xuất ra danh sách hình các chữ số xe</param>
-        public bool DetectRectangleLPR(Bitmap link, out Bitmap hinhbienso, out List<Rectangle> listRect, out List<Mat> listMat)
+        public bool DetectRectangleLPR(Bitmap link, out Bitmap hinhbienso, out List<Rectangle> listRect, out List<Mat> listMat,CascadeClassifier plate)
         {
             hinhbienso = null;
             Image Plate_Draw = null;
             Image<Bgr, byte> PlateImagesResize = null;
-            ProcessImage(link,out Plate_Draw,out PlateImagesResize);
+            ProcessImage(link,out Plate_Draw,out PlateImagesResize, plate);
             listRect = null;
             listMat = null;
             if (PlateImagesList.Count != 0)
@@ -359,6 +330,42 @@ namespace Camera
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Phương thức được sử dụng để lấy ký tự trong hình
+        /// </summary>
+        /// <param name="svm">Nhập vào kết nối SVM</param>
+        /// <param name="listRect">Nhập vào hình cần lấy dưới dạng Mat theo hình nhị phân</param>
+        /// <returns Trả về ký tự cần lấy></returns>
+        public char Recoginatinon(SVM svm, Mat img_character)
+        {
+
+            List<float> feature = EmguCVExtension.calculate_feature(img_character);
+            // Open CV3.1
+            Mat m = new Mat(1, 32, DepthType.Cv32F, 1);
+            for (int i = 0; i < feature.Count(); ++i)
+            {
+                float temp = feature[i];
+                m.SetValue(0, i, temp);
+            }
+            char c = '*';
+
+            int ri = (int)(svm.Predict(m)); // Open CV 3.1
+                                            /*int ri = int(svmNew.predict(m));*/
+            if (ri >= 0 && ri <= 9)
+                c = (char)(ri + 48); //ma ascii 0 = 48
+            if (ri >= 10 && ri < 18)
+                c = (char)(ri + 55); //ma accii A = 5, --> tu A-H
+            if (ri >= 18 && ri < 22)
+                c = (char)(ri + 55 + 2); //K-N, bo I,J
+            if (ri == 22) c = 'P';
+            if (ri == 23) c = 'S';
+            if (ri >= 24 && ri < 27)
+                c = (char)(ri + 60); //T-V,  
+            if (ri >= 27 && ri < 30)
+                c = (char)(ri + 61); //X-Z
+            return c;
         }
     }
 }

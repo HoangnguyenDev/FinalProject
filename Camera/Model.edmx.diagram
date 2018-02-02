@@ -5,7 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8deef4740ab74c6bb980779ab1f24929" Name="Diagram1" ZoomLevel="88">
-        </Diagram>
+        <EntityTypeShape EntityType="admin_dangkythitoeicModel.C__EFMigrationsHistory" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="admin_dangkythitoeicModel.GoLeave" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="admin_dangkythitoeicModel.Member" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="admin_dangkythitoeicModel.FK_GoLeave_Member_OwnerID" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

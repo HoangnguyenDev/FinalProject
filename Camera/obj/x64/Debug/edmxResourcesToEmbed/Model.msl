@@ -1,4 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="admin_dangkythitoeicModelStoreContainer" CdmEntityContainer="admin_dangkythitoeicEntities" />
+  <EntityContainerMapping StorageEntityContainer="admin_dangkythitoeicModelStoreContainer" CdmEntityContainer="admin_dangkythitoeicEntities">
+    <EntitySetMapping Name="C__EFMigrationsHistory">
+      <EntityTypeMapping TypeName="admin_dangkythitoeicModel.C__EFMigrationsHistory">
+        <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GoLeaves">
+      <EntityTypeMapping TypeName="admin_dangkythitoeicModel.GoLeave">
+        <MappingFragment StoreEntitySet="GoLeave">
+          <ScalarProperty Name="leaveAvatar" ColumnName="leaveAvatar" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="OCR" ColumnName="OCR" />
+          <ScalarProperty Name="LeaveOcg" ColumnName="LeaveOcg" />
+          <ScalarProperty Name="LeaveFull" ColumnName="LeaveFull" />
+          <ScalarProperty Name="LeaveDT" ColumnName="LeaveDT" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="GoOcg" ColumnName="GoOcg" />
+          <ScalarProperty Name="GoFull" ColumnName="GoFull" />
+          <ScalarProperty Name="GoDT" ColumnName="GoDT" />
+          <ScalarProperty Name="GoAvatar" ColumnName="GoAvatar" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="admin_dangkythitoeicModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="WhereIdentityCard" ColumnName="WhereIdentityCard" />
+          <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+          <ScalarProperty Name="UniversityID" ColumnName="UniversityID" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+          <ScalarProperty Name="FirstMidName" ColumnName="FirstMidName" />
+          <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+          <ScalarProperty Name="DateIdentityCard" ColumnName="DateIdentityCard" />
+          <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
 </Mapping>

@@ -257,195 +257,6 @@ namespace Camera
             #endregion
             return count;
         }
-        //private double cout_avg(Image<Gray, byte> src)
-        //{
-        //    double d = 0;
-        //    List<Rectangle> lsR = new List<Rectangle>();
-        //    Image<Gray, byte> grayImage = new Image<Gray, byte>(src.Width, src.Height);
-        //    CvInvoke.AdaptiveThreshold(src, grayImage, 255,AdaptiveThresholdType.MeanC, ThresholdType.Binary, 21, 2);
-        //    grayImage = grayImage.Dilate(3);
-        //    grayImage = grayImage.Erode(3);
-
-        //    using (VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint())
-        //    {
-        //        CvInvoke.FindContours(grayImage, contours, null, RetrType.List, ChainApproxMethod.ChainApproxSimple);
-        //        int count = contours.Size;
-        //        for (int i = 0; i < count; i++)
-        //        {
-        //            using (VectorOfPoint contour = contours[i])
-        //            {
-        //                Rectangle rect = CvInvoke.BoundingRectangle(contour);
-
-        //                if (rect.Width > 50 && rect.Width < 150
-        //                    && rect.Height > 80 && rect.Height < 150)
-        //                {
-        //                    lsR.Add(rect);
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    for (int i = 0; i < lsR.Count; i++)
-        //    {
-        //        Bitmap tmp = src.ToBitmap();
-        //        Bitmap tmp2 = tmp.Clone(lsR[i], tmp.PixelFormat);
-        //        Image<Gray, byte> tmp3 = new Image<Gray, byte>(tmp2);
-        //        d += tmp3.GetAverage().Intensity / lsR.Count;
-        //    }
-
-        //    return d;
-        //}
-        //private double cout_avg_new(Image<Gray, byte> src)
-        //{
-        //    double d = 0;
-        //    List<Rectangle> lsR = new List<Rectangle>();
-        //    Image<Gray, byte> grayImage = new Image<Gray, byte>(src.Width, src.Height);
-
-        //    CvInvoke.AdaptiveThreshold(src, grayImage, 255,AdaptiveThresholdType.MeanC, ThresholdType.Binary, 21, 2);
-
-        //    grayImage = grayImage.Dilate(3);
-        //    grayImage = grayImage.Erode(3);
-
-        //    using (VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint())
-        //    {
-        //        CvInvoke.FindContours(grayImage, contours, null, RetrType.List, ChainApproxMethod.ChainApproxSimple);
-        //        int count = contours.Size;
-        //        for (int i = 0; i < count; i++)
-        //        {
-        //            using (VectorOfPoint contour = contours[i])
-        //            {
-        //                Rectangle rect = CvInvoke.BoundingRectangle(contour);
-        //                if (rect.Width > 50 && rect.Width < 150
-        //                    && rect.Height > 80 && rect.Height < 150)
-        //                {
-        //                    lsR.Add(rect);
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    for (int i = 0; i < lsR.Count; i++)
-        //    {
-        //        Bitmap tmp = src.ToBitmap();
-        //        Bitmap tmp2 = tmp.Clone(lsR[i], tmp.PixelFormat);
-        //        Image<Gray, byte> tmp3 = new Image<Gray, byte>(tmp2);
-        //        int T = 0;
-        //        int T0 = 128;
-        //        do
-        //        {
-        //            T = T0;
-        //            int m = 0, M = 0;
-        //            int min = 0, max = 0;
-        //            for (int y = 0; y < tmp3.Rows; y++)
-        //                for (int x = 0; x < tmp3.Cols; x++)
-        //                {
-        //                    int value = (int)tmp3.Data[y, x, 0];
-        //                    if (value <= T)
-        //                    {
-        //                        m++;
-        //                        min += value;
-        //                    }
-        //                    else
-        //                    {
-        //                        M++;
-        //                        max += value;
-        //                    }
-        //                }
-        //            T0 = (min / m + max / M) / 2;
-        //        } while (T - T0 > 1 || T0 - T > 1);
-
-
-        //        d += (double)T0 / (double)lsR.Count;
-        //    }
-
-        //    return d;
-        //}
-
-        //private Image<Gray, byte> search(double thr, Image<Gray, byte> grayImage, double min, double max
-        //    , out List<Rectangle> list_out, out int count, Image<Bgr, byte> color, out Image<Bgr, byte> color_out,
-        //    Image<Gray, byte> bi, out Image<Gray, byte> bi_out)
-        //{
-        //    List<Rectangle> listR = null, list_best = null;
-        //    Image<Bgr, byte> color2 = color;
-        //    Image<Gray, byte> src = grayImage;
-        //    Image<Gray, byte> bi2 = bi;
-
-        //    int c = 0, c_best = 0;
-        //    for (double value = min; value <= max; value += 0.1)
-        //    {
-
-        //        double t = thr / value;
-        //        src = grayImage.ThresholdBinary(new Gray(t), new Gray(255));
-
-        //        using (VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint())
-        //        {
-        //            CvInvoke.FindContours(src, contours, null, RetrType.List, ChainApproxMethod.ChainApproxSimple);
-        //            int count1 = contours.Size;
-        //            for (int i = 0; i < count1; i++)
-        //            {
-        //                using (VectorOfPoint contour = contours[i])
-        //                {
-        //                    Rectangle rect = CvInvoke.BoundingRectangle(contour);
-        //                    CvInvoke.DrawContours(color2, contour, 1, new MCvScalar(255, 255, 0));
-        //                    if (rect.Width > 20 && rect.Width < 150
-        //                        && rect.Height > 80 && rect.Height < 150)
-        //                    {
-        //                        c++;
-        //                        CvInvoke.DrawContours(color2, contour, 1, new MCvScalar(0, 255, 255));
-
-        //                        color2.Draw(CvInvoke.BoundingRectangle(contour), new Bgr(0, 255, 0), 2);
-        //                        bi2.Draw(CvInvoke.BoundingRectangle(contour), new Gray(255), -1);
-        //                        listR.Add(CvInvoke.BoundingRectangle(contour));
-
-
-        //                    }
-        //                }
-
-
-        //            }
-        //            for (int i = 0; i < c; i++)
-        //            {
-        //                for (int j = i + 1; j < c; j++)
-        //                {
-        //                    if ((listR[j].X < (listR[i].X + listR[i].Width) && listR[j].X > listR[i].X)
-        //                        && (listR[j].Y < (listR[i].Y + listR[i].Width) && listR[j].Y > listR[i].Y))
-        //                    {
-        //                        listR.RemoveAt(j);
-        //                        c--;
-        //                        j--;
-        //                    }
-        //                    else if ((listR[i].X < (listR[j].X + listR[j].Width) && listR[i].X > listR[j].X)
-        //                        && (listR[i].Y < (listR[j].Y + listR[j].Width) && listR[i].Y > listR[j].Y))
-        //                    {
-        //                        listR.RemoveAt(i);
-        //                        c--;
-        //                        i--;
-        //                        break;
-        //                    }
-
-        //                }
-        //            }
-        //        }
-        //        if (c <= 8 && c > c_best)
-        //        {
-        //            list_best = listR;
-        //            c_best = c;
-        //            if (c == 8)
-        //            {
-        //                color_out = color2;
-        //                bi_out = bi2;
-        //                list_out = list_best;
-        //                count = c_best;
-        //                return src;
-        //            }
-        //        }
-        //    }
-        //    color_out = color2;
-        //    bi_out = bi2;
-        //    list_out = list_best;
-        //    count = c_best;
-        //    return src;
-        //}
 
         /// <summary>
         /// Phương thức được sửa dụng để xử lý hình ảnh và xuất ra thông tin của biển số xe bao gồm processedGray, List<Rect> và List<Mat>
@@ -456,14 +267,18 @@ namespace Camera
         /// <param name="listMat">Kết quả xuất ra List<Mat> của biển số xe</param>
         public int IdentifyContours(Bitmap colorImage, out Bitmap processedGray, out List<Rectangle> listRect, out List<Mat> listMat)
         {
-            Image<Gray, byte> grayImage = new Image<Gray, byte>(colorImage);  //Khởi tạo ảnh xám
+            #region Xác định và cắt các vùng của từng chữ số
+            Image<Gray, byte> grayImage = new Image<Gray, byte>(colorImage);
             Image<Bgr, byte> bgrImageBackup = new Image<Bgr, byte>(colorImage);
-            List<Mat> cb = new List<Mat>();
             Image<Gray, byte> grayImageBackup = new Image<Gray, byte>(colorImage);
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
+            //grayImage = grayImage.Resize(400, 400, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR);
             Mat binary = new Image<Gray, byte>(grayImage.Width, grayImage.Height).Mat;
             Image<Bgr, byte> color = new Image<Bgr, byte>(colorImage);
-            CvInvoke.AdaptiveThreshold(grayImage, binary, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 55, 5);
+            CvInvoke.AdaptiveThreshold(grayImage, binary, 255, AdaptiveThresholdType.MeanC, ThresholdType.Binary, 55, 5);
+            //Mat gray, binary;
+            // CvInvoke.Imshow("binary",binary);
+            List<Mat> cb = new List<Mat>();
             Mat or_binary = binary.Clone();
             Mat _plate = binary.Clone();
             Mat hierachy = new Mat();
@@ -475,22 +290,26 @@ namespace Camera
             List<Rectangle> r_characters = new List<Rectangle>();
             for (int j = 0; j < contours.Size; ++j)
             {
+
                 Rectangle sub_r = CvInvoke.BoundingRectangle(contours[j]);
-                if (sub_r.Width > 50 && sub_r.Width < 160
-                       && sub_r.Height > 80 && sub_r.Height < 160)
+                if (sub_r.Width > 20 && sub_r.Width < 160
+                       && sub_r.Height > 80 && sub_r.Height < 160 && sub_r.Y > 0 && sub_r.X > 0)
                 {
                     Mat cj = new Mat(_plate, sub_r);
                     double ratio = (double)EmguCVExtension.count_pixel(cj) / (cj.Cols * cj.Rows);
                     if (ratio > 0.2 && ratio < 0.7)
                     {
-                        r_characters.Add(new Rectangle(sub_r.X + MARGIN_RECT, sub_r.Y + MARGIN_RECT, sub_r.Width + MARGIN_RECT, sub_r.Height + MARGIN_RECT));
-                        CvInvoke.Rectangle(grayImage, sub_r, new MCvScalar(0, 0, 255), 2, LineType.EightConnected, 0);
+                        int X = sub_r.X - MARGIN_RECT > 0 ? sub_r.X - MARGIN_RECT : sub_r.X;
+                        int Y = sub_r.Y - MARGIN_RECT > 0 ? sub_r.Y - MARGIN_RECT : sub_r.Y;
+                        r_characters.Add(new Rectangle(X, Y, sub_r.Width + MARGIN_RECT * 2, sub_r.Height + MARGIN_RECT * 2));
                     }
                 }
             }
-            Console.WriteLine(r_characters.Count());
+            #endregion
+            #region Sap xep va xoa bo vung den du thua
             if (r_characters.Count >= 7)
             {
+                #region Sap xep
                 List<Rectangle> listUp = new List<Rectangle>();
                 List<Rectangle> listDown = new List<Rectangle>();
                 bool r0 = false;
@@ -548,13 +367,12 @@ namespace Camera
                 for (int i = 0; i < r_characters.Count; ++i)
                 {
                     Mat cj = new Mat(_plate, r_characters[i]);
-                    //  CvInvoke.Imshow(i.ToString() + ".jpg", new Mat(_plate, r_characters[i]));
-                    //CvInvoke.Imwrite(i.ToString()+".jpg", new Mat(binary, r_characters[i]));
                     c.Add(cj);
 
                 }
-                //r_characters.Clear();
+                #endregion
 
+                #region Xoa bo cac vung den nhi phan du thua
                 foreach (var item in c)
                 {
                     double maxArea = 0.0;
@@ -577,14 +395,18 @@ namespace Camera
 
                     // apply the mask:
                     cb.Add(item);
-                    // r_characters.Add(new Rectangle(max.X - MARGIN_RECT, max.Y - MARGIN_RECT, max.Width + MARGIN_RECT * 2, max.Height + MARGIN_RECT * 2));
-                    //CvInvoke.Rectangle(grayImage, sub_r, new MCvScalar(0, 0, 255), 2, LineType.EightConnected, 0);
-                    // CvInvoke.Rectangle(binary, max, new MCvScalar(0, 0, 255), 2, LineType.EightConnected, 0);
-
                 }
+                for (int f = 0; f < cb.Count; ++f)
+                {
+                    CvInvoke.Imwrite(f.ToString() + ".jpg", cb[f]);
+                }
+                #endregion
             }
+            #endregion
+
             listRect = r_characters;
             processedGray = grayImage.ToBitmap();
+
             listMat = cb;
             return 1;
         }

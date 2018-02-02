@@ -25,5 +25,8 @@ namespace Camera
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__EFMigrationsHistory> C__EFMigrationsHistory { get; set; }
+        public virtual DbSet<GoLeave> GoLeaves { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
     }
 }

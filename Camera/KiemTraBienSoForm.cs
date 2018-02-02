@@ -2,6 +2,7 @@
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Features2D;
+using Emgu.CV.ML;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
 using MetroFramework.Forms;
@@ -88,7 +89,8 @@ namespace Camera
             //    Thread.Sleep(10);
             // t.Abort();
             InitializeComponent();
-            _lpr = new LPR();
+            SVM svm = new SVM();
+            _lpr = new LPR(svm);
 
             #region Khởi tạo Camera nếu là Demo
             if (isDemo)
@@ -242,7 +244,7 @@ namespace Camera
                     //if (_currentPRDT.Subtract(_startPRDT).TotalMilliseconds > DELAY_PR_DT)
                     //{
                     //    _startPRDT = DateTime.Now;
-                        _lpr.ProcessImage(capPrImageIn.Bitmap,out Plate_Draw,out Plate_Draw_Resize);
+                        _lpr.ProcessImage(capPrImageIn.Bitmap,out Plate_Draw,out Plate_Draw_Resize, null);
                         if (Plate_Draw_Resize != null)
                         {
                             isFinishPlateIn = true;
@@ -310,7 +312,7 @@ namespace Camera
             Image Plate_Draw;
             Image<Bgr, byte> PlateResize;
             Image_Xe_Vao_Truoc.Image = temp1;
-            _lpr.ProcessImage(temp1, out Plate_Draw, out PlateResize);
+            _lpr.ProcessImage(temp1, out Plate_Draw, out PlateResize, null);
             if (PlateResize != null)
             {
                 richTextBox1.Clear();

@@ -1,4 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="admin_dangkythitoeicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="admin_dangkythitoeicEntities" annotation:LazyLoadingEnabled="true" />
+  <EntityContainer Name="admin_dangkythitoeicEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__EFMigrationsHistory" EntityType="admin_dangkythitoeicModel.C__EFMigrationsHistory" />
+    <EntitySet Name="GoLeaves" EntityType="admin_dangkythitoeicModel.GoLeave" />
+    <EntitySet Name="Members" EntityType="admin_dangkythitoeicModel.Member" />
+    <AssociationSet Name="FK_GoLeave_Member_OwnerID" Association="admin_dangkythitoeicModel.FK_GoLeave_Member_OwnerID">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="GoLeave" EntitySet="GoLeaves" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__EFMigrationsHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GoLeave">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GoAvatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GoDT" Type="DateTime" Precision="7" />
+    <Property Name="GoFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GoOcg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="LeaveDT" Type="DateTime" Precision="7" />
+    <Property Name="LeaveFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LeaveOcg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OCR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerID" Type="Int64" Nullable="false" />
+    <Property Name="leaveAvatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Member" Relationship="admin_dangkythitoeicModel.FK_GoLeave_Member_OwnerID" FromRole="GoLeave" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDT" Type="DateTime" Precision="7" />
+    <Property Name="DateIdentityCard" Type="DateTime" Precision="7" />
+    <Property Name="DateofBirth" Type="DateTime" Precision="7" />
+    <Property Name="FirstMidName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImageID" Type="Int64" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MobilePhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="UniversityID" Type="Int32" Nullable="false" />
+    <Property Name="UpdateDT" Type="DateTime" Precision="7" />
+    <Property Name="WhereIdentityCard" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GoLeaves" Relationship="admin_dangkythitoeicModel.FK_GoLeave_Member_OwnerID" FromRole="Member" ToRole="GoLeave" />
+  </EntityType>
+  <Association Name="FK_GoLeave_Member_OwnerID">
+    <End Type="admin_dangkythitoeicModel.Member" Role="Member" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="admin_dangkythitoeicModel.GoLeave" Role="GoLeave" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GoLeave">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -65,7 +65,57 @@ class Classifier_Train : IDisposable
     {
         _IsTrained = LoadTrainingDataFace();
     }
+    public bool Update(List<string> listFace, List<int> listLabel)
+    {
+        try
+        {
+            for (int i = 0; i < listFace.Count; i++)
+            {
+                trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "\\" + listFace));
+            }
+            Names_List_ID = listLabel;
+            _IsTrained = true;
+            if (trainingImages.ToArray().Length != 0)
+            {
 
+                //Eigen face recognizer
+                //Parameters:	
+                //      num_components – The number of components (read: Eigenfaces) kept for this Prinicpal 
+                //          Component Analysis. As a hint: There’s no rule how many components (read: Eigenfaces) 
+                //          should be kept for good reconstruction capabilities. It is based on your input data, 
+                //          so experiment with the number. Keeping 80 components should almost always be sufficient.
+                //
+                //      threshold – The threshold applied in the prediciton. This still has issues as it work inversly to LBH and Fisher Methods.
+                //          if you use 0.0 recognizer.Predict will always return -1 or unknown if you use 5000 for example unknow won't be reconised.
+                //          As in previous versions I ignore the built in threhold methods and allow a match to be found i.e. double.PositiveInfinity
+                //          and then use the eigen distance threshold that is return to elliminate unknowns. 
+                //
+                //NOTE: The following causes the confusion, sinc two rules are used. 
+                //--------------------------------------------------------------------------------------------------------------------------------------
+                //Eigen Uses
+                //          0 - X = unknown
+                //          > X = Recognised
+                //
+                //Fisher and LBPH Use
+                //          0 - X = Recognised
+                //          > X = Unknown
+                //
+                // Where X = Threshold value
+
+
+                recognizer = new FisherFaceRecognizer(0, 3500);//4000
+
+                recognizer.Train(trainingImages.ToArray(), Names_List_ID.ToArray());
+
+                return true;
+            }
+            else return false;
+        }
+        catch {
+            _IsTrained = false;
+            return false;
+        }
+    }
     /// <summary>
     /// Takes String input to a different location for training data
     /// </summary>

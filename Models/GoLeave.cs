@@ -22,7 +22,9 @@ namespace DataAccess
         public bool IsDelete { get; set; }
         public DateTime? GoDT { get; set; }
         public DateTime? LeaveDT { get; set; }
-        public string OwnerID { get; set; }
+        public long OwnerID { get; set; }
         public Member Owner { get; set; }
+        public bool IsFinish { get; set; }
+        public string Note { get; set; }
     }
 }

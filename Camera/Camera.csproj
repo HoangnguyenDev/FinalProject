@@ -106,11 +106,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin_dangkythitoeicDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>admin_dangkythitoeicDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Categories.cs" />
     <Compile Include="Classifier_Train.cs" />
+    <Compile Include="C__EFMigrationsHistory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext.cs" />
     <Compile Include="EmguCVExtension.cs" />
+    <Compile Include="FaceAndPlateDetection.cs" />
     <Compile Include="FindContours.cs" />
     <Compile Include="FLANN.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="GoLeave.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryForm.Designer.cs">
+      <DependentUpon>HistoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageForm.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -147,6 +167,9 @@
       <DependentUpon>MainForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="MatExtension.cs" />
+    <Compile Include="Member.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -165,6 +188,12 @@
     <Compile Include="OcrImage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReasonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReasonForm.Designer.cs">
+      <DependentUpon>ReasonForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SplashScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +214,9 @@
       <DependentUpon>WaitingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WEBCAM.cs" />
+    <EmbeddedResource Include="HistoryForm.resx">
+      <DependentUpon>HistoryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageForm.resx">
       <DependentUpon>ImageForm.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -211,6 +243,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReasonForm.resx">
+      <DependentUpon>ReasonForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,6 +255,17 @@
     <EmbeddedResource Include="WaitingForm.resx">
       <DependentUpon>WaitingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="admin_dangkythitoeicDataSet.xsc">
+      <DependentUpon>admin_dangkythitoeicDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="admin_dangkythitoeicDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>admin_dangkythitoeicDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="admin_dangkythitoeicDataSet.xss">
+      <DependentUpon>admin_dangkythitoeicDataSet.xsd</DependentUpon>
+    </None>
     <None Include="eng.traineddata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -242,6 +288,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="biensoxemay.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="sdf.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -395,12 +444,6 @@
     <Content Include="Picture\camera_not_found.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Picture\Full\LPR\BienSoXe.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Picture\Full\LPR\BienSoXe2.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Picture\plate-sample.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -419,8 +462,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Picture\Full\Face\" />
-    <Folder Include="Picture\Full\FullImage\" />
+    <Folder Include="Picture\Face\" />
+    <Folder Include="Picture\Full\" />
+    <Folder Include="Picture\LPR\" />
     <Folder Include="TestPlate\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -31,23 +31,25 @@ namespace DataAccess.Migrations
 
                     b.Property<bool>("IsDelete");
 
+                    b.Property<bool>("IsFinish");
+
                     b.Property<DateTime?>("LeaveDT");
 
                     b.Property<string>("LeaveFull");
 
                     b.Property<string>("LeaveOcg");
 
+                    b.Property<string>("Note");
+
                     b.Property<string>("OCR");
 
-                    b.Property<string>("OwnerID");
-
-                    b.Property<long?>("OwnerID1");
+                    b.Property<long>("OwnerID");
 
                     b.Property<string>("leaveAvatar");
 
                     b.HasKey("ImageID");
 
-                    b.HasIndex("OwnerID1");
+                    b.HasIndex("OwnerID");
 
                     b.ToTable("GoLeave");
                 });
@@ -96,7 +98,8 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Member", "Owner")
                         .WithMany("ListHistory")
-                        .HasForeignKey("OwnerID1");
+                        .HasForeignKey("OwnerID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

@@ -106,9 +106,11 @@ D:\GitHub\FinalProject\Camera\bin\x64\Debug\Demo\XeVaoMat.mp4
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\Demo\a.mp4
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\Demo\Temp.mp4
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.csprojResolveAssemblyReference.cache
-D:\GitHub\FinalProject\Camera\bin\x64\Debug\Picture\Full\LPR\BienSoXe.jpg
-D:\GitHub\FinalProject\Camera\bin\x64\Debug\Picture\Full\LPR\BienSoXe2.jpg
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\haarcascade_frontalface_alt2.xml
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.KiemTraBienSoXeForm.resources
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\OCR.xml
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\sdf.txt
+D:\GitHub\FinalProject\Camera\bin\x64\Debug\svm.txt
+D:\GitHub\FinalProject\Camera\bin\x64\Debug\biensoxemay.xml
+D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.HistoryForm.resources
+D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.ReasonForm.resources
