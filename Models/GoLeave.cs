@@ -18,7 +18,8 @@ namespace DataAccess
         public string LeaveOcg { get; set; }
         public string LeaveFull { get; set; }
         public string leaveAvatar { get; set; }
-        public string OCR { get; set; }
+        public string GoOCR { get; set; }
+        public string OutOCR { get; set; }
         public bool IsDelete { get; set; }
         public DateTime? GoDT { get; set; }
         public DateTime? LeaveDT { get; set; }

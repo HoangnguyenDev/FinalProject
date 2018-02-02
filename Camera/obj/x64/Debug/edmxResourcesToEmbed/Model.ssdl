@@ -20,9 +20,12 @@
     <Property Name="LeaveDT" Type="datetime2" Precision="7" />
     <Property Name="LeaveFull" Type="nvarchar(max)" />
     <Property Name="LeaveOcg" Type="nvarchar(max)" />
-    <Property Name="OCR" Type="nvarchar(max)" />
+    <Property Name="OutOCR" Type="nvarchar(max)" />
     <Property Name="OwnerID" Type="bigint" Nullable="false" />
     <Property Name="leaveAvatar" Type="nvarchar(max)" />
+    <Property Name="IsFinish" Type="bit" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="GoOCR" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Member">
     <Key>

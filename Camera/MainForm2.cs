@@ -25,76 +25,66 @@ namespace Camera
     public partial class MainForm2 : MetroForm
     {
         #region định nghĩa
-        public CascadeClassifier _face = new CascadeClassifier(Application.StartupPath + "/haarcascade_frontalface_default.xml");//Our face detection method 
-        CascadeClassifier _plate = new CascadeClassifier(Application.StartupPath + "\\biensoxemay.xml");
-        //CascadeClassifier _plate = new CascadeClassifier(Application.StartupPath + "\\output-hv-33-x25.xml");
-
-        Classifier_Train _recognition = new Classifier_Train(Classifier_Train.LoadClassifierType.Face);
-
-        Image<Gray, byte> gray_frameFace = null; //grayscale current image aquired from webcam for processing
-
+        private CascadeClassifier _face = new CascadeClassifier(Application.StartupPath + "/haarcascade_frontalface_default.xml");//Our face detection method 
+        private CascadeClassifier _plate = new CascadeClassifier(Application.StartupPath + "\\biensoxemay.xml");
+        private Classifier_Train _recognition = new Classifier_Train(Classifier_Train.LoadClassifierType.Face);
+        private Image<Gray, byte> _gray_frameFace = null; //grayscale current image aquired from webcam for processing
         private int _fpsPlate;
 
-        List<Image<Bgr, byte>> PlateImagesList = new List<Image<Bgr, byte>>();
-
-        Image Plate_Draw;
-        List<string> PlateTextList = new List<string>();
-        List<Rectangle> listRect = new List<Rectangle>();
-        PictureBox[] box = new PictureBox[12];
-
-        private string m_path = Application.StartupPath + @"\data\";
-        private List<string> lstimages = new List<string>();
-        private const string m_lang = "eng";
-        private bool _exPlate = true;
-
         //int current = 0;
-        VideoCapture _capturePlateIn = null;
-        VideoCapture _captureFaceIn = null; //This is our capture variable
-        VideoCapture _capturePlateOut = null;
-        VideoCapture _captureFaceOut = null; //This is our capture variable
-        int _countErrorPR = 0;
-        int _fpsFaceIn = 30;
-        int _fpsFaceOut = 30;
-        int _fpsPlateOut = 30;
-
-        int _fpsPlateIn = 30;
+        private VideoCapture _capturePlateIn = null;
+        private VideoCapture _captureFaceIn = null; //This is our capture variable
+        private VideoCapture _capturePlateOut = null;
+        private VideoCapture _captureFaceOut = null; //This is our capture variable
+        private int _countErrorPR = 0;
+        private int _fpsFaceIn = 30;
+        private int _fpsFaceOut = 30;
+        private int _fpsPlateOut = 30;
+        private int _fpsPlateIn = 30;
         #region variable demo
-        int _totalFramePlateIn;
-        int _totalFramePlateOut;
-        int _totalFrameFaceIn;
-        int _totalFrameFaceOut;
-        int _currentFramePlateIn = 0;
-        int _currentFramePlateOut = 0;
-        int _currentFrameFaceIn = 0;
-        int _currentFrameFaceOut = 0;
-        bool isFinishFaceIn = false;
-        bool isFinishFaceOut = false;
-        bool _isFinishPlateIn = false;
-        int countNotReFace = 0;
-        const string PATH_PLATE_IN = "Demo\\XeVaoBienSo.mp4";
-        const string PATH_FACE_IN = "Demo\\XeVaoMat.mp4";
-        Image<Bgr, byte> Image_Store_FaceIn;
-        Image<Bgr, byte> Image_Store_FaceOut;
-        Image<Bgr, byte> Image_Store_PlateIn;
-        Image<Bgr, byte> Image_Store_PlateOut;
-        int _watingFaceIn;
-        DateTime _startWatingTimeFaceIn;
+        private int _totalFramePlateIn;
+        private int _totalFramePlateOut;
+        private int _totalFrameFaceIn;
+        private int _totalFrameFaceOut;
+        private int _currentFramePlateIn = 0;
+        private int _currentFramePlateOut = 0;
+        private int _currentFrameFaceIn = 0;
+        private int _currentFrameFaceOut = 0;
+
+        private string _checkOCRPlateOut = "";
+        private int _countNotReFace = 0;
+        private const string PATH_PLATE_IN = "Demo\\XeVaoBienSo.mp4";
+        private const string PATH_FACE_IN = "Demo\\XeVaoMat.mp4";
+        private string _checkOCRPlateIn = "";
+        private bool _isCheckPlateOut = false;
+
+        private Image<Bgr, byte> _image_Store_FaceIn;
+        private Image<Bgr, byte> _image_Store_FaceOut;
+        private Image<Bgr, byte> _image_Store_PlateIn;
+        private Image<Bgr, byte> _image_Store_PlateOut;
+        private int _watingFaceIn;
+        private DateTime _startWatingTimeFaceIn;
+        private DateTime _startWatingTimeFaceOut;
 
         #endregion
-
-
-        public bool _isEx = false;
-        public bool _isDemo = false;
-        public LPR _lpr;
-        public DateTime _startPRDT;
-        public DateTime _currentPRDT;
-        const int DELAY_PR_DT = 400;
-        DataContext _dataContext = new DataContext();
+        private LPR _lprPlateIn;
+        private LPR _lprPlateOut;
+        private const int DELAY_PR_DT = 400;
+        private DataContext _dataContext = new DataContext();
         private SVM svm;
-
-        public List<string> listFace = new List<string>();
-        public List<int> listLabel = new List<int>();
-        public bool IsExistFace = false;
+        private List<string> _listFace = new List<string>();
+        private List<int> _listLabel = new List<int>();
+        private bool _IsExistFaceIn = false;
+        private bool _IsExistFaceOut = false;
+        private bool _isCheckPlateIn = false;
+        private bool _isEx = false;
+        private bool _isDemo = false;
+        private bool _isFinishFaceIn = false;
+        private bool _isFinishFaceOut = false;
+        private bool _isFinishPlateIn = false;
+        private bool _isFinishPlateOut = false;
+        private bool _isFinishIn = false;
+        private bool _isFinishOut = false;
         #endregion
         public MainForm2()
         {
@@ -106,10 +96,12 @@ namespace Camera
             InitializeComponent();
             lbID.Text = "";
             svm = SVMExtension.Create();
-            _lpr = new LPR(svm);
+            _lprPlateIn = new LPR(svm);
+            _lprPlateOut = new LPR(svm);
             lbPlate.Text = "";
-            _dataContext.LoadTraningFace(out listFace, out listLabel);
-            _recognition.Update(listFace, listLabel);
+            _dataContext.LoadTraningFace(out _listFace, out _listLabel);
+            _recognition.Update(_listFace, _listLabel);
+            lbCount.Text = _dataContext.GetCountGoOut().ToString();
             #region Khởi tạo Camera nếu là Demo
             if (_isDemo)
             {
@@ -126,54 +118,57 @@ namespace Camera
                 _totalFrameFaceIn = (Int32)_captureFaceIn.GetCaptureProperty(CapProp.FrameCount) - 4;
                 timerFaceIn.Enabled = true;
                 timerPlateIn.Enabled = true;
-
             }
             #endregion
             #region Khởi tạo Camera bình thường
             else
             {
-                _capturePlateIn = new Emgu.CV.VideoCapture(0);
-                _capturePlateIn.SetCaptureProperty(CapProp.FrameWidth, 640);
-                _capturePlateIn.SetCaptureProperty(CapProp.FrameHeight, 480);
+                //_capturePlateIn = new Emgu.CV.VideoCapture(0);
+                //_capturePlateIn.SetCaptureProperty(CapProp.FrameWidth, 640);
+                //_capturePlateIn.SetCaptureProperty(CapProp.FrameHeight, 480);
 
-                //_capturePlateOut = new Emgu.CV.VideoCapture(0);
-                //_capturePlateOut.SetCaptureProperty(CapProp.FrameWidth, 640);
-                //_capturePlateOut.SetCaptureProperty(CapProp.FrameHeight, 480);
+                //_captureFaceIn = new Emgu.CV.VideoCapture(1);
+                //_captureFaceIn.SetCaptureProperty(CapProp.FrameWidth, 320);
+                //_captureFaceIn.SetCaptureProperty(CapProp.FrameHeight, 240);
 
-                _captureFaceIn = new Emgu.CV.VideoCapture(1);
-                _captureFaceIn.SetCaptureProperty(CapProp.FrameWidth, 320);
-                _captureFaceIn.SetCaptureProperty(CapProp.FrameHeight, 240);
+                //timerFaceIn.Enabled = true;
+                //timerPlateIn.Enabled = true;
 
-                //_captureFaceOut = new Emgu.CV.VideoCapture(1);
-                //_captureFaceOut.SetCaptureProperty(CapProp.FrameWidth, 320);
-                //_captureFaceOut.SetCaptureProperty(CapProp.FrameHeight, 240);
 
-                timerFaceIn.Enabled = true;
-                timerPlateIn.Enabled = true;
+
+                _capturePlateOut = new Emgu.CV.VideoCapture(1);
+                _capturePlateOut.SetCaptureProperty(CapProp.FrameWidth, 640);
+                _capturePlateOut.SetCaptureProperty(CapProp.FrameHeight, 480);
+
+                _captureFaceOut = new Emgu.CV.VideoCapture(0);
+                _captureFaceOut.SetCaptureProperty(CapProp.FrameWidth, 320);
+                _captureFaceOut.SetCaptureProperty(CapProp.FrameHeight, 240);
+
+                timerFaceOut.Enabled = true;
+                timerPlateOut.Enabled = true;
             }
             #endregion
-            
-            //timer1.Enabled = true;
-            if (_captureFaceOut == null)
-            {
-                Image_Xe_Ra_Truoc.Image = (new Image<Bgr, byte>("Picture\\camera_not_found.png")).Bitmap;
-                Image_Xe_Ra_Truoc.Update();
-            }
-            if (_capturePlateOut == null)
-            {
-                Image_Xe_Ra_Sau.Image = (new Image<Bgr, byte>("Picture\\camera_not_found.png")).Bitmap;
-                Image_Xe_Ra_Truoc.Update();
-            }
-            if (_captureFaceIn == null)
-            {
-                Image_Xe_Vao_Truoc.Image = (new Image<Bgr, byte>("Picture\\camera_not_found.png")).Bitmap;
-                Image_Xe_Vao_Truoc.Update();
-            }
-            if (_capturePlateIn == null)
-            {
-                Image_Xe_Vao_Sau.Image = (new Image<Bgr, byte>("Picture\\camera_not_found.png")).Bitmap;
-                Image_Xe_Vao_Truoc.Update();
-            }
+
+            //if (_captureFaceOut == null)
+            //{
+            //    Image_Xe_Ra_Truoc.Image = (new Image<Bgr, byte>("Picture\\camera_not_found.png")).Bitmap;
+            //    Image_Xe_Ra_Truoc.Update();
+            //}
+            //if (_capturePlateOut == null)
+            //{
+            //    Image_Xe_Ra_Sau.Image = (new Image<Bgr, byte>("Picture\\camera_not_found.png")).Bitmap;
+            //    Image_Xe_Ra_Sau.Update();
+            //}
+            //if (_captureFaceIn == null)
+            //{
+            //    Image_Xe_Vao_Truoc.Image = (new Image<Bgr, byte>("Picture\\camera_not_found.png")).Bitmap;
+            //    Image_Xe_Vao_Truoc.Update();
+            //}
+            //if (_capturePlateIn == null)
+            //{
+            //    Image_Xe_Vao_Sau.Image = (new Image<Bgr, byte>("Picture\\camera_not_found.png")).Bitmap;
+            //    Image_Xe_Vao_Sau.Update();
+            //}
             //Application.Idle += new EventHandler(FrameGrabber);
             //timer1.Interval = 1000 / _fpsFaceIn;
             //timer1.Tick += new EventHandler(timer1_Tick);
@@ -189,7 +184,7 @@ namespace Camera
 
         public void SaveIn()
         {
-            isFinishFaceIn = false;
+            _isFinishFaceIn = false;
             _isFinishPlateIn = false;
         }
        
@@ -227,24 +222,23 @@ namespace Camera
             btnMi.Location = new Point(btnMax.Location.X - btnMi.Size.Width - 1, btnMi.Location.Y);
             btnHistory.Location = new Point(btnMi.Location.X - btnHistory.Size.Width - 1, btnMi.Location.Y);
 
-            pVao.Location = new Point(0, 5);
-            pVao.Size = new Size(Size.Width / 5 * 2, Size.Height);
-            pRa.Location = new Point(Size.Width/5 * 3, 5);
-            pRa.Size = new Size(Size.Width / 5 * 2, Size.Height);
+            pVao.Location = new Point(0, 30);
+            pVao.Size = new Size(Size.Width / 5 * 2, Size.Height-30);
+            
             pInfo.Location = new Point(pVao.Size.Width, 5);
             pInfo.Size = new Size(Size.Width/5, Size.Height);
+            pRa.Location = new Point(pInfo.Location.X + pInfo.Size.Width, 30);
+            pRa.Size = new Size(Size.Width / 5 * 2, Size.Height-30);
 
-            Image_Xe_Ra_Truoc.Size = new Size(pRa.Size.Width - 20, (pRa.Size.Height-30) / 2 - 20);
-            Image_Xe_Ra_Truoc.Location = new Point(pRa.Location.X + 10, pRa.Location.Y + 30);
-            Image_Xe_Ra_Sau.Size = new Size(pRa.Size.Width - 20, (pRa.Size.Height-30) / 2 - 20);
-            Image_Xe_Ra_Sau.Location = new Point(pRa.Location.X + 10, pRa.Location.Y + 30 + 20 + Image_Xe_Ra_Truoc.Height);
+            //Image_Xe_Ra_Truoc.Size = new Size(pRa.Size.Width - 20, (pRa.Size.Height-30) / 2 - 20);
+            //Image_Xe_Ra_Truoc.Location = new Point(pRa.Location.X + 10, pRa.Location.Y + 30);
+            //Image_Xe_Ra_Sau.Size = new Size(pRa.Size.Width - 20, (pRa.Size.Height-30) / 2 - 20);
+            //Image_Xe_Ra_Sau.Location = new Point(pRa.Location.X + 10, pRa.Location.Y + 30 + 20 + Image_Xe_Ra_Truoc.Height);
 
-            Image_Xe_Vao_Truoc.Size = new Size(pVao.Size.Width - 20, (pVao.Size.Height-30) / 2 - 20);
-            Image_Xe_Vao_Truoc.Location = new Point(pVao.Location.X + 10, pVao.Location.Y + 30);
-            Image_Xe_Vao_Sau.Size = new Size(pVao.Size.Width - 20, (pVao.Size.Height-30) / 2 - 20);
-            Image_Xe_Vao_Sau.Location = new Point(pVao.Location.X + 10, pVao.Location.Y + 30 + 20 + Image_Xe_Vao_Truoc.Height);
-
-
+           // Image_Xe_Vao_Truoc.Size = new Size(pVao.Size.Width - 20, (pVao.Size.Height - 30) / 2 - 20);
+           // Image_Xe_Vao_Truoc.Location = new Point(pVao.Location.X + 10, pVao.Location.Y + 30);
+            //Image_Xe_Vao_Sau.Size = new Size(pVao.Size.Width - 20, (pVao.Size.Height - 30) / 2 - 20);
+            //Image_Xe_Vao_Sau.Location = new Point(pVao.Location.X + 10, pVao.Location.Y + 30 + 20 + Image_Xe_Vao_Truoc.Height);
         }
 
         private void btnMi_Click(object sender, EventArgs e)
@@ -272,7 +266,6 @@ namespace Camera
                     _currentFrameFaceIn++;
                     Image_Xe_Vao_Sau.Update();
                 }
-                
                 //await Task.Delay(1000 / _fpsFaceIn / 4);
             }
             else if(_captureFaceIn.IsOpened)
@@ -282,23 +275,30 @@ namespace Camera
                 //Image_Xe_Vao_Sau.Update();
             }
             #endregion
-            DateTime currentDT = DateTime.Now;
-            if (currentDT.Subtract(_startWatingTimeFaceIn).Milliseconds > Global.WAITING_TIME)
-            {
-                _isFinishPlateIn = false;
-                lbNotify.Text = Global.TEXT_DETECT_FACE;
-            }
-            else if(isFinishFaceIn && _isFinishPlateIn)
-            {
-                lbNotify.Text = Global.TEXT_WAITING;
+
+            if(_isFinishIn)
+            { 
+                DateTime currentDT = DateTime.Now;
+                int subDT = currentDT.Subtract(_startWatingTimeFaceIn).Milliseconds;
+                if (subDT > Global.WAITING_TIME_SECONDS && _isFinishPlateIn)
+                {
+                    _isFinishPlateIn = false;
+                    _isFinishIn = false;
+
+                    lbNotify.Text = Global.TEXT_DETECT_FACE;
+                }
+                else if(_isFinishPlateIn)
+                {
+                    lbNotify.Text = Global.TEXT_WAITING;
+                }
             }
             if (capFaceImageIn != null && !_isFinishPlateIn)
             {
                // lbNotify.Text = Global.TEXT_DETECT_FACE;
-                gray_frameFace = capFaceImageIn.Convert<Gray, Byte>();
+                _gray_frameFace = capFaceImageIn.Convert<Gray, Byte>();
 
                 //Face Detector
-                Rectangle[] facesDetected = _face.DetectMultiScale(gray_frameFace, 1.2);
+                Rectangle[] facesDetected = _face.DetectMultiScale(_gray_frameFace, 1.2);
 
                 //Action for each element detected
                 Parallel.For(0, facesDetected.Length, i =>
@@ -316,40 +316,39 @@ namespace Camera
                         //draw the face detected in the 0th (gray) channel with blue color
                         capFaceImageIn.Draw(facesDetected[i], new Bgr(Color.Red), 2);
 
-                        _startPRDT = DateTime.Now;
                         if (_recognition.IsTrained)
                         {
-                            if (countNotReFace <= 3)
+                            if (_countNotReFace <= 3)
                             {
                                 string name = _recognition.Recognise(result);
                                 int match_value = (int)_recognition.Get_Fisher_Distance;
                                 if (name == "Unknown" || name == "")
                                 {
-                                    countNotReFace++;
-                                    IsExistFace = false;
+                                    _countNotReFace++;
+                                    _IsExistFaceIn = false;
                                 }
                                 else
                                 {
                                     Image_ID.Image = imageShow.Bitmap;
-                                    Image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
-                                    isFinishFaceIn = true;
+                                    _image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
+                                    _isFinishFaceIn = true;
                                     lbID.Text = name;
-                                    IsExistFace = true;
+                                    _IsExistFaceIn = true;
                                 }
                             }
-                            if (countNotReFace >= 3)
+                            if (_countNotReFace >= 3)
                             {
                                 Image_ID.Image = imageShow.Bitmap;
-                                Image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
-                                isFinishFaceIn = true;
+                                _image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
+                                _isFinishFaceIn = true;
                             }
                         }
                         else
                         {
                             Image_ID.Image = imageShow.Bitmap;
-                            Image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
-                            isFinishFaceIn = true;
-                            IsExistFace = false;
+                            _image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
+                            _isFinishFaceIn = true;
+                            _IsExistFaceIn = false;
                         }
                     }
                     catch
@@ -360,8 +359,8 @@ namespace Camera
                     }
                 });
             }
-            if(isFinishFaceIn)
-                Image_ID.Image = Image_Store_FaceIn.Bitmap;
+            if(_isFinishFaceIn)
+                Image_ID.Image = _image_Store_FaceIn.Bitmap;
 
         }
         private void timerPlateIn_Tick(object sender, EventArgs e)
@@ -384,21 +383,20 @@ namespace Camera
                 Image_Xe_Vao_Truoc.Image = capPrImageIn.Resize(Image_Xe_Vao_Truoc.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
             }
 
-            if (capPrImageIn != null && isFinishFaceIn)
+            if (capPrImageIn != null && _isFinishFaceIn && !_isFinishIn)
             {
                 lbNotify.Text = Global.TEXT_DETECT_PLATE;
                 try
                 {
                     Image Plate_Draw;
                     Image<Bgr, byte> PlateResize;
-                    _currentPRDT = DateTime.Now;
-                    _lpr.ProcessImage(capPrImageIn.Bitmap, out Plate_Draw, out PlateResize, _plate);
-                    if (_lpr.PlateImagesList.Count != 0)
+                    _lprPlateIn.ProcessImage(capPrImageIn.Bitmap, out Plate_Draw, out PlateResize, _plate);
+                    if (_lprPlateIn.PlateImagesList.Count != 0)
                     {
 
                         _isFinishPlateIn = true;
                         Bitmap imagePlate = null;
-                        string biensoxe = _lpr.GetRecoginatinon(_lpr.PlateImagesList, out imagePlate);
+                        string biensoxe = _lprPlateIn.GetRecoginatinon(_lprPlateIn.PlateImagesList, out imagePlate);
                         Image_Plate.Image = (new Image<Bgr,byte>(imagePlate).Resize(Image_Plate.Width, Image_Plate.Height,Inter.Cubic)).Bitmap;
                         #region Xử lý khi đã nhận diện biển số thành công (Lưu ảnh và lưu vào cơ sở dữ liệu
                         if (imagePlate != null)
@@ -413,33 +411,52 @@ namespace Camera
                             string pathFull =  Global.PATH_FULL_IMAGE + stringDT + ".jpg"; ;
                             if(biensoxe.Length > 7)
                             {
-                                lbNotify.Text = Global.TEXT_SAVE;
-                                if (IsExistFace)
+                                if (_checkOCRPlateIn != biensoxe)
                                 {
-                                    _dataContext.CreateGoLeave(Int32.Parse(lbID.Text), biensoxe, pathface, pathPlate, pathFull);
-                                    _captureFaceIn.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
-                                    imagePlate.Save(pathPlate);
-                                    Image_Store_FaceIn.Save(pathface);
-                                    string OCR = biensoxe;
-                                    lbPlate.Text = OCR;
-                                    lbNotify.Text = Global.TEXT_SUCCESS;
-                                    isFinishFaceIn = false;
+                                    _isCheckPlateIn = false;
+                                    _checkOCRPlateIn = biensoxe;
                                 }
                                 else
                                 {
-                                    _dataContext.CreateMember(biensoxe, pathface, pathPlate, pathFull);
-                                    _captureFaceIn.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
-                                    imagePlate.Save(pathPlate);
-                                    Image_Store_FaceIn.Save(pathface);
-                                    string OCR = biensoxe;
-                                    lbPlate.Text = OCR;
-                                    lbNotify.Text = Global.TEXT_SUCCESS;
-                                    isFinishFaceIn = false;
+                                    lbNotify.Text = Global.TEXT_SAVE;
+                                    _isCheckPlateIn = true;
                                 }
+                                lbPlate.Text = biensoxe;
+                                if (_isCheckPlateIn)
+                                {
+                                    if (_IsExistFaceIn)
+                                    {
+                                        _dataContext.CreateGoLeave(Int32.Parse(lbID.Text), biensoxe, pathface, pathPlate, pathFull);
+                                        _captureFaceIn.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
+                                        imagePlate.Save(pathPlate);
+                                        _image_Store_FaceIn.Save(pathface);
+                                        string OCR = biensoxe;
+                                        lbPlate.Text = OCR;
+                                        lbNotify.Text = Global.TEXT_SUCCESS;
+                                        _isFinishFaceIn = false;
+                                        _isFinishIn = true;
+                                        _startWatingTimeFaceIn = DateTime.Now;
+                                    }
+                                    else
+                                    {
+                                        _dataContext.CreateMember(biensoxe, pathface, pathPlate, pathFull);
+                                        _captureFaceIn.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
+                                        imagePlate.Save(pathPlate);
+                                        _image_Store_FaceIn.Save(pathface);
+                                        string OCR = biensoxe;
+                                        lbPlate.Text = OCR;
+                                        lbNotify.Text = Global.TEXT_SUCCESS;
+                                        _isFinishFaceIn = false;
+                                        _isFinishIn = true;
+                                        _startWatingTimeFaceIn = DateTime.Now;
+                                    }
+                                    lbDirector.Text = Global.TEXT_DIRECTOR_GO;
+                                    _dataContext.LoadTraningFace(out _listFace, out _listLabel);
+                                    _recognition.Update(_listFace, _listLabel);
+                                }
+
                                 _isFinishPlateIn = true;
-                                _startWatingTimeFaceIn = DateTime.Now;
-                                _dataContext.LoadTraningFace(out listFace, out listLabel);
-                                _recognition.Update(listFace, listLabel);
+                              
                             }
                         }
                         #endregion
@@ -465,11 +482,11 @@ namespace Camera
             #region Load frame Face
             if (_isDemo)
             {
-                if (_currentFrameFaceIn < _totalFrameFaceIn)
+                if (_currentFrameFaceOut < _totalFrameFaceOut)
                 {
                     capFaceImageOut = _captureFaceOut.QueryFrame().ToImage<Bgr, byte>();
-                    Image_Xe_Ra_Sau.Image = capFaceImageOut.Resize(Image_Xe_Vao_Sau.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
-                    _currentFrameFaceIn++;
+                    Image_Xe_Ra_Sau.Image = capFaceImageOut.Resize(pRa.Size.Width - 20, (pRa.Size.Height - 30) / 2 - 20, Inter.Cubic).Bitmap;
+                    _currentFrameFaceOut++;
                     Image_Xe_Ra_Sau.Update();
                 }
 
@@ -478,17 +495,36 @@ namespace Camera
             else if (_captureFaceOut.IsOpened)
             {
                 capFaceImageOut = _captureFaceOut.QueryFrame().ToImage<Bgr, byte>();
-                Image_Xe_Vao_Sau.Image = capFaceImageOut.Resize(Image_Xe_Vao_Sau.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
-                //Image_Xe_Vao_Sau.Update();
+                Image_Xe_Ra_Sau.Image = capFaceImageOut.Resize(Image_Xe_Ra_Sau.Width, Image_Xe_Ra_Sau.Height, Inter.Cubic).Bitmap;
+               // Image_Xe_Ra_Sau.Location = new Point(pRa.Location.X + 10, pRa.Location.Y + 30 + 20 + Image_Xe_Ra_Truoc.Height);
+                Image_Xe_Ra_Sau.Update();
             }
             #endregion
 
-            if (capFaceImageOut != null && !isFinishFaceIn)
+            if (_isFinishOut)
             {
-                gray_frameFace = capFaceImageOut.Convert<Gray, Byte>();
+                DateTime currentDT = DateTime.Now;
+                int subDT = currentDT.Subtract(_startWatingTimeFaceOut).Milliseconds;
+                if (subDT > Global.WAITING_TIME_SECONDS && _isFinishPlateOut)
+                {
+                    _isFinishPlateOut = false;
+                    _isFinishOut = false;
+
+                    lbNotify.Text = Global.TEXT_DETECT_FACE;
+                }
+                else if (_isFinishPlateOut)
+                {
+                    lbNotify.Text = Global.TEXT_WAITING;
+                }
+            }
+            // MessageBox.Show(Image_Xe_Ra_Sau.Location.X.ToString() + Image_Xe_Ra_Sau.Location.Y.ToString());
+            #region Xử lý và nhận diện hình ảnh
+            if (capFaceImageOut != null && !_isFinishFaceOut)
+            {
+                _gray_frameFace = capFaceImageOut.Convert<Gray, Byte>();
 
                 //Face Detector
-                Rectangle[] facesDetected = _face.DetectMultiScale(gray_frameFace, 1.3, 10, new Size(70, 70), Size.Empty);
+                Rectangle[] facesDetected = _face.DetectMultiScale(_gray_frameFace, 1.3, 10, new Size(70, 70), Size.Empty);
 
                 //Action for each element detected
                 Parallel.For(0, facesDetected.Length, i =>
@@ -500,41 +536,46 @@ namespace Camera
                         //facesDetected[i].Height -= (int)(facesDetected[i].Height * 0.3);
                         //facesDetected[i].Width -= (int)(facesDetected[i].Width * 0.35);
                         Image<Gray, byte> result = capFaceImageOut.Copy(facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Inter.Cubic);
-                        Image<Bgr, byte> imageShow = capFaceImageOut.Copy(facesDetected[i]).Resize(100, 67, Inter.Cubic);
+                        Image<Bgr, byte> imageShow = capFaceImageOut.Copy(facesDetected[i]).Resize(Image_ID.Width, Image_ID.Height, Inter.Cubic);
 
                         result._EqualizeHist();
                         //draw the face detected in the 0th (gray) channel with blue color
                         capFaceImageOut.Draw(facesDetected[i], new Bgr(Color.Red), 2);
 
-                        _startPRDT = DateTime.Now;
                         if (_recognition.IsTrained)
                         {
-                            if (countNotReFace <= 3)
+                            if (_countNotReFace <= 3)
                             {
                                 string name = _recognition.Recognise(result);
                                 int match_value = (int)_recognition.Get_Fisher_Distance;
                                 if (name == "Unknown" || name == "")
                                 {
-                                    countNotReFace++;
-                                    IsExistFace = false;
+                                    _countNotReFace++;
+                                    _IsExistFaceOut = false;
                                 }
                                 else
                                 {
                                     Image_ID.Image = imageShow.Bitmap;
-                                    isFinishFaceIn = true;
+                                    _image_Store_FaceOut = new Image<Bgr, byte>(imageShow.Bitmap);
+                                    _isFinishFaceOut = true;
                                     lbID.Text = name;
-                                    IsExistFace = true;
+                                    _IsExistFaceOut = true;
                                 }
                             }
-                            if (countNotReFace >= 3)
+                            if (_countNotReFace >= 3)
                             {
-                                countNotReFace = 0;
-                                isFinishFaceIn = true;
+                                Image_ID.Image = imageShow.Bitmap;
+                                _image_Store_FaceOut = new Image<Bgr, byte>(imageShow.Bitmap);
+                                _isFinishFaceOut = true;
                             }
                         }
-                        isFinishFaceIn = true;
-
-
+                        else
+                        {
+                            Image_ID.Image = imageShow.Bitmap;
+                            _image_Store_FaceOut = new Image<Bgr, byte>(imageShow.Bitmap);
+                            _isFinishFaceOut = true;
+                            _IsExistFaceOut = false;
+                        }
                     }
                     catch
                     {
@@ -544,11 +585,115 @@ namespace Camera
                     }
                 });
             }
+            #endregion
         }
 
         private void timerPlateOut_Tick(object sender, EventArgs e)
-        {
 
+        {
+            Image<Bgr, byte> capPrImageOut = null;
+            if (_isDemo)
+            {
+                if (_currentFramePlateOut < _totalFramePlateOut)
+                {
+                    capPrImageOut = _capturePlateOut.QueryFrame().ToImage<Bgr, byte>();
+                    _currentFramePlateOut++;
+                    Image_Xe_Ra_Truoc.Image = capPrImageOut.Resize(Image_Xe_Ra_Truoc.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
+                    Image_Xe_Ra_Truoc.Update();
+                }
+                //await Task.Delay(1000 / _fpsFaceIn / 4);
+            }
+            else if (_capturePlateOut.IsOpened)
+            {
+                capPrImageOut = _capturePlateOut.QueryFrame().ToImage<Bgr, byte>();
+                Image_Xe_Ra_Truoc.Image = capPrImageOut.Resize(Image_Xe_Ra_Truoc.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
+            }
+
+            if (capPrImageOut != null && _isFinishFaceOut && !_isFinishOut)
+            {
+                lbNotify.Text = Global.TEXT_DETECT_PLATE;
+                try
+                {
+                    Image Plate_Draw;
+                    Image<Bgr, byte> PlateResize;
+                    _lprPlateOut.ProcessImage(capPrImageOut.Bitmap, out Plate_Draw, out PlateResize, _plate);
+                    if (_lprPlateOut.PlateImagesList.Count != 0)
+                    {
+
+                        _isFinishPlateOut = true;
+                        Bitmap imagePlate = null;
+                        string biensoxe = _lprPlateOut.GetRecoginatinon(_lprPlateOut.PlateImagesList, out imagePlate);
+                        Image_Plate.Image = (new Image<Bgr, byte>(imagePlate).Resize(Image_Plate.Width, Image_Plate.Height, Inter.Cubic)).Bitmap;
+                        #region Xử lý khi đã nhận diện biển số thành công (Lưu ảnh và lưu vào cơ sở dữ liệu
+                        if (imagePlate != null)
+                        {
+
+                            DateTime currentDT = DateTime.Now;
+                            string stringDT = currentDT.Year.ToString() + currentDT.Month.ToString()
+                                + currentDT.Day.ToString() + currentDT.Hour.ToString()
+                                + currentDT.Minute.ToString() + currentDT.Second.ToString();
+                            string pathface = Global.PATH_FACE_IMAGE + stringDT + ".jpg";
+                            string pathPlate = Global.PATH_PLATE_IMAGE + stringDT + ".jpg"; ;
+                            string pathFull = Global.PATH_FULL_IMAGE + stringDT + ".jpg"; ;
+                            if (biensoxe.Length > 7)
+                            {
+
+                                if (_checkOCRPlateOut != biensoxe)
+                                {
+                                    _isCheckPlateOut = false;
+                                    _checkOCRPlateOut = biensoxe;
+                                }
+                                else
+                                {
+                                    lbNotify.Text = Global.TEXT_SAVE;
+                                    _isCheckPlateOut = true;
+                                }
+                                lbPlate.Text = biensoxe;
+                                if (_isCheckPlateOut)
+                                {
+                                    if (_IsExistFaceOut)
+                                    {
+                                        _dataContext.CreateGoLeave(Int32.Parse(lbID.Text), biensoxe, pathface, pathPlate, pathFull);
+                                        _captureFaceOut.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
+                                        imagePlate.Save(pathPlate);
+                                        _image_Store_FaceOut.Save(pathface);
+                                        string OCR = biensoxe;
+                                        lbPlate.Text = OCR;
+                                        lbNotify.Text = Global.TEXT_SUCCESS;
+                                        _isFinishFaceOut = false;
+                                        _isFinishOut = true;
+                                        _startWatingTimeFaceOut = DateTime.Now;
+                                    }
+                                    else
+                                    {
+                                        _dataContext.CreateMember(biensoxe, pathface, pathPlate, pathFull);
+                                        _captureFaceOut.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
+                                        imagePlate.Save(pathPlate);
+                                        _image_Store_FaceOut.Save(pathface);
+                                        string OCR = biensoxe;
+                                        lbPlate.Text = OCR;
+                                        lbNotify.Text = Global.TEXT_SUCCESS;
+                                        _isFinishFaceOut = false;
+                                        _isFinishOut = true;
+                                        _startWatingTimeFaceOut = DateTime.Now;
+                                    }
+                                    lbDirector.Text = Global.TEXT_DIRECTOR_OUT;
+                                    _dataContext.LoadTraningFace(out _listFace, out _listLabel);
+                                    _recognition.Update(_listFace, _listLabel);
+                                }
+
+                                _isFinishPlateOut = true;
+
+                            }
+                        }
+                        #endregion
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
 
         private void btnHistory_Click(object sender, EventArgs e)
@@ -560,6 +705,39 @@ namespace Camera
         private void btnAllow_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSwitchCamera_Click(object sender, EventArgs e)
+        {
+            timerFaceIn.Enabled = false;
+            timerPlateIn.Enabled = false;
+            _captureFaceIn.Pause();
+            _captureFaceIn.Dispose();
+            _capturePlateIn.Pause();
+            _capturePlateIn.Dispose();
+            Thread.Sleep(500);
+            _capturePlateOut = new Emgu.CV.VideoCapture(0);
+            _capturePlateOut.SetCaptureProperty(CapProp.FrameWidth, 640);
+            _capturePlateOut.SetCaptureProperty(CapProp.FrameHeight, 480);
+
+            _captureFaceOut = new Emgu.CV.VideoCapture(1);
+            _captureFaceOut.SetCaptureProperty(CapProp.FrameWidth, 320);
+            _captureFaceOut.SetCaptureProperty(CapProp.FrameHeight, 240);
+
+            
+            timerFaceOut.Enabled = true;
+            timerPlateOut.Enabled = true;
+            
+        }
+
+        private void Image_Xe_Ra_Sau_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnAllow_Click_1(object sender, EventArgs e)
+        {
+            ReasonForm reasonForm = new ReasonForm(null,null,null,null,null,null,null,null);
+            reasonForm.Show();
         }
     }
 }

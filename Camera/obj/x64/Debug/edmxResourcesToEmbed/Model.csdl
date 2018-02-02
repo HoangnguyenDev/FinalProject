@@ -29,9 +29,12 @@
     <Property Name="LeaveDT" Type="DateTime" Precision="7" />
     <Property Name="LeaveFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="LeaveOcg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="OCR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OutOCR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="OwnerID" Type="Int64" Nullable="false" />
     <Property Name="leaveAvatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsFinish" Type="Boolean" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GoOCR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Member" Relationship="admin_dangkythitoeicModel.FK_GoLeave_Member_OwnerID" FromRole="GoLeave" ToRole="Member" />
   </EntityType>
   <EntityType Name="Member">

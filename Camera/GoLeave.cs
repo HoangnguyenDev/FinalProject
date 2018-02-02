@@ -23,9 +23,12 @@ namespace Camera
         public Nullable<System.DateTime> LeaveDT { get; set; }
         public string LeaveFull { get; set; }
         public string LeaveOcg { get; set; }
-        public string OCR { get; set; }
+        public string OutOCR { get; set; }
         public long OwnerID { get; set; }
         public string leaveAvatar { get; set; }
+        public bool IsFinish { get; set; }
+        public string Note { get; set; }
+        public string GoOCR { get; set; }
     
         public virtual Member Member { get; set; }
     }

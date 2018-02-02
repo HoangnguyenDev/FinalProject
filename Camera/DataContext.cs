@@ -18,17 +18,26 @@ namespace Camera
             {
                 var single = context.GoLeaves.Where(p => p.OwnerID == ID).OrderByDescending(p => p.GoDT).Single();
                 if (single != null)
-                    if (single.OCR == text)
+                    if (single.GoOCR == text)
                     {
                         single.LeaveDT = DateTime.Now;
                         single.LeaveFull = pathFull;
                         single.LeaveOcg = pathPlate;
                         single.leaveAvatar = pathAvatar;
+                        single.LeaveOcg = text;
                         context.SaveChangesAsync();
                         return true;
 
                     }
                 return false;
+            }
+        }
+        public int GetCountGoOut()
+        {
+            using (var context = new admin_dangkythitoeicEntities())
+            {
+                int count = context.GoLeaves.Where(p => p.GoDT.Value.Date == DateTime.Now.Date).Count();
+                return count;
             }
         }
         public void CreateMember(string text, string pathAvatar, string pathPlate, string pathFull)
@@ -51,7 +60,7 @@ namespace Camera
                     GoDT = DateTime.Now,
                     GoFull = pathFull,
                     GoOcg = pathPlate,
-                    OCR = text,
+                    GoOCR = text,
                     OwnerID = member.ID
                 };
                 context.GoLeaves.Add(goLeave);
@@ -68,7 +77,24 @@ namespace Camera
                     GoDT = DateTime.Now,
                     GoFull = pathFull,
                     GoOcg = pathPlate,
-                    OCR = text,
+                    GoOCR = text,
+                    OwnerID = ID
+                };
+                context.GoLeaves.Add(goLeave);
+                context.SaveChangesAsync();
+            }
+        }
+        public void CheckGoLeave(int ID, string text, string pathAvatar, string pathPlate, string pathFull)
+        {
+            using (var context = new admin_dangkythitoeicEntities())
+            {
+                GoLeave goLeave = new GoLeave
+                {
+                    GoAvatar = pathAvatar,
+                    GoDT = DateTime.Now,
+                    GoFull = pathFull,
+                    GoOcg = pathPlate,
+                    GoOCR = text,
                     OwnerID = ID
                 };
                 context.GoLeaves.Add(goLeave);

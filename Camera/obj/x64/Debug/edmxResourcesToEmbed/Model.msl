@@ -12,9 +12,12 @@
     <EntitySetMapping Name="GoLeaves">
       <EntityTypeMapping TypeName="admin_dangkythitoeicModel.GoLeave">
         <MappingFragment StoreEntitySet="GoLeave">
+          <ScalarProperty Name="GoOCR" ColumnName="GoOCR" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsFinish" ColumnName="IsFinish" />
           <ScalarProperty Name="leaveAvatar" ColumnName="leaveAvatar" />
           <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-          <ScalarProperty Name="OCR" ColumnName="OCR" />
+          <ScalarProperty Name="OutOCR" ColumnName="OutOCR" />
           <ScalarProperty Name="LeaveOcg" ColumnName="LeaveOcg" />
           <ScalarProperty Name="LeaveFull" ColumnName="LeaveFull" />
           <ScalarProperty Name="LeaveDT" ColumnName="LeaveDT" />

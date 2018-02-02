@@ -10,11 +10,8 @@ D:\GitHub\FinalProject\Camera\bin\x64\Debug\IN_IN.mp4
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\IN_IN_2.mp4
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\output-hv-33-x25.xml
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageForm.resx
-D:\GitHub\FinalProject\Camera\bin\x64\Debug\MainForm.resx
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageForm.cs
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\ImageForm.Designer.cs
-D:\GitHub\FinalProject\Camera\bin\x64\Debug\MainForm.cs
-D:\GitHub\FinalProject\Camera\bin\x64\Debug\MainForm.Designer.cs
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\eng.traineddata
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\Camera.exe.config
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\Camera.exe
@@ -50,7 +47,6 @@ D:\GitHub\FinalProject\Camera\bin\x64\Debug\tr\ZedGraph.resources.dll
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\zh-cn\ZedGraph.resources.dll
 D:\GitHub\FinalProject\Camera\bin\x64\Debug\zh-tw\ZedGraph.resources.dll
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.ImageForm.resources
-D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.MainForm.resources
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.MainForm2.resources
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.Properties.Resources.resources
 D:\GitHub\FinalProject\Camera\obj\x64\Debug\Camera.csproj.GenerateResource.Cache

@@ -26,9 +26,9 @@ namespace Camera {
         
         private @__EFMigrationsHistoryDataTable table__EFMigrationsHistory;
         
-        private GoLeaveDataTable tableGoLeave;
-        
         private MemberDataTable tableMember;
+        
+        private GoLeaveDataTable tableGoLeave;
         
         private global::System.Data.DataRelation relationFK_GoLeave_Member_OwnerID;
         
@@ -63,11 +63,11 @@ namespace Camera {
                 if ((ds.Tables["__EFMigrationsHistory"] != null)) {
                     base.Tables.Add(new @__EFMigrationsHistoryDataTable(ds.Tables["__EFMigrationsHistory"]));
                 }
-                if ((ds.Tables["GoLeave"] != null)) {
-                    base.Tables.Add(new GoLeaveDataTable(ds.Tables["GoLeave"]));
-                }
                 if ((ds.Tables["Member"] != null)) {
                     base.Tables.Add(new MemberDataTable(ds.Tables["Member"]));
+                }
+                if ((ds.Tables["GoLeave"] != null)) {
+                    base.Tables.Add(new GoLeaveDataTable(ds.Tables["GoLeave"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -101,9 +101,9 @@ namespace Camera {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public GoLeaveDataTable GoLeave {
+        public MemberDataTable Member {
             get {
-                return this.tableGoLeave;
+                return this.tableMember;
             }
         }
         
@@ -111,9 +111,9 @@ namespace Camera {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public MemberDataTable Member {
+        public GoLeaveDataTable GoLeave {
             get {
-                return this.tableMember;
+                return this.tableGoLeave;
             }
         }
         
@@ -187,11 +187,11 @@ namespace Camera {
                 if ((ds.Tables["__EFMigrationsHistory"] != null)) {
                     base.Tables.Add(new @__EFMigrationsHistoryDataTable(ds.Tables["__EFMigrationsHistory"]));
                 }
-                if ((ds.Tables["GoLeave"] != null)) {
-                    base.Tables.Add(new GoLeaveDataTable(ds.Tables["GoLeave"]));
-                }
                 if ((ds.Tables["Member"] != null)) {
                     base.Tables.Add(new MemberDataTable(ds.Tables["Member"]));
+                }
+                if ((ds.Tables["GoLeave"] != null)) {
+                    base.Tables.Add(new GoLeaveDataTable(ds.Tables["GoLeave"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -232,16 +232,16 @@ namespace Camera {
                     this.table__EFMigrationsHistory.InitVars();
                 }
             }
-            this.tableGoLeave = ((GoLeaveDataTable)(base.Tables["GoLeave"]));
-            if ((initTable == true)) {
-                if ((this.tableGoLeave != null)) {
-                    this.tableGoLeave.InitVars();
-                }
-            }
             this.tableMember = ((MemberDataTable)(base.Tables["Member"]));
             if ((initTable == true)) {
                 if ((this.tableMember != null)) {
                     this.tableMember.InitVars();
+                }
+            }
+            this.tableGoLeave = ((GoLeaveDataTable)(base.Tables["GoLeave"]));
+            if ((initTable == true)) {
+                if ((this.tableGoLeave != null)) {
+                    this.tableGoLeave.InitVars();
                 }
             }
             this.relationFK_GoLeave_Member_OwnerID = this.Relations["FK_GoLeave_Member_OwnerID"];
@@ -257,10 +257,10 @@ namespace Camera {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.table__EFMigrationsHistory = new @__EFMigrationsHistoryDataTable();
             base.Tables.Add(this.table__EFMigrationsHistory);
-            this.tableGoLeave = new GoLeaveDataTable();
-            base.Tables.Add(this.tableGoLeave);
             this.tableMember = new MemberDataTable();
             base.Tables.Add(this.tableMember);
+            this.tableGoLeave = new GoLeaveDataTable();
+            base.Tables.Add(this.tableGoLeave);
             this.relationFK_GoLeave_Member_OwnerID = new global::System.Data.DataRelation("FK_GoLeave_Member_OwnerID", new global::System.Data.DataColumn[] {
                         this.tableMember.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableGoLeave.OwnerIDColumn}, false);
@@ -275,13 +275,13 @@ namespace Camera {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeGoLeave() {
+        private bool ShouldSerializeMember() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeMember() {
+        private bool ShouldSerializeGoLeave() {
             return false;
         }
         
@@ -344,10 +344,10 @@ namespace Camera {
         public delegate void @__EFMigrationsHistoryRowChangeEventHandler(object sender, @__EFMigrationsHistoryRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void GoLeaveRowChangeEventHandler(object sender, GoLeaveRowChangeEvent e);
+        public delegate void MemberRowChangeEventHandler(object sender, MemberRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void MemberRowChangeEventHandler(object sender, MemberRowChangeEvent e);
+        public delegate void GoLeaveRowChangeEventHandler(object sender, GoLeaveRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -584,464 +584,6 @@ namespace Camera {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "__EFMigrationsHistoryDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class GoLeaveDataTable : global::System.Data.TypedTableBase<GoLeaveRow> {
-            
-            private global::System.Data.DataColumn columnImageID;
-            
-            private global::System.Data.DataColumn columnGoAvatar;
-            
-            private global::System.Data.DataColumn columnGoDT;
-            
-            private global::System.Data.DataColumn columnGoFull;
-            
-            private global::System.Data.DataColumn columnGoOcg;
-            
-            private global::System.Data.DataColumn columnIsDelete;
-            
-            private global::System.Data.DataColumn columnLeaveDT;
-            
-            private global::System.Data.DataColumn columnLeaveFull;
-            
-            private global::System.Data.DataColumn columnLeaveOcg;
-            
-            private global::System.Data.DataColumn columnOCR;
-            
-            private global::System.Data.DataColumn columnOwnerID;
-            
-            private global::System.Data.DataColumn columnleaveAvatar;
-            
-            private global::System.Data.DataColumn columnIsFinish;
-            
-            private global::System.Data.DataColumn columnNote;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public GoLeaveDataTable() {
-                this.TableName = "GoLeave";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal GoLeaveDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected GoLeaveDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ImageIDColumn {
-                get {
-                    return this.columnImageID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn GoAvatarColumn {
-                get {
-                    return this.columnGoAvatar;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn GoDTColumn {
-                get {
-                    return this.columnGoDT;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn GoFullColumn {
-                get {
-                    return this.columnGoFull;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn GoOcgColumn {
-                get {
-                    return this.columnGoOcg;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IsDeleteColumn {
-                get {
-                    return this.columnIsDelete;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn LeaveDTColumn {
-                get {
-                    return this.columnLeaveDT;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn LeaveFullColumn {
-                get {
-                    return this.columnLeaveFull;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn LeaveOcgColumn {
-                get {
-                    return this.columnLeaveOcg;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn OCRColumn {
-                get {
-                    return this.columnOCR;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn OwnerIDColumn {
-                get {
-                    return this.columnOwnerID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn leaveAvatarColumn {
-                get {
-                    return this.columnleaveAvatar;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IsFinishColumn {
-                get {
-                    return this.columnIsFinish;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn NoteColumn {
-                get {
-                    return this.columnNote;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public GoLeaveRow this[int index] {
-                get {
-                    return ((GoLeaveRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event GoLeaveRowChangeEventHandler GoLeaveRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event GoLeaveRowChangeEventHandler GoLeaveRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event GoLeaveRowChangeEventHandler GoLeaveRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event GoLeaveRowChangeEventHandler GoLeaveRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddGoLeaveRow(GoLeaveRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public GoLeaveRow AddGoLeaveRow(string GoAvatar, System.DateTime GoDT, string GoFull, string GoOcg, bool IsDelete, System.DateTime LeaveDT, string LeaveFull, string LeaveOcg, string OCR, MemberRow parentMemberRowByFK_GoLeave_Member_OwnerID, string leaveAvatar, bool IsFinish, string Note) {
-                GoLeaveRow rowGoLeaveRow = ((GoLeaveRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        GoAvatar,
-                        GoDT,
-                        GoFull,
-                        GoOcg,
-                        IsDelete,
-                        LeaveDT,
-                        LeaveFull,
-                        LeaveOcg,
-                        OCR,
-                        null,
-                        leaveAvatar,
-                        IsFinish,
-                        Note};
-                if ((parentMemberRowByFK_GoLeave_Member_OwnerID != null)) {
-                    columnValuesArray[10] = parentMemberRowByFK_GoLeave_Member_OwnerID[0];
-                }
-                rowGoLeaveRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowGoLeaveRow);
-                return rowGoLeaveRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public GoLeaveRow FindByImageID(long ImageID) {
-                return ((GoLeaveRow)(this.Rows.Find(new object[] {
-                            ImageID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                GoLeaveDataTable cln = ((GoLeaveDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new GoLeaveDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnImageID = base.Columns["ImageID"];
-                this.columnGoAvatar = base.Columns["GoAvatar"];
-                this.columnGoDT = base.Columns["GoDT"];
-                this.columnGoFull = base.Columns["GoFull"];
-                this.columnGoOcg = base.Columns["GoOcg"];
-                this.columnIsDelete = base.Columns["IsDelete"];
-                this.columnLeaveDT = base.Columns["LeaveDT"];
-                this.columnLeaveFull = base.Columns["LeaveFull"];
-                this.columnLeaveOcg = base.Columns["LeaveOcg"];
-                this.columnOCR = base.Columns["OCR"];
-                this.columnOwnerID = base.Columns["OwnerID"];
-                this.columnleaveAvatar = base.Columns["leaveAvatar"];
-                this.columnIsFinish = base.Columns["IsFinish"];
-                this.columnNote = base.Columns["Note"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnImageID = new global::System.Data.DataColumn("ImageID", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnImageID);
-                this.columnGoAvatar = new global::System.Data.DataColumn("GoAvatar", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGoAvatar);
-                this.columnGoDT = new global::System.Data.DataColumn("GoDT", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGoDT);
-                this.columnGoFull = new global::System.Data.DataColumn("GoFull", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGoFull);
-                this.columnGoOcg = new global::System.Data.DataColumn("GoOcg", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGoOcg);
-                this.columnIsDelete = new global::System.Data.DataColumn("IsDelete", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsDelete);
-                this.columnLeaveDT = new global::System.Data.DataColumn("LeaveDT", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLeaveDT);
-                this.columnLeaveFull = new global::System.Data.DataColumn("LeaveFull", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLeaveFull);
-                this.columnLeaveOcg = new global::System.Data.DataColumn("LeaveOcg", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLeaveOcg);
-                this.columnOCR = new global::System.Data.DataColumn("OCR", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOCR);
-                this.columnOwnerID = new global::System.Data.DataColumn("OwnerID", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOwnerID);
-                this.columnleaveAvatar = new global::System.Data.DataColumn("leaveAvatar", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnleaveAvatar);
-                this.columnIsFinish = new global::System.Data.DataColumn("IsFinish", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsFinish);
-                this.columnNote = new global::System.Data.DataColumn("Note", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNote);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnImageID}, true));
-                this.columnImageID.AutoIncrement = true;
-                this.columnImageID.AutoIncrementSeed = -1;
-                this.columnImageID.AutoIncrementStep = -1;
-                this.columnImageID.AllowDBNull = false;
-                this.columnImageID.ReadOnly = true;
-                this.columnImageID.Unique = true;
-                this.columnGoAvatar.MaxLength = 2147483647;
-                this.columnGoFull.MaxLength = 2147483647;
-                this.columnGoOcg.MaxLength = 2147483647;
-                this.columnIsDelete.AllowDBNull = false;
-                this.columnLeaveFull.MaxLength = 2147483647;
-                this.columnLeaveOcg.MaxLength = 2147483647;
-                this.columnOCR.MaxLength = 2147483647;
-                this.columnOwnerID.AllowDBNull = false;
-                this.columnleaveAvatar.MaxLength = 2147483647;
-                this.columnIsFinish.AllowDBNull = false;
-                this.columnNote.MaxLength = 2147483647;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public GoLeaveRow NewGoLeaveRow() {
-                return ((GoLeaveRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new GoLeaveRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(GoLeaveRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.GoLeaveRowChanged != null)) {
-                    this.GoLeaveRowChanged(this, new GoLeaveRowChangeEvent(((GoLeaveRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.GoLeaveRowChanging != null)) {
-                    this.GoLeaveRowChanging(this, new GoLeaveRowChangeEvent(((GoLeaveRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.GoLeaveRowDeleted != null)) {
-                    this.GoLeaveRowDeleted(this, new GoLeaveRowChangeEvent(((GoLeaveRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.GoLeaveRowDeleting != null)) {
-                    this.GoLeaveRowDeleting(this, new GoLeaveRowChangeEvent(((GoLeaveRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveGoLeaveRow(GoLeaveRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                admin_dangkythitoeicDataSet ds = new admin_dangkythitoeicDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "GoLeaveDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1565,6 +1107,479 @@ namespace Camera {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class GoLeaveDataTable : global::System.Data.TypedTableBase<GoLeaveRow> {
+            
+            private global::System.Data.DataColumn columnImageID;
+            
+            private global::System.Data.DataColumn columnGoAvatar;
+            
+            private global::System.Data.DataColumn columnGoDT;
+            
+            private global::System.Data.DataColumn columnGoFull;
+            
+            private global::System.Data.DataColumn columnGoOcg;
+            
+            private global::System.Data.DataColumn columnIsDelete;
+            
+            private global::System.Data.DataColumn columnLeaveDT;
+            
+            private global::System.Data.DataColumn columnLeaveFull;
+            
+            private global::System.Data.DataColumn columnLeaveOcg;
+            
+            private global::System.Data.DataColumn columnOutOCR;
+            
+            private global::System.Data.DataColumn columnOwnerID;
+            
+            private global::System.Data.DataColumn columnleaveAvatar;
+            
+            private global::System.Data.DataColumn columnIsFinish;
+            
+            private global::System.Data.DataColumn columnNote;
+            
+            private global::System.Data.DataColumn columnGoOCR;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GoLeaveDataTable() {
+                this.TableName = "GoLeave";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal GoLeaveDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected GoLeaveDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ImageIDColumn {
+                get {
+                    return this.columnImageID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn GoAvatarColumn {
+                get {
+                    return this.columnGoAvatar;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn GoDTColumn {
+                get {
+                    return this.columnGoDT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn GoFullColumn {
+                get {
+                    return this.columnGoFull;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn GoOcgColumn {
+                get {
+                    return this.columnGoOcg;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IsDeleteColumn {
+                get {
+                    return this.columnIsDelete;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeaveDTColumn {
+                get {
+                    return this.columnLeaveDT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeaveFullColumn {
+                get {
+                    return this.columnLeaveFull;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeaveOcgColumn {
+                get {
+                    return this.columnLeaveOcg;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OutOCRColumn {
+                get {
+                    return this.columnOutOCR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OwnerIDColumn {
+                get {
+                    return this.columnOwnerID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn leaveAvatarColumn {
+                get {
+                    return this.columnleaveAvatar;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IsFinishColumn {
+                get {
+                    return this.columnIsFinish;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NoteColumn {
+                get {
+                    return this.columnNote;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn GoOCRColumn {
+                get {
+                    return this.columnGoOCR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GoLeaveRow this[int index] {
+                get {
+                    return ((GoLeaveRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event GoLeaveRowChangeEventHandler GoLeaveRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event GoLeaveRowChangeEventHandler GoLeaveRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event GoLeaveRowChangeEventHandler GoLeaveRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event GoLeaveRowChangeEventHandler GoLeaveRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddGoLeaveRow(GoLeaveRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GoLeaveRow AddGoLeaveRow(string GoAvatar, System.DateTime GoDT, string GoFull, string GoOcg, bool IsDelete, System.DateTime LeaveDT, string LeaveFull, string LeaveOcg, string OutOCR, MemberRow parentMemberRowByFK_GoLeave_Member_OwnerID, string leaveAvatar, bool IsFinish, string Note, string GoOCR) {
+                GoLeaveRow rowGoLeaveRow = ((GoLeaveRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        GoAvatar,
+                        GoDT,
+                        GoFull,
+                        GoOcg,
+                        IsDelete,
+                        LeaveDT,
+                        LeaveFull,
+                        LeaveOcg,
+                        OutOCR,
+                        null,
+                        leaveAvatar,
+                        IsFinish,
+                        Note,
+                        GoOCR};
+                if ((parentMemberRowByFK_GoLeave_Member_OwnerID != null)) {
+                    columnValuesArray[10] = parentMemberRowByFK_GoLeave_Member_OwnerID[0];
+                }
+                rowGoLeaveRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGoLeaveRow);
+                return rowGoLeaveRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GoLeaveRow FindByImageID(long ImageID) {
+                return ((GoLeaveRow)(this.Rows.Find(new object[] {
+                            ImageID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                GoLeaveDataTable cln = ((GoLeaveDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new GoLeaveDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnImageID = base.Columns["ImageID"];
+                this.columnGoAvatar = base.Columns["GoAvatar"];
+                this.columnGoDT = base.Columns["GoDT"];
+                this.columnGoFull = base.Columns["GoFull"];
+                this.columnGoOcg = base.Columns["GoOcg"];
+                this.columnIsDelete = base.Columns["IsDelete"];
+                this.columnLeaveDT = base.Columns["LeaveDT"];
+                this.columnLeaveFull = base.Columns["LeaveFull"];
+                this.columnLeaveOcg = base.Columns["LeaveOcg"];
+                this.columnOutOCR = base.Columns["OutOCR"];
+                this.columnOwnerID = base.Columns["OwnerID"];
+                this.columnleaveAvatar = base.Columns["leaveAvatar"];
+                this.columnIsFinish = base.Columns["IsFinish"];
+                this.columnNote = base.Columns["Note"];
+                this.columnGoOCR = base.Columns["GoOCR"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnImageID = new global::System.Data.DataColumn("ImageID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImageID);
+                this.columnGoAvatar = new global::System.Data.DataColumn("GoAvatar", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGoAvatar);
+                this.columnGoDT = new global::System.Data.DataColumn("GoDT", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGoDT);
+                this.columnGoFull = new global::System.Data.DataColumn("GoFull", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGoFull);
+                this.columnGoOcg = new global::System.Data.DataColumn("GoOcg", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGoOcg);
+                this.columnIsDelete = new global::System.Data.DataColumn("IsDelete", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsDelete);
+                this.columnLeaveDT = new global::System.Data.DataColumn("LeaveDT", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeaveDT);
+                this.columnLeaveFull = new global::System.Data.DataColumn("LeaveFull", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeaveFull);
+                this.columnLeaveOcg = new global::System.Data.DataColumn("LeaveOcg", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeaveOcg);
+                this.columnOutOCR = new global::System.Data.DataColumn("OutOCR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOutOCR);
+                this.columnOwnerID = new global::System.Data.DataColumn("OwnerID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnerID);
+                this.columnleaveAvatar = new global::System.Data.DataColumn("leaveAvatar", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnleaveAvatar);
+                this.columnIsFinish = new global::System.Data.DataColumn("IsFinish", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsFinish);
+                this.columnNote = new global::System.Data.DataColumn("Note", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNote);
+                this.columnGoOCR = new global::System.Data.DataColumn("GoOCR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGoOCR);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnImageID}, true));
+                this.columnImageID.AutoIncrement = true;
+                this.columnImageID.AutoIncrementSeed = -1;
+                this.columnImageID.AutoIncrementStep = -1;
+                this.columnImageID.AllowDBNull = false;
+                this.columnImageID.ReadOnly = true;
+                this.columnImageID.Unique = true;
+                this.columnGoAvatar.MaxLength = 2147483647;
+                this.columnGoFull.MaxLength = 2147483647;
+                this.columnGoOcg.MaxLength = 2147483647;
+                this.columnIsDelete.AllowDBNull = false;
+                this.columnLeaveFull.MaxLength = 2147483647;
+                this.columnLeaveOcg.MaxLength = 2147483647;
+                this.columnOutOCR.MaxLength = 2147483647;
+                this.columnOwnerID.AllowDBNull = false;
+                this.columnleaveAvatar.MaxLength = 2147483647;
+                this.columnIsFinish.AllowDBNull = false;
+                this.columnNote.MaxLength = 2147483647;
+                this.columnGoOCR.MaxLength = 2147483647;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GoLeaveRow NewGoLeaveRow() {
+                return ((GoLeaveRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new GoLeaveRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(GoLeaveRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.GoLeaveRowChanged != null)) {
+                    this.GoLeaveRowChanged(this, new GoLeaveRowChangeEvent(((GoLeaveRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.GoLeaveRowChanging != null)) {
+                    this.GoLeaveRowChanging(this, new GoLeaveRowChangeEvent(((GoLeaveRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.GoLeaveRowDeleted != null)) {
+                    this.GoLeaveRowDeleted(this, new GoLeaveRowChangeEvent(((GoLeaveRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.GoLeaveRowDeleting != null)) {
+                    this.GoLeaveRowDeleting(this, new GoLeaveRowChangeEvent(((GoLeaveRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveGoLeaveRow(GoLeaveRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                admin_dangkythitoeicDataSet ds = new admin_dangkythitoeicDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "GoLeaveDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class @__EFMigrationsHistoryRow : global::System.Data.DataRow {
@@ -1598,356 +1613,6 @@ namespace Camera {
                 set {
                     this[this.table__EFMigrationsHistory.ProductVersionColumn] = value;
                 }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class GoLeaveRow : global::System.Data.DataRow {
-            
-            private GoLeaveDataTable tableGoLeave;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal GoLeaveRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableGoLeave = ((GoLeaveDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public long ImageID {
-                get {
-                    return ((long)(this[this.tableGoLeave.ImageIDColumn]));
-                }
-                set {
-                    this[this.tableGoLeave.ImageIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string GoAvatar {
-                get {
-                    try {
-                        return ((string)(this[this.tableGoLeave.GoAvatarColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'GoAvatar\' in table \'GoLeave\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGoLeave.GoAvatarColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime GoDT {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableGoLeave.GoDTColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'GoDT\' in table \'GoLeave\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGoLeave.GoDTColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string GoFull {
-                get {
-                    try {
-                        return ((string)(this[this.tableGoLeave.GoFullColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'GoFull\' in table \'GoLeave\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGoLeave.GoFullColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string GoOcg {
-                get {
-                    try {
-                        return ((string)(this[this.tableGoLeave.GoOcgColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'GoOcg\' in table \'GoLeave\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGoLeave.GoOcgColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDelete {
-                get {
-                    return ((bool)(this[this.tableGoLeave.IsDeleteColumn]));
-                }
-                set {
-                    this[this.tableGoLeave.IsDeleteColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime LeaveDT {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableGoLeave.LeaveDTColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LeaveDT\' in table \'GoLeave\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGoLeave.LeaveDTColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string LeaveFull {
-                get {
-                    try {
-                        return ((string)(this[this.tableGoLeave.LeaveFullColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LeaveFull\' in table \'GoLeave\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGoLeave.LeaveFullColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string LeaveOcg {
-                get {
-                    try {
-                        return ((string)(this[this.tableGoLeave.LeaveOcgColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LeaveOcg\' in table \'GoLeave\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGoLeave.LeaveOcgColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string OCR {
-                get {
-                    try {
-                        return ((string)(this[this.tableGoLeave.OCRColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OCR\' in table \'GoLeave\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGoLeave.OCRColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public long OwnerID {
-                get {
-                    return ((long)(this[this.tableGoLeave.OwnerIDColumn]));
-                }
-                set {
-                    this[this.tableGoLeave.OwnerIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string leaveAvatar {
-                get {
-                    try {
-                        return ((string)(this[this.tableGoLeave.leaveAvatarColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'leaveAvatar\' in table \'GoLeave\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGoLeave.leaveAvatarColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsFinish {
-                get {
-                    return ((bool)(this[this.tableGoLeave.IsFinishColumn]));
-                }
-                set {
-                    this[this.tableGoLeave.IsFinishColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Note {
-                get {
-                    try {
-                        return ((string)(this[this.tableGoLeave.NoteColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Note\' in table \'GoLeave\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGoLeave.NoteColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MemberRow MemberRow {
-                get {
-                    return ((MemberRow)(this.GetParentRow(this.Table.ParentRelations["FK_GoLeave_Member_OwnerID"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_GoLeave_Member_OwnerID"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsGoAvatarNull() {
-                return this.IsNull(this.tableGoLeave.GoAvatarColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetGoAvatarNull() {
-                this[this.tableGoLeave.GoAvatarColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsGoDTNull() {
-                return this.IsNull(this.tableGoLeave.GoDTColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetGoDTNull() {
-                this[this.tableGoLeave.GoDTColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsGoFullNull() {
-                return this.IsNull(this.tableGoLeave.GoFullColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetGoFullNull() {
-                this[this.tableGoLeave.GoFullColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsGoOcgNull() {
-                return this.IsNull(this.tableGoLeave.GoOcgColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetGoOcgNull() {
-                this[this.tableGoLeave.GoOcgColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsLeaveDTNull() {
-                return this.IsNull(this.tableGoLeave.LeaveDTColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetLeaveDTNull() {
-                this[this.tableGoLeave.LeaveDTColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsLeaveFullNull() {
-                return this.IsNull(this.tableGoLeave.LeaveFullColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetLeaveFullNull() {
-                this[this.tableGoLeave.LeaveFullColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsLeaveOcgNull() {
-                return this.IsNull(this.tableGoLeave.LeaveOcgColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetLeaveOcgNull() {
-                this[this.tableGoLeave.LeaveOcgColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsOCRNull() {
-                return this.IsNull(this.tableGoLeave.OCRColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetOCRNull() {
-                this[this.tableGoLeave.OCRColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsleaveAvatarNull() {
-                return this.IsNull(this.tableGoLeave.leaveAvatarColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetleaveAvatarNull() {
-                this[this.tableGoLeave.leaveAvatarColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsNoteNull() {
-                return this.IsNull(this.tableGoLeave.NoteColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetNoteNull() {
-                this[this.tableGoLeave.NoteColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2324,6 +1989,384 @@ namespace Camera {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class GoLeaveRow : global::System.Data.DataRow {
+            
+            private GoLeaveDataTable tableGoLeave;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal GoLeaveRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableGoLeave = ((GoLeaveDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public long ImageID {
+                get {
+                    return ((long)(this[this.tableGoLeave.ImageIDColumn]));
+                }
+                set {
+                    this[this.tableGoLeave.ImageIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string GoAvatar {
+                get {
+                    try {
+                        return ((string)(this[this.tableGoLeave.GoAvatarColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GoAvatar\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.GoAvatarColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime GoDT {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableGoLeave.GoDTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GoDT\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.GoDTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string GoFull {
+                get {
+                    try {
+                        return ((string)(this[this.tableGoLeave.GoFullColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GoFull\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.GoFullColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string GoOcg {
+                get {
+                    try {
+                        return ((string)(this[this.tableGoLeave.GoOcgColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GoOcg\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.GoOcgColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDelete {
+                get {
+                    return ((bool)(this[this.tableGoLeave.IsDeleteColumn]));
+                }
+                set {
+                    this[this.tableGoLeave.IsDeleteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime LeaveDT {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableGoLeave.LeaveDTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeaveDT\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.LeaveDTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string LeaveFull {
+                get {
+                    try {
+                        return ((string)(this[this.tableGoLeave.LeaveFullColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeaveFull\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.LeaveFullColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string LeaveOcg {
+                get {
+                    try {
+                        return ((string)(this[this.tableGoLeave.LeaveOcgColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeaveOcg\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.LeaveOcgColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OutOCR {
+                get {
+                    try {
+                        return ((string)(this[this.tableGoLeave.OutOCRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OutOCR\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.OutOCRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public long OwnerID {
+                get {
+                    return ((long)(this[this.tableGoLeave.OwnerIDColumn]));
+                }
+                set {
+                    this[this.tableGoLeave.OwnerIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string leaveAvatar {
+                get {
+                    try {
+                        return ((string)(this[this.tableGoLeave.leaveAvatarColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'leaveAvatar\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.leaveAvatarColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFinish {
+                get {
+                    return ((bool)(this[this.tableGoLeave.IsFinishColumn]));
+                }
+                set {
+                    this[this.tableGoLeave.IsFinishColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Note {
+                get {
+                    try {
+                        return ((string)(this[this.tableGoLeave.NoteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Note\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.NoteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string GoOCR {
+                get {
+                    try {
+                        return ((string)(this[this.tableGoLeave.GoOCRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GoOCR\' in table \'GoLeave\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGoLeave.GoOCRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MemberRow MemberRow {
+                get {
+                    return ((MemberRow)(this.GetParentRow(this.Table.ParentRelations["FK_GoLeave_Member_OwnerID"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_GoLeave_Member_OwnerID"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsGoAvatarNull() {
+                return this.IsNull(this.tableGoLeave.GoAvatarColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetGoAvatarNull() {
+                this[this.tableGoLeave.GoAvatarColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsGoDTNull() {
+                return this.IsNull(this.tableGoLeave.GoDTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetGoDTNull() {
+                this[this.tableGoLeave.GoDTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsGoFullNull() {
+                return this.IsNull(this.tableGoLeave.GoFullColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetGoFullNull() {
+                this[this.tableGoLeave.GoFullColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsGoOcgNull() {
+                return this.IsNull(this.tableGoLeave.GoOcgColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetGoOcgNull() {
+                this[this.tableGoLeave.GoOcgColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLeaveDTNull() {
+                return this.IsNull(this.tableGoLeave.LeaveDTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLeaveDTNull() {
+                this[this.tableGoLeave.LeaveDTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLeaveFullNull() {
+                return this.IsNull(this.tableGoLeave.LeaveFullColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLeaveFullNull() {
+                this[this.tableGoLeave.LeaveFullColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLeaveOcgNull() {
+                return this.IsNull(this.tableGoLeave.LeaveOcgColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLeaveOcgNull() {
+                this[this.tableGoLeave.LeaveOcgColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOutOCRNull() {
+                return this.IsNull(this.tableGoLeave.OutOCRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOutOCRNull() {
+                this[this.tableGoLeave.OutOCRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsleaveAvatarNull() {
+                return this.IsNull(this.tableGoLeave.leaveAvatarColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetleaveAvatarNull() {
+                this[this.tableGoLeave.leaveAvatarColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNoteNull() {
+                return this.IsNull(this.tableGoLeave.NoteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNoteNull() {
+                this[this.tableGoLeave.NoteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsGoOCRNull() {
+                return this.IsNull(this.tableGoLeave.GoOCRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetGoOCRNull() {
+                this[this.tableGoLeave.GoOCRColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -2361,22 +2404,22 @@ namespace Camera {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class GoLeaveRowChangeEvent : global::System.EventArgs {
+        public class MemberRowChangeEvent : global::System.EventArgs {
             
-            private GoLeaveRow eventRow;
+            private MemberRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public GoLeaveRowChangeEvent(GoLeaveRow row, global::System.Data.DataRowAction action) {
+            public MemberRowChangeEvent(MemberRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public GoLeaveRow Row {
+            public MemberRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2395,22 +2438,22 @@ namespace Camera {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class MemberRowChangeEvent : global::System.EventArgs {
+        public class GoLeaveRowChangeEvent : global::System.EventArgs {
             
-            private MemberRow eventRow;
+            private GoLeaveRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MemberRowChangeEvent(MemberRow row, global::System.Data.DataRowAction action) {
+            public GoLeaveRowChangeEvent(GoLeaveRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MemberRow Row {
+            public GoLeaveRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2766,550 +2809,6 @@ SELECT MigrationId, ProductVersion FROM dangkythitoeic.__EFMigrationsHistory WHE
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string ProductVersion, string Original_MigrationId, string Original_ProductVersion) {
             return this.Update(Original_MigrationId, ProductVersion, Original_MigrationId, Original_ProductVersion);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class GoLeaveTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public GoLeaveTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "GoLeave";
-            tableMapping.ColumnMappings.Add("ImageID", "ImageID");
-            tableMapping.ColumnMappings.Add("GoAvatar", "GoAvatar");
-            tableMapping.ColumnMappings.Add("GoDT", "GoDT");
-            tableMapping.ColumnMappings.Add("GoFull", "GoFull");
-            tableMapping.ColumnMappings.Add("GoOcg", "GoOcg");
-            tableMapping.ColumnMappings.Add("IsDelete", "IsDelete");
-            tableMapping.ColumnMappings.Add("LeaveDT", "LeaveDT");
-            tableMapping.ColumnMappings.Add("LeaveFull", "LeaveFull");
-            tableMapping.ColumnMappings.Add("LeaveOcg", "LeaveOcg");
-            tableMapping.ColumnMappings.Add("OCR", "OCR");
-            tableMapping.ColumnMappings.Add("OwnerID", "OwnerID");
-            tableMapping.ColumnMappings.Add("leaveAvatar", "leaveAvatar");
-            tableMapping.ColumnMappings.Add("IsFinish", "IsFinish");
-            tableMapping.ColumnMappings.Add("Note", "Note");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dangkythitoeic].[GoLeave] WHERE (([ImageID] = @Original_ImageID) AND ((@IsNull_GoDT = 1 AND [GoDT] IS NULL) OR ([GoDT] = @Original_GoDT)) AND ([IsDelete] = @Original_IsDelete) AND ((@IsNull_LeaveDT = 1 AND [LeaveDT] IS NULL) OR ([LeaveDT] = @Original_LeaveDT)) AND ([OwnerID] = @Original_OwnerID) AND ([IsFinish] = @Original_IsFinish))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ImageID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImageID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_GoDT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GoDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDelete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDelete", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LeaveDT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LeaveDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OwnerID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsFinish", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsFinish", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dangkythitoeic].[GoLeave] ([GoAvatar], [GoDT], [GoFull], [GoOcg], [IsDelete], [LeaveDT], [LeaveFull], [LeaveOcg], [OCR], [OwnerID], [leaveAvatar], [IsFinish], [Note]) VALUES (@GoAvatar, @GoDT, @GoFull, @GoOcg, @IsDelete, @LeaveDT, @LeaveFull, @LeaveOcg, @OCR, @OwnerID, @leaveAvatar, @IsFinish, @Note);
-SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, LeaveOcg, OCR, OwnerID, leaveAvatar, IsFinish, Note FROM dangkythitoeic.GoLeave WHERE (ImageID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDelete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDelete", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OwnerID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@leaveAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "leaveAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsFinish", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsFinish", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dangkythitoeic].[GoLeave] SET [GoAvatar] = @GoAvatar, [GoDT] = @GoDT, [GoFull] = @GoFull, [GoOcg] = @GoOcg, [IsDelete] = @IsDelete, [LeaveDT] = @LeaveDT, [LeaveFull] = @LeaveFull, [LeaveOcg] = @LeaveOcg, [OCR] = @OCR, [OwnerID] = @OwnerID, [leaveAvatar] = @leaveAvatar, [IsFinish] = @IsFinish, [Note] = @Note WHERE (([ImageID] = @Original_ImageID) AND ((@IsNull_GoDT = 1 AND [GoDT] IS NULL) OR ([GoDT] = @Original_GoDT)) AND ([IsDelete] = @Original_IsDelete) AND ((@IsNull_LeaveDT = 1 AND [LeaveDT] IS NULL) OR ([LeaveDT] = @Original_LeaveDT)) AND ([OwnerID] = @Original_OwnerID) AND ([IsFinish] = @Original_IsFinish));
-SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, LeaveOcg, OCR, OwnerID, leaveAvatar, IsFinish, Note FROM dangkythitoeic.GoLeave WHERE (ImageID = @ImageID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDelete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDelete", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OwnerID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@leaveAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "leaveAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsFinish", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsFinish", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ImageID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImageID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_GoDT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GoDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDelete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDelete", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LeaveDT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LeaveDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OwnerID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsFinish", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsFinish", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ImageID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "ImageID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Camera.Properties.Settings.Default.admin_dangkythitoeicConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Leav" +
-                "eOcg, OCR, OwnerID, leaveAvatar, IsFinish, Note FROM dangkythitoeic.GoLeave";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(admin_dangkythitoeicDataSet.GoLeaveDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual admin_dangkythitoeicDataSet.GoLeaveDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            admin_dangkythitoeicDataSet.GoLeaveDataTable dataTable = new admin_dangkythitoeicDataSet.GoLeaveDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(admin_dangkythitoeicDataSet.GoLeaveDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(admin_dangkythitoeicDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "GoLeave");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_ImageID, global::System.Nullable<global::System.DateTime> Original_GoDT, bool Original_IsDelete, global::System.Nullable<global::System.DateTime> Original_LeaveDT, long Original_OwnerID, bool Original_IsFinish) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_ImageID));
-            if ((Original_GoDT.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_GoDT.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((bool)(Original_IsDelete));
-            if ((Original_LeaveDT.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((System.DateTime)(Original_LeaveDT.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((long)(Original_OwnerID));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_IsFinish));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string GoAvatar, global::System.Nullable<global::System.DateTime> GoDT, string GoFull, string GoOcg, bool IsDelete, global::System.Nullable<global::System.DateTime> LeaveDT, string LeaveFull, string LeaveOcg, string OCR, long OwnerID, string leaveAvatar, bool IsFinish, string Note) {
-            if ((GoAvatar == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(GoAvatar));
-            }
-            if ((GoDT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(GoDT.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((GoFull == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(GoFull));
-            }
-            if ((GoOcg == null)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(GoOcg));
-            }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(IsDelete));
-            if ((LeaveDT.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(LeaveDT.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((LeaveFull == null)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(LeaveFull));
-            }
-            if ((LeaveOcg == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(LeaveOcg));
-            }
-            if ((OCR == null)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(OCR));
-            }
-            this.Adapter.InsertCommand.Parameters[9].Value = ((long)(OwnerID));
-            if ((leaveAvatar == null)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(leaveAvatar));
-            }
-            this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(IsFinish));
-            if ((Note == null)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(Note));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    string GoAvatar, 
-                    global::System.Nullable<global::System.DateTime> GoDT, 
-                    string GoFull, 
-                    string GoOcg, 
-                    bool IsDelete, 
-                    global::System.Nullable<global::System.DateTime> LeaveDT, 
-                    string LeaveFull, 
-                    string LeaveOcg, 
-                    string OCR, 
-                    long OwnerID, 
-                    string leaveAvatar, 
-                    bool IsFinish, 
-                    string Note, 
-                    long Original_ImageID, 
-                    global::System.Nullable<global::System.DateTime> Original_GoDT, 
-                    bool Original_IsDelete, 
-                    global::System.Nullable<global::System.DateTime> Original_LeaveDT, 
-                    long Original_OwnerID, 
-                    bool Original_IsFinish, 
-                    long ImageID) {
-            if ((GoAvatar == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(GoAvatar));
-            }
-            if ((GoDT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(GoDT.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((GoFull == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(GoFull));
-            }
-            if ((GoOcg == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(GoOcg));
-            }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(IsDelete));
-            if ((LeaveDT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(LeaveDT.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((LeaveFull == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(LeaveFull));
-            }
-            if ((LeaveOcg == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(LeaveOcg));
-            }
-            if ((OCR == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(OCR));
-            }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((long)(OwnerID));
-            if ((leaveAvatar == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(leaveAvatar));
-            }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(IsFinish));
-            if ((Note == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Note));
-            }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((long)(Original_ImageID));
-            if ((Original_GoDT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(Original_GoDT.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((bool)(Original_IsDelete));
-            if ((Original_LeaveDT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((System.DateTime)(Original_LeaveDT.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((long)(Original_OwnerID));
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((bool)(Original_IsFinish));
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((long)(ImageID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    string GoAvatar, 
-                    global::System.Nullable<global::System.DateTime> GoDT, 
-                    string GoFull, 
-                    string GoOcg, 
-                    bool IsDelete, 
-                    global::System.Nullable<global::System.DateTime> LeaveDT, 
-                    string LeaveFull, 
-                    string LeaveOcg, 
-                    string OCR, 
-                    long OwnerID, 
-                    string leaveAvatar, 
-                    bool IsFinish, 
-                    string Note, 
-                    long Original_ImageID, 
-                    global::System.Nullable<global::System.DateTime> Original_GoDT, 
-                    bool Original_IsDelete, 
-                    global::System.Nullable<global::System.DateTime> Original_LeaveDT, 
-                    long Original_OwnerID, 
-                    bool Original_IsFinish) {
-            return this.Update(GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, LeaveOcg, OCR, OwnerID, leaveAvatar, IsFinish, Note, Original_ImageID, Original_GoDT, Original_IsDelete, Original_LeaveDT, Original_OwnerID, Original_IsFinish, Original_ImageID);
         }
     }
     
@@ -3951,6 +3450,568 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class GoLeaveTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public GoLeaveTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "GoLeave";
+            tableMapping.ColumnMappings.Add("ImageID", "ImageID");
+            tableMapping.ColumnMappings.Add("GoAvatar", "GoAvatar");
+            tableMapping.ColumnMappings.Add("GoDT", "GoDT");
+            tableMapping.ColumnMappings.Add("GoFull", "GoFull");
+            tableMapping.ColumnMappings.Add("GoOcg", "GoOcg");
+            tableMapping.ColumnMappings.Add("IsDelete", "IsDelete");
+            tableMapping.ColumnMappings.Add("LeaveDT", "LeaveDT");
+            tableMapping.ColumnMappings.Add("LeaveFull", "LeaveFull");
+            tableMapping.ColumnMappings.Add("LeaveOcg", "LeaveOcg");
+            tableMapping.ColumnMappings.Add("OutOCR", "OutOCR");
+            tableMapping.ColumnMappings.Add("OwnerID", "OwnerID");
+            tableMapping.ColumnMappings.Add("leaveAvatar", "leaveAvatar");
+            tableMapping.ColumnMappings.Add("IsFinish", "IsFinish");
+            tableMapping.ColumnMappings.Add("Note", "Note");
+            tableMapping.ColumnMappings.Add("GoOCR", "GoOCR");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dangkythitoeic].[GoLeave] WHERE (([ImageID] = @Original_ImageID) AND ((@IsNull_GoDT = 1 AND [GoDT] IS NULL) OR ([GoDT] = @Original_GoDT)) AND ([IsDelete] = @Original_IsDelete) AND ((@IsNull_LeaveDT = 1 AND [LeaveDT] IS NULL) OR ([LeaveDT] = @Original_LeaveDT)) AND ([OwnerID] = @Original_OwnerID) AND ([IsFinish] = @Original_IsFinish))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ImageID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImageID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_GoDT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GoDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDelete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDelete", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LeaveDT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LeaveDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OwnerID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsFinish", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsFinish", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dangkythitoeic].[GoLeave] ([GoAvatar], [GoDT], [GoFull], [GoOcg], [IsDelete], [LeaveDT], [LeaveFull], [LeaveOcg], [OutOCR], [OwnerID], [leaveAvatar], [IsFinish], [Note], [GoOCR]) VALUES (@GoAvatar, @GoDT, @GoFull, @GoOcg, @IsDelete, @LeaveDT, @LeaveFull, @LeaveOcg, @OutOCR, @OwnerID, @leaveAvatar, @IsFinish, @Note, @GoOCR);
+SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, LeaveOcg, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR FROM dangkythitoeic.GoLeave WHERE (ImageID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDelete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDelete", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OutOCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OutOCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OwnerID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@leaveAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "leaveAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsFinish", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsFinish", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoOCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoOCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dangkythitoeic].[GoLeave] SET [GoAvatar] = @GoAvatar, [GoDT] = @GoDT, [GoFull] = @GoFull, [GoOcg] = @GoOcg, [IsDelete] = @IsDelete, [LeaveDT] = @LeaveDT, [LeaveFull] = @LeaveFull, [LeaveOcg] = @LeaveOcg, [OutOCR] = @OutOCR, [OwnerID] = @OwnerID, [leaveAvatar] = @leaveAvatar, [IsFinish] = @IsFinish, [Note] = @Note, [GoOCR] = @GoOCR WHERE (([ImageID] = @Original_ImageID) AND ((@IsNull_GoDT = 1 AND [GoDT] IS NULL) OR ([GoDT] = @Original_GoDT)) AND ([IsDelete] = @Original_IsDelete) AND ((@IsNull_LeaveDT = 1 AND [LeaveDT] IS NULL) OR ([LeaveDT] = @Original_LeaveDT)) AND ([OwnerID] = @Original_OwnerID) AND ([IsFinish] = @Original_IsFinish));
+SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, LeaveOcg, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR FROM dangkythitoeic.GoLeave WHERE (ImageID = @ImageID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDelete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDelete", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OutOCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OutOCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OwnerID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@leaveAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "leaveAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsFinish", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsFinish", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoOCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoOCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ImageID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ImageID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_GoDT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GoDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDelete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDelete", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LeaveDT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LeaveDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OwnerID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsFinish", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsFinish", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ImageID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "ImageID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Camera.Properties.Settings.Default.admin_dangkythitoeicConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Leav" +
+                "eOcg, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR FROM dangkythitoeic.Go" +
+                "Leave";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(admin_dangkythitoeicDataSet.GoLeaveDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual admin_dangkythitoeicDataSet.GoLeaveDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            admin_dangkythitoeicDataSet.GoLeaveDataTable dataTable = new admin_dangkythitoeicDataSet.GoLeaveDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(admin_dangkythitoeicDataSet.GoLeaveDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(admin_dangkythitoeicDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "GoLeave");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(long Original_ImageID, global::System.Nullable<global::System.DateTime> Original_GoDT, bool Original_IsDelete, global::System.Nullable<global::System.DateTime> Original_LeaveDT, long Original_OwnerID, bool Original_IsFinish) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_ImageID));
+            if ((Original_GoDT.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_GoDT.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((bool)(Original_IsDelete));
+            if ((Original_LeaveDT.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((System.DateTime)(Original_LeaveDT.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((long)(Original_OwnerID));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_IsFinish));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string GoAvatar, global::System.Nullable<global::System.DateTime> GoDT, string GoFull, string GoOcg, bool IsDelete, global::System.Nullable<global::System.DateTime> LeaveDT, string LeaveFull, string LeaveOcg, string OutOCR, long OwnerID, string leaveAvatar, bool IsFinish, string Note, string GoOCR) {
+            if ((GoAvatar == null)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(GoAvatar));
+            }
+            if ((GoDT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(GoDT.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((GoFull == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(GoFull));
+            }
+            if ((GoOcg == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(GoOcg));
+            }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(IsDelete));
+            if ((LeaveDT.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(LeaveDT.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((LeaveFull == null)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(LeaveFull));
+            }
+            if ((LeaveOcg == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(LeaveOcg));
+            }
+            if ((OutOCR == null)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(OutOCR));
+            }
+            this.Adapter.InsertCommand.Parameters[9].Value = ((long)(OwnerID));
+            if ((leaveAvatar == null)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(leaveAvatar));
+            }
+            this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(IsFinish));
+            if ((Note == null)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(Note));
+            }
+            if ((GoOCR == null)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(GoOCR));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    string GoAvatar, 
+                    global::System.Nullable<global::System.DateTime> GoDT, 
+                    string GoFull, 
+                    string GoOcg, 
+                    bool IsDelete, 
+                    global::System.Nullable<global::System.DateTime> LeaveDT, 
+                    string LeaveFull, 
+                    string LeaveOcg, 
+                    string OutOCR, 
+                    long OwnerID, 
+                    string leaveAvatar, 
+                    bool IsFinish, 
+                    string Note, 
+                    string GoOCR, 
+                    long Original_ImageID, 
+                    global::System.Nullable<global::System.DateTime> Original_GoDT, 
+                    bool Original_IsDelete, 
+                    global::System.Nullable<global::System.DateTime> Original_LeaveDT, 
+                    long Original_OwnerID, 
+                    bool Original_IsFinish, 
+                    long ImageID) {
+            if ((GoAvatar == null)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(GoAvatar));
+            }
+            if ((GoDT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(GoDT.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((GoFull == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(GoFull));
+            }
+            if ((GoOcg == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(GoOcg));
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(IsDelete));
+            if ((LeaveDT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(LeaveDT.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((LeaveFull == null)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(LeaveFull));
+            }
+            if ((LeaveOcg == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(LeaveOcg));
+            }
+            if ((OutOCR == null)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(OutOCR));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((long)(OwnerID));
+            if ((leaveAvatar == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(leaveAvatar));
+            }
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(IsFinish));
+            if ((Note == null)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Note));
+            }
+            if ((GoOCR == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(GoOCR));
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((long)(Original_ImageID));
+            if ((Original_GoDT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_GoDT.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(Original_IsDelete));
+            if ((Original_LeaveDT.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((System.DateTime)(Original_LeaveDT.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((long)(Original_OwnerID));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(Original_IsFinish));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((long)(ImageID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    string GoAvatar, 
+                    global::System.Nullable<global::System.DateTime> GoDT, 
+                    string GoFull, 
+                    string GoOcg, 
+                    bool IsDelete, 
+                    global::System.Nullable<global::System.DateTime> LeaveDT, 
+                    string LeaveFull, 
+                    string LeaveOcg, 
+                    string OutOCR, 
+                    long OwnerID, 
+                    string leaveAvatar, 
+                    bool IsFinish, 
+                    string Note, 
+                    string GoOCR, 
+                    long Original_ImageID, 
+                    global::System.Nullable<global::System.DateTime> Original_GoDT, 
+                    bool Original_IsDelete, 
+                    global::System.Nullable<global::System.DateTime> Original_LeaveDT, 
+                    long Original_OwnerID, 
+                    bool Original_IsFinish) {
+            return this.Update(GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, LeaveOcg, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR, Original_ImageID, Original_GoDT, Original_IsDelete, Original_LeaveDT, Original_OwnerID, Original_IsFinish, Original_ImageID);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3964,9 +4025,9 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
         
         private @__EFMigrationsHistoryTableAdapter ___EFMigrationsHistoryTableAdapter;
         
-        private GoLeaveTableAdapter _goLeaveTableAdapter;
-        
         private MemberTableAdapter _memberTableAdapter;
+        
+        private GoLeaveTableAdapter _goLeaveTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -4002,12 +4063,12 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public GoLeaveTableAdapter GoLeaveTableAdapter {
+        public MemberTableAdapter MemberTableAdapter {
             get {
-                return this._goLeaveTableAdapter;
+                return this._memberTableAdapter;
             }
             set {
-                this._goLeaveTableAdapter = value;
+                this._memberTableAdapter = value;
             }
         }
         
@@ -4016,12 +4077,12 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public MemberTableAdapter MemberTableAdapter {
+        public GoLeaveTableAdapter GoLeaveTableAdapter {
             get {
-                return this._memberTableAdapter;
+                return this._goLeaveTableAdapter;
             }
             set {
-                this._memberTableAdapter = value;
+                this._goLeaveTableAdapter = value;
             }
         }
         
@@ -4048,13 +4109,13 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
                             && (this.___EFMigrationsHistoryTableAdapter.Connection != null))) {
                     return this.___EFMigrationsHistoryTableAdapter.Connection;
                 }
-                if (((this._goLeaveTableAdapter != null) 
-                            && (this._goLeaveTableAdapter.Connection != null))) {
-                    return this._goLeaveTableAdapter.Connection;
-                }
                 if (((this._memberTableAdapter != null) 
                             && (this._memberTableAdapter.Connection != null))) {
                     return this._memberTableAdapter.Connection;
+                }
+                if (((this._goLeaveTableAdapter != null) 
+                            && (this._goLeaveTableAdapter.Connection != null))) {
+                    return this._goLeaveTableAdapter.Connection;
                 }
                 return null;
             }
@@ -4072,10 +4133,10 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
                 if ((this.___EFMigrationsHistoryTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._goLeaveTableAdapter != null)) {
+                if ((this._memberTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._memberTableAdapter != null)) {
+                if ((this._goLeaveTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -4098,21 +4159,21 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._goLeaveTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.GoLeave.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._goLeaveTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this.___EFMigrationsHistoryTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.@__EFMigrationsHistory.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this.___EFMigrationsHistoryTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._goLeaveTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.GoLeave.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._goLeaveTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -4134,19 +4195,19 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._goLeaveTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.GoLeave.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._goLeaveTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this.___EFMigrationsHistoryTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.@__EFMigrationsHistory.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this.___EFMigrationsHistoryTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._goLeaveTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.GoLeave.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._goLeaveTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -4160,19 +4221,19 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(admin_dangkythitoeicDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this.___EFMigrationsHistoryTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.@__EFMigrationsHistory.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this.___EFMigrationsHistoryTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._goLeaveTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.GoLeave.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._goLeaveTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this.___EFMigrationsHistoryTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.@__EFMigrationsHistory.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this.___EFMigrationsHistoryTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -4228,13 +4289,13 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._goLeaveTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._goLeaveTableAdapter.Connection) == false))) {
+            if (((this._memberTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._memberTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._memberTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._memberTableAdapter.Connection) == false))) {
+            if (((this._goLeaveTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._goLeaveTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -4279,15 +4340,6 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
                         adaptersWithAcceptChangesDuringUpdate.Add(this.___EFMigrationsHistoryTableAdapter.Adapter);
                     }
                 }
-                if ((this._goLeaveTableAdapter != null)) {
-                    revertConnections.Add(this._goLeaveTableAdapter, this._goLeaveTableAdapter.Connection);
-                    this._goLeaveTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._goLeaveTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._goLeaveTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._goLeaveTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._goLeaveTableAdapter.Adapter);
-                    }
-                }
                 if ((this._memberTableAdapter != null)) {
                     revertConnections.Add(this._memberTableAdapter, this._memberTableAdapter.Connection);
                     this._memberTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -4295,6 +4347,15 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
                     if (this._memberTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._memberTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._memberTableAdapter.Adapter);
+                    }
+                }
+                if ((this._goLeaveTableAdapter != null)) {
+                    revertConnections.Add(this._goLeaveTableAdapter, this._goLeaveTableAdapter.Connection);
+                    this._goLeaveTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._goLeaveTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._goLeaveTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._goLeaveTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._goLeaveTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -4359,13 +4420,13 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
                     this.___EFMigrationsHistoryTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this.___EFMigrationsHistoryTableAdapter]));
                     this.___EFMigrationsHistoryTableAdapter.Transaction = null;
                 }
-                if ((this._goLeaveTableAdapter != null)) {
-                    this._goLeaveTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._goLeaveTableAdapter]));
-                    this._goLeaveTableAdapter.Transaction = null;
-                }
                 if ((this._memberTableAdapter != null)) {
                     this._memberTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._memberTableAdapter]));
                     this._memberTableAdapter.Transaction = null;
+                }
+                if ((this._goLeaveTableAdapter != null)) {
+                    this._goLeaveTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._goLeaveTableAdapter]));
+                    this._goLeaveTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
