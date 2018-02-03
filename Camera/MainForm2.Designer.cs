@@ -45,6 +45,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbNotify = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbDirector = new System.Windows.Forms.Label();
+            this.lbCount = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new MetroFramework.Controls.MetroButton();
             this.pRa = new System.Windows.Forms.Panel();
@@ -59,8 +61,7 @@
             this.timerPlateIn = new System.Windows.Forms.Timer(this.components);
             this.timerFaceOut = new System.Windows.Forms.Timer(this.components);
             this.timerPlateOut = new System.Windows.Forms.Timer(this.components);
-            this.lbCount = new System.Windows.Forms.Label();
-            this.lbDirector = new System.Windows.Forms.Label();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Vao_Truoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Xe_Vao_Sau)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image_Plate)).BeginInit();
@@ -186,6 +187,7 @@
             // 
             // pInfo
             // 
+            this.pInfo.Controls.Add(this.metroButton1);
             this.pInfo.Controls.Add(this.btnAllow);
             this.pInfo.Controls.Add(this.Image_Plate);
             this.pInfo.Controls.Add(this.Image_ID);
@@ -203,7 +205,7 @@
             // 
             // btnAllow
             // 
-            this.btnAllow.Location = new System.Drawing.Point(60, 528);
+            this.btnAllow.Location = new System.Drawing.Point(122, 528);
             this.btnAllow.Name = "btnAllow";
             this.btnAllow.Size = new System.Drawing.Size(75, 23);
             this.btnAllow.TabIndex = 21;
@@ -248,6 +250,24 @@
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
+            // 
+            // lbDirector
+            // 
+            this.lbDirector.AutoSize = true;
+            this.lbDirector.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lbDirector.Location = new System.Drawing.Point(67, 35);
+            this.lbDirector.Name = "lbDirector";
+            this.lbDirector.Size = new System.Drawing.Size(0, 13);
+            this.lbDirector.TabIndex = 19;
+            // 
+            // lbCount
+            // 
+            this.lbCount.AutoSize = true;
+            this.lbCount.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lbCount.Location = new System.Drawing.Point(134, 69);
+            this.lbCount.Name = "lbCount";
+            this.lbCount.Size = new System.Drawing.Size(0, 13);
+            this.lbCount.TabIndex = 18;
             // 
             // label1
             // 
@@ -399,23 +419,15 @@
             // 
             this.timerPlateOut.Tick += new System.EventHandler(this.timerPlateOut_Tick);
             // 
-            // lbCount
+            // metroButton1
             // 
-            this.lbCount.AutoSize = true;
-            this.lbCount.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lbCount.Location = new System.Drawing.Point(134, 69);
-            this.lbCount.Name = "lbCount";
-            this.lbCount.Size = new System.Drawing.Size(0, 13);
-            this.lbCount.TabIndex = 18;
-            // 
-            // lbDirector
-            // 
-            this.lbDirector.AutoSize = true;
-            this.lbDirector.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lbDirector.Location = new System.Drawing.Point(67, 35);
-            this.lbDirector.Name = "lbDirector";
-            this.lbDirector.Size = new System.Drawing.Size(0, 13);
-            this.lbDirector.TabIndex = 19;
+            this.metroButton1.Location = new System.Drawing.Point(4, 528);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(75, 23);
+            this.metroButton1.TabIndex = 22;
+            this.metroButton1.Text = "Vào lại";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // MainForm2
             // 
@@ -486,5 +498,6 @@
         private MetroFramework.Controls.MetroButton btnAllow;
         private System.Windows.Forms.Label lbCount;
         private System.Windows.Forms.Label lbDirector;
+        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }

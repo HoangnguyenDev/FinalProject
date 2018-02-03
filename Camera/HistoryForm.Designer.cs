@@ -33,28 +33,28 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
-            this.admin_dangkythitoeicDataSet = new Camera.admin_dangkythitoeicDataSet();
             this.goLeaveBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.admin_dangkythitoeicDataSet = new Camera.admin_dangkythitoeicDataSet();
             this.goLeaveTableAdapter = new Camera.admin_dangkythitoeicDataSetTableAdapters.GoLeaveTableAdapter();
             this.goDTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.leaveDTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goAvatarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goOcgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.leaveFullDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.leaveOcgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oCRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.leaveAvatarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isFinishDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.goAvatarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.LeavePlate = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.GoPlate = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.OutOCR = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.leaveFullDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.admin_dangkythitoeicDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.goLeaveBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.admin_dangkythitoeicDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // metroGrid1
             // 
             this.metroGrid1.AllowUserToAddRows = false;
+            this.metroGrid1.AllowUserToDeleteRows = false;
             this.metroGrid1.AllowUserToResizeRows = false;
             this.metroGrid1.AutoGenerateColumns = false;
             this.metroGrid1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -74,13 +74,12 @@
             this.goDTDataGridViewTextBoxColumn,
             this.leaveDTDataGridViewTextBoxColumn,
             this.ownerIDDataGridViewTextBoxColumn,
-            this.goAvatarDataGridViewTextBoxColumn,
-            this.goOcgDataGridViewTextBoxColumn,
-            this.leaveFullDataGridViewTextBoxColumn,
-            this.leaveOcgDataGridViewTextBoxColumn,
-            this.oCRDataGridViewTextBoxColumn,
-            this.leaveAvatarDataGridViewTextBoxColumn,
             this.isFinishDataGridViewCheckBoxColumn,
+            this.goAvatarDataGridViewTextBoxColumn,
+            this.LeavePlate,
+            this.GoPlate,
+            this.OutOCR,
+            this.leaveFullDataGridViewTextBoxColumn,
             this.noteDataGridViewTextBoxColumn});
             this.metroGrid1.DataSource = this.goLeaveBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -110,15 +109,15 @@
             this.metroGrid1.Size = new System.Drawing.Size(830, 213);
             this.metroGrid1.TabIndex = 0;
             // 
-            // admin_dangkythitoeicDataSet
-            // 
-            this.admin_dangkythitoeicDataSet.DataSetName = "admin_dangkythitoeicDataSet";
-            this.admin_dangkythitoeicDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // goLeaveBindingSource
             // 
             this.goLeaveBindingSource.DataMember = "GoLeave";
             this.goLeaveBindingSource.DataSource = this.admin_dangkythitoeicDataSet;
+            // 
+            // admin_dangkythitoeicDataSet
+            // 
+            this.admin_dangkythitoeicDataSet.DataSetName = "admin_dangkythitoeicDataSet";
+            this.admin_dangkythitoeicDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // goLeaveTableAdapter
             // 
@@ -129,7 +128,6 @@
             this.goDTDataGridViewTextBoxColumn.DataPropertyName = "GoDT";
             this.goDTDataGridViewTextBoxColumn.HeaderText = "Thời gian vào";
             this.goDTDataGridViewTextBoxColumn.Name = "goDTDataGridViewTextBoxColumn";
-            this.goDTDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // leaveDTDataGridViewTextBoxColumn
             // 
@@ -144,47 +142,49 @@
             this.ownerIDDataGridViewTextBoxColumn.HeaderText = "Mã";
             this.ownerIDDataGridViewTextBoxColumn.Name = "ownerIDDataGridViewTextBoxColumn";
             // 
+            // isFinishDataGridViewCheckBoxColumn
+            // 
+            this.isFinishDataGridViewCheckBoxColumn.DataPropertyName = "IsFinish";
+            this.isFinishDataGridViewCheckBoxColumn.HeaderText = "Đã hoàn thành";
+            this.isFinishDataGridViewCheckBoxColumn.Name = "isFinishDataGridViewCheckBoxColumn";
+            // 
             // goAvatarDataGridViewTextBoxColumn
             // 
             this.goAvatarDataGridViewTextBoxColumn.DataPropertyName = "GoAvatar";
-            this.goAvatarDataGridViewTextBoxColumn.HeaderText = "GoAvatar";
+            this.goAvatarDataGridViewTextBoxColumn.HeaderText = "Khuôn mặt đi";
             this.goAvatarDataGridViewTextBoxColumn.Name = "goAvatarDataGridViewTextBoxColumn";
+            this.goAvatarDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.goAvatarDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // goOcgDataGridViewTextBoxColumn
+            // LeavePlate
             // 
-            this.goOcgDataGridViewTextBoxColumn.DataPropertyName = "GoOcg";
-            this.goOcgDataGridViewTextBoxColumn.HeaderText = "GoOcg";
-            this.goOcgDataGridViewTextBoxColumn.Name = "goOcgDataGridViewTextBoxColumn";
+            this.LeavePlate.DataPropertyName = "LeavePlate";
+            this.LeavePlate.HeaderText = "Khuôn mặt về";
+            this.LeavePlate.Name = "LeavePlate";
+            this.LeavePlate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // GoPlate
+            // 
+            this.GoPlate.DataPropertyName = "GoPlate";
+            this.GoPlate.HeaderText = "Biển số xe đi";
+            this.GoPlate.Name = "GoPlate";
+            this.GoPlate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // OutOCR
+            // 
+            this.OutOCR.DataPropertyName = "OutOCR";
+            this.OutOCR.HeaderText = "Biển số xe về";
+            this.OutOCR.Name = "OutOCR";
+            this.OutOCR.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OutOCR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // leaveFullDataGridViewTextBoxColumn
             // 
             this.leaveFullDataGridViewTextBoxColumn.DataPropertyName = "LeaveFull";
-            this.leaveFullDataGridViewTextBoxColumn.HeaderText = "LeaveFull";
+            this.leaveFullDataGridViewTextBoxColumn.HeaderText = "Hình ảnh đi đầy đủ";
             this.leaveFullDataGridViewTextBoxColumn.Name = "leaveFullDataGridViewTextBoxColumn";
-            // 
-            // leaveOcgDataGridViewTextBoxColumn
-            // 
-            this.leaveOcgDataGridViewTextBoxColumn.DataPropertyName = "LeaveOcg";
-            this.leaveOcgDataGridViewTextBoxColumn.HeaderText = "LeaveOcg";
-            this.leaveOcgDataGridViewTextBoxColumn.Name = "leaveOcgDataGridViewTextBoxColumn";
-            // 
-            // oCRDataGridViewTextBoxColumn
-            // 
-            this.oCRDataGridViewTextBoxColumn.DataPropertyName = "OCR";
-            this.oCRDataGridViewTextBoxColumn.HeaderText = "OCR";
-            this.oCRDataGridViewTextBoxColumn.Name = "oCRDataGridViewTextBoxColumn";
-            // 
-            // leaveAvatarDataGridViewTextBoxColumn
-            // 
-            this.leaveAvatarDataGridViewTextBoxColumn.DataPropertyName = "leaveAvatar";
-            this.leaveAvatarDataGridViewTextBoxColumn.HeaderText = "leaveAvatar";
-            this.leaveAvatarDataGridViewTextBoxColumn.Name = "leaveAvatarDataGridViewTextBoxColumn";
-            // 
-            // isFinishDataGridViewCheckBoxColumn
-            // 
-            this.isFinishDataGridViewCheckBoxColumn.DataPropertyName = "IsFinish";
-            this.isFinishDataGridViewCheckBoxColumn.HeaderText = "IsFinish";
-            this.isFinishDataGridViewCheckBoxColumn.Name = "isFinishDataGridViewCheckBoxColumn";
+            this.leaveFullDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.leaveFullDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // noteDataGridViewTextBoxColumn
             // 
@@ -204,8 +204,8 @@
             this.Text = "Xem lịch sử";
             this.Load += new System.EventHandler(this.HistoryForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.admin_dangkythitoeicDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.goLeaveBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.admin_dangkythitoeicDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,16 +216,18 @@
         private admin_dangkythitoeicDataSet admin_dangkythitoeicDataSet;
         private System.Windows.Forms.BindingSource goLeaveBindingSource;
         private admin_dangkythitoeicDataSetTableAdapters.GoLeaveTableAdapter goLeaveTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn goOcgDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn leaveOcgDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oCRDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn goDTDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn leaveDTDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn goAvatarDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn goOcgDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn leaveFullDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn leaveOcgDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oCRDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn leaveAvatarDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isFinishDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewLinkColumn goAvatarDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewLinkColumn LeavePlate;
+        private System.Windows.Forms.DataGridViewLinkColumn GoPlate;
+        private System.Windows.Forms.DataGridViewLinkColumn OutOCR;
+        private System.Windows.Forms.DataGridViewLinkColumn leaveFullDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
     }
 }

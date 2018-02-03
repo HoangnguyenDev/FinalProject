@@ -85,6 +85,10 @@ namespace Camera
         private bool _isFinishPlateOut = false;
         private bool _isFinishIn = false;
         private bool _isFinishOut = false;
+        private bool _isStopFinish = false;
+        private bool _isLeave = false;
+        private string _faceOldID = "";
+        private string _faceOldIDOut = "";
         #endregion
         public MainForm2()
         {
@@ -279,13 +283,15 @@ namespace Camera
             if(_isFinishIn)
             { 
                 DateTime currentDT = DateTime.Now;
-                int subDT = currentDT.Subtract(_startWatingTimeFaceIn).Milliseconds;
+                int subDT = currentDT.Subtract(_startWatingTimeFaceIn).Seconds;
                 if (subDT > Global.WAITING_TIME_SECONDS && _isFinishPlateIn)
                 {
                     _isFinishPlateIn = false;
                     _isFinishIn = false;
 
                     lbNotify.Text = Global.TEXT_DETECT_FACE;
+                    Image_ID.Image.Dispose();
+                    Image_Plate.Image.Dispose();
                 }
                 else if(_isFinishPlateIn)
                 {
@@ -309,7 +315,7 @@ namespace Camera
                         //facesDetected[i].Y += (int)(facesDetected[i].Width * 0.22);
                         //facesDetected[i].Height -= (int)(facesDetected[i].Height * 0.3);
                         //facesDetected[i].Width -= (int)(facesDetected[i].Width * 0.35);
-                        Image<Gray, byte> result = capFaceImageIn.Copy(facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Inter.Cubic);
+                        Image<Gray, byte> result = capFaceImageIn.Copy(facesDetected[i]).Convert<Gray, byte>().Resize(140, 100, Inter.Cubic);
                         Image<Bgr, byte> imageShow = capFaceImageIn.Copy(facesDetected[i]).Resize(Image_ID.Width, Image_ID.Height, Inter.Cubic);
 
                         result._EqualizeHist();
@@ -330,11 +336,15 @@ namespace Camera
                                 }
                                 else
                                 {
-                                    Image_ID.Image = imageShow.Bitmap;
-                                    _image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
-                                    _isFinishFaceIn = true;
-                                    lbID.Text = name;
-                                    _IsExistFaceIn = true;
+                                    if (_faceOldID != name)
+                                    {
+                                        Image_ID.Image = imageShow.Bitmap;
+                                        _image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
+                                        _isFinishFaceIn = true;
+                                        lbID.Text = name;
+                                        _IsExistFaceIn = true;
+                                        _faceOldID = name;
+                                    }
                                 }
                             }
                             if (_countNotReFace >= 3)
@@ -343,15 +353,22 @@ namespace Camera
                                 _image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
                                 _isFinishFaceIn = true;
                                 lbID.Text = "New user";
+                                _countNotReFace = 0;
                             }
                         }
                         else
                         {
                             Image_ID.Image = imageShow.Bitmap;
                             _image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
-                            _isFinishFaceIn = true;
-                            _IsExistFaceIn = false;
                             lbID.Text = "New user";
+                            if (_faceOldID != lbID.Text)
+                            {
+                                Image_ID.Image = imageShow.Bitmap;
+                                _image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
+                                _isFinishFaceIn = true;
+                                _IsExistFaceIn = false;
+                                _faceOldID = "New user";
+                            }
                         }
                         Image_Xe_Vao_Sau.Image = capFaceImageIn.Resize(Image_Xe_Vao_Sau.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
                     }
@@ -360,6 +377,7 @@ namespace Camera
                         //do nothing as parrellel loop buggy
                         //No action as the error is useless, it is simply an error in 
                         //no data being there to process and this occurss sporadically 
+
                     }
                 });
             }
@@ -439,6 +457,7 @@ namespace Camera
                                         lbNotify.Text = Global.TEXT_SUCCESS;
                                         _isFinishFaceIn = false;
                                         _isFinishIn = true;
+                                        MessageBox.Show("Xe vào thành công");
                                         _startWatingTimeFaceIn = DateTime.Now;
                                     }
                                     else
@@ -452,6 +471,7 @@ namespace Camera
                                         lbNotify.Text = Global.TEXT_SUCCESS;
                                         _isFinishFaceIn = false;
                                         _isFinishIn = true;
+                                        MessageBox.Show("Xe vào thành công");
                                         _startWatingTimeFaceIn = DateTime.Now;
                                     }
                                     lbDirector.Text = Global.TEXT_DIRECTOR_GO;
@@ -508,12 +528,12 @@ namespace Camera
             if (_isFinishOut)
             {
                 DateTime currentDT = DateTime.Now;
-                int subDT = currentDT.Subtract(_startWatingTimeFaceOut).Milliseconds;
+                int subDT = currentDT.Subtract(_startWatingTimeFaceOut).Seconds;
                 if (subDT > Global.WAITING_TIME_SECONDS && _isFinishPlateOut)
                 {
                     _isFinishPlateOut = false;
                     _isFinishOut = false;
-
+                    _isLeave = false;
                     lbNotify.Text = Global.TEXT_DETECT_FACE;
                 }
                 else if (_isFinishPlateOut)
@@ -523,12 +543,12 @@ namespace Camera
             }
             // MessageBox.Show(Image_Xe_Ra_Sau.Location.X.ToString() + Image_Xe_Ra_Sau.Location.Y.ToString());
             #region Xử lý và nhận diện hình ảnh
-            if (capFaceImageOut != null && !_isFinishFaceOut)
+            if (capFaceImageOut != null)
             {
                 _gray_frameFace = capFaceImageOut.Convert<Gray, Byte>();
 
                 //Face Detector
-                Rectangle[] facesDetected = _face.DetectMultiScale(_gray_frameFace, 1.3, 10, new Size(70, 70), Size.Empty);
+                Rectangle[] facesDetected = _face.DetectMultiScale(_gray_frameFace, 1.2);
 
                 //Action for each element detected
                 Parallel.For(0, facesDetected.Length, i =>
@@ -539,7 +559,7 @@ namespace Camera
                         //facesDetected[i].Y += (int)(facesDetected[i].Width * 0.22);
                         //facesDetected[i].Height -= (int)(facesDetected[i].Height * 0.3);
                         //facesDetected[i].Width -= (int)(facesDetected[i].Width * 0.35);
-                        Image<Gray, byte> result = capFaceImageOut.Copy(facesDetected[i]).Convert<Gray, byte>().Resize(100, 100, Inter.Cubic);
+                        Image<Gray, byte> result = capFaceImageOut.Copy(facesDetected[i]).Convert<Gray, byte>().Resize(140, 100, Inter.Cubic);
                         Image<Bgr, byte> imageShow = capFaceImageOut.Copy(facesDetected[i]).Resize(Image_ID.Width, Image_ID.Height, Inter.Cubic);
 
                         result._EqualizeHist();
@@ -556,14 +576,19 @@ namespace Camera
                                 {
                                     _countNotReFace++;
                                     _IsExistFaceOut = false;
+                                    lbID.Text = "";
                                 }
                                 else
                                 {
-                                    Image_ID.Image = imageShow.Bitmap;
-                                    _image_Store_FaceOut = new Image<Bgr, byte>(imageShow.Bitmap);
-                                    _isFinishFaceOut = true;
-                                    lbID.Text = name;
-                                    _IsExistFaceOut = true;
+                                    if (_faceOldIDOut != name)
+                                    {
+                                        Image_ID.Image = imageShow.Bitmap;
+                                        _image_Store_FaceOut = new Image<Bgr, byte>(imageShow.Bitmap);
+                                        _isFinishFaceOut = true;
+                                        lbID.Text = name;
+                                        _IsExistFaceOut = true;
+                                        _faceOldID = name;
+                                    }
                                 }
                             }
                             if (_countNotReFace >= 3)
@@ -649,7 +674,7 @@ namespace Camera
                                 }
                                 else
                                 {
-                                    lbNotify.Text = Global.TEXT_SAVE;
+                                    //lbNotify.Text = Global.TEXT_SAVE;
                                     _isCheckPlateOut = true;
                                 }
                                 lbPlate.Text = biensoxe;
@@ -657,41 +682,54 @@ namespace Camera
                                 {
                                     if (_IsExistFaceOut)
                                     {
-                                        _dataContext.CheckGoLeave(Int32.Parse(lbID.Text), biensoxe, pathface, pathPlate, pathFull);
-                                        _captureFaceOut.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
-                                        imagePlate.Save(pathPlate);
-                                        _image_Store_FaceOut.Save(pathface);
-                                        string OCR = biensoxe;
-                                        lbPlate.Text = OCR;
-                                        lbNotify.Text = Global.TEXT_SUCCESS;
-                                        _isFinishFaceOut = false;
-                                        _isFinishOut = true;
-                                        _startWatingTimeFaceOut = DateTime.Now;
+                                        if (_dataContext.CheckGoLeave(Int32.Parse(lbID.Text), biensoxe, pathface, pathPlate, pathFull))
+                                        {
+                                            _captureFaceOut.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
+                                            imagePlate.Save(pathPlate);
+                                            _image_Store_FaceOut.Save(pathface);
+                                            string OCR = biensoxe;
+                                            lbPlate.Text = OCR;
+                                            lbNotify.Text = Global.TEXT_SUCCESS;
+                                            MessageBox.Show("Xe ra thành công");
+                                            _isFinishFaceOut = false;
+                                            _isFinishOut = true;
+                                            _startWatingTimeFaceOut = DateTime.Now;
+                                            _isLeave = false;
+                                        }
+                                        else
+                                        {
+                                            if (_isLeave)
+                                            {
+                                                lbNotify.Text = Global.TEXT_SUCCESS;
+                                                MessageBox.Show("Xe ra thất bại, có thể khuôn mặt không đúng. Vui lòng kiểm tra lại ");
+
+                                                _isLeave = false;
+                                            }
+                                        }
                                     }
                                     else
                                     {
+                                        if(_isStopFinish)
+                                        { 
                                         ReasonForm reasonForm = new ReasonForm(null, biensoxe,
                                             null, _captureFaceOut.QueryFrame().ToImage<Bgr, byte>(), 
                                             null, _image_Store_FaceOut, 
                                             null,new Image<Bgr, byte>(imagePlate));
                                         reasonForm.Show();
-                                        _dataContext.CreateMember(biensoxe, pathface, pathPlate, pathFull);
-                                        _captureFaceOut.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
-                                        imagePlate.Save(pathPlate);
-                                        _image_Store_FaceOut.Save(pathface);
+                                       // _dataContext.CreateMember(biensoxe, pathface, pathPlate, pathFull);
                                         string OCR = biensoxe;
                                         lbPlate.Text = OCR;
-                                        lbNotify.Text = Global.TEXT_SUCCESS;
                                         _isFinishFaceOut = false;
                                         _isFinishOut = true;
                                         _startWatingTimeFaceOut = DateTime.Now;
+                                        }
                                     }
                                     lbDirector.Text = Global.TEXT_DIRECTOR_OUT;
+
                                     _dataContext.LoadTraningFace(out _listFace, out _listLabel);
                                     _recognition.Update(_listFace, _listLabel);
                                 }
 
-                                _isFinishPlateOut = true;
 
                             }
                         }
@@ -725,11 +763,11 @@ namespace Camera
             _capturePlateIn.Pause();
             _capturePlateIn.Dispose();
             Thread.Sleep(500);
-            _capturePlateOut = new Emgu.CV.VideoCapture(0);
+            _capturePlateOut = new Emgu.CV.VideoCapture(1);
             _capturePlateOut.SetCaptureProperty(CapProp.FrameWidth, 640);
             _capturePlateOut.SetCaptureProperty(CapProp.FrameHeight, 480);
 
-            _captureFaceOut = new Emgu.CV.VideoCapture(1);
+            _captureFaceOut = new Emgu.CV.VideoCapture(0);
             _captureFaceOut.SetCaptureProperty(CapProp.FrameWidth, 320);
             _captureFaceOut.SetCaptureProperty(CapProp.FrameHeight, 240);
 
@@ -747,6 +785,11 @@ namespace Camera
         {
             ReasonForm reasonForm = new ReasonForm(null,null,null,null,null,null,null,null);
             reasonForm.Show();
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            _faceOldID = "";
         }
     }
 }

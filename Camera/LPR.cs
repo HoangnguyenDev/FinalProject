@@ -99,7 +99,7 @@ namespace Camera
             Image<Bgr, byte> frame = new Image<Bgr, byte>(image);
             bool isFound = false;
             Image<Gray, byte> grayframe = frame.Convert<Gray, byte>();
-            Rectangle[] faces = _plate.DetectMultiScale(grayframe, 1.1, 8, new Size(0, 0));
+            Rectangle[] faces = _plate.DetectMultiScale(grayframe, 1.1);
             Parallel.For(0, faces.Length, i =>
             {
                 try
@@ -124,7 +124,10 @@ namespace Camera
                 catch { }
             });
             if(isFound)
+            { 
                 PlateImagesResize = PlateImagesList[0] = PlateImagesList[0].Resize(400, 400, Inter.Linear);
+
+            }
             return PlateImagesList;
 
 
@@ -253,7 +256,7 @@ namespace Camera
                 {
                     for (int i = 0; i < listMat.Count; i++)
                     {
-
+                        CvInvoke.Imshow(i.ToString(), listMat[i]);
                         char cs = Recoginatinon(_svm, listMat[i]);
                         zz += cs;
                     }
@@ -290,7 +293,7 @@ namespace Camera
             {
                 for (int i = 0; i < listMat.Count; i++)
                 {
-
+                    //CvInvoke.Imshow(i.ToString(), listMat[i]);
                     char cs = Recoginatinon(_svm, listMat[i]);
                     zz += cs;
                 }

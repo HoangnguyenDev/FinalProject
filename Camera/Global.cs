@@ -16,10 +16,11 @@ namespace Camera
         public const string TEXT_WAITING = "Đang chờ xe mới";
         public const string TEXT_SUCCESS = "Thành công";
         public const string TEXT_SAVE = "Đang Lưu";
+        public const string TEXT_ERROR = "Không hợp lệ";
         public const string TEXT_DIRECTOR_GO = "Xe vào";
         public const string TEXT_DIRECTOR_OUT = "Xe ra";
         public const int WAITING_TIME = 3000;
-        public const int WAITING_TIME_SECONDS = 3;
+        public const int WAITING_TIME_SECONDS =5;
         //public const int SIZE_WIDTH_SAVE_FACE = 200;
         //public const int SIZE_HEIGHT_SAVE_FACE = 150;
     }

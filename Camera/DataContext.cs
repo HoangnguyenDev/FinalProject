@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,13 @@ namespace Camera
 
                     }
                 return false;
+            }
+        }
+        public string Getname(int ID)
+        {
+            using (var context = new admin_dangkythitoeicEntities())
+            {
+                return "";
             }
         }
         public int GetCountGoOut()
@@ -73,20 +81,30 @@ namespace Camera
         }
         public void CreateGoLeave(int ID,string text, string pathAvatar, string pathPlate, string pathFull)
         {
-            using (var context = new admin_dangkythitoeicEntities())
+            try
             {
-                GoLeave goLeave = new GoLeave
+                using (var context = new admin_dangkythitoeicEntities())
                 {
-                    GoAvatar = pathAvatar,
-                    GoDT = DateTime.Now,
-                    GoFull = pathFull,
-                    GoPlate = pathPlate,
-                    GoOCR = text,
-                    OwnerID = ID
-                };
-                context.GoLeaves.Add(goLeave);
-                context.SaveChangesAsync();
+                    var old = context.GoLeaves
+                        .OrderByDescending(p => p.GoDT)
+                        .First();
+                    if (DateTime.Now.Subtract(old.GoDT.Value).Seconds > 4)
+                    {
+                        GoLeave goLeave = new GoLeave
+                        {
+                            GoAvatar = pathAvatar,
+                            GoDT = DateTime.Now,
+                            GoFull = pathFull,
+                            GoPlate = pathPlate,
+                            GoOCR = text,
+                            OwnerID = ID
+                        };
+                        context.GoLeaves.Add(goLeave);
+                        context.SaveChanges();
+                    }
+                }
             }
+            catch { }
         }
         public void CreateReason(string goText, string leaveText, 
             string goPathAvatar, string leavePathAvatar,
@@ -126,22 +144,34 @@ namespace Camera
         }
 
 
-        public void CheckGoLeave(int ID, string text, string pathAvatar, string pathPlate, string pathFull)
+        public bool CheckGoLeave(int ID, string text, string pathAvatar, string pathPlate, string pathFull)
         {
-            using (var context = new admin_dangkythitoeicEntities())
+            try
             {
-                GoLeave goLeave = new GoLeave
+                using (var context = new admin_dangkythitoeicEntities())
                 {
-                    GoAvatar = pathAvatar,
-                    GoDT = DateTime.Now,
-                    GoFull = pathFull,
-                    GoPlate = pathPlate,
-                    GoOCR = text,
-                    OwnerID = ID
-                };
-                context.GoLeaves.Add(goLeave);
-                context.SaveChangesAsync();
+                    var single = context.GoLeaves.Where(p => p.OwnerID == ID && !p.IsFinish).OrderByDescending(p => p.GoDT).First();
+                    if (single != null)
+                    {
+                        if (single.GoOCR == text)
+                        {
+                            single.leaveAvatar = pathAvatar;
+                            single.LeaveDT = DateTime.Now;
+                            single.LeaveFull = pathFull;
+                            single.LeavePlate = pathPlate;
+                            single.OutOCR = text;
+                            single.IsFinish = true;
+                            context.Entry(single).State = EntityState.Modified;
+                            context.SaveChanges();
+                            return true;
+                        }
+                        else
+                            return false;
+                    }
+                }
             }
+            catch { }
+            return false;
         }
         public void LoadTraningFace(out List<string> listString, out List<int> listInt)
         {
@@ -149,12 +179,16 @@ namespace Camera
             listInt = new List<int>();
             using (var context = new admin_dangkythitoeicEntities())
             {
-                var db = context.GoLeaves.ToList();
-                foreach(var item in db)
+                try
                 {
-                    listString.Add(item.GoAvatar);
-                    listInt.Add(Convert.ToInt32(item.OwnerID));
+                    var db = context.GoLeaves.ToList();
+                    foreach (var item in db)
+                    {
+                        listString.Add(item.GoAvatar);
+                        listInt.Add(Convert.ToInt32(item.OwnerID));
+                    }
                 }
+                catch { }
             }
         }
     }

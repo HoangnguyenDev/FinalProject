@@ -69,6 +69,7 @@ class Classifier_Train : IDisposable
     {
         try
         {
+            trainingImages.Clear();
             for (int i = 0; i < listFace.Count; i++)
             {
                 trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "\\" + listFace[i]));
@@ -180,7 +181,7 @@ class Classifier_Train : IDisposable
             }
             else
             {
-                Fisher_label = Names_List[ER.Label];
+                Fisher_label = ER.Label.ToString();
                 Fisher_Distance = (float)ER.Distance;
                 return Fisher_label; //the threshold set in training controls unknowns
             }
