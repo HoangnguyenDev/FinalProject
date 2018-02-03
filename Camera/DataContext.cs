@@ -22,9 +22,9 @@ namespace Camera
                     {
                         single.LeaveDT = DateTime.Now;
                         single.LeaveFull = pathFull;
-                        single.LeaveOcg = pathPlate;
+                        single.LeavePlate = pathPlate;
                         single.leaveAvatar = pathAvatar;
-                        single.LeaveOcg = text;
+                        single.OutOCR = text;
                         context.SaveChangesAsync();
                         return true;
 
@@ -36,7 +36,11 @@ namespace Camera
         {
             using (var context = new admin_dangkythitoeicEntities())
             {
-                int count = context.GoLeaves.Where(p => p.GoDT.Value.Date == DateTime.Now.Date).Count();
+                var count = context.GoLeaves.Where(p => p.GoDT.Value.Day == DateTime.Now.Day)
+                    .Where(p => p.GoDT.Value.Month == DateTime.Now.Month)
+                    .Where(p => p.GoDT.Value.Year == DateTime.Now.Year)
+                    .Count();
+                count = count != null ?  count:0;
                 return count;
             }
         }
@@ -59,7 +63,7 @@ namespace Camera
                     GoAvatar = pathAvatar,
                     GoDT = DateTime.Now,
                     GoFull = pathFull,
-                    GoOcg = pathPlate,
+                    GoPlate = pathPlate,
                     GoOCR = text,
                     OwnerID = member.ID
                 };
@@ -76,7 +80,7 @@ namespace Camera
                     GoAvatar = pathAvatar,
                     GoDT = DateTime.Now,
                     GoFull = pathFull,
-                    GoOcg = pathPlate,
+                    GoPlate = pathPlate,
                     GoOCR = text,
                     OwnerID = ID
                 };
@@ -84,6 +88,44 @@ namespace Camera
                 context.SaveChangesAsync();
             }
         }
+        public void CreateReason(string goText, string leaveText, 
+            string goPathAvatar, string leavePathAvatar,
+            string goPathPlate, string leavePathPlate, 
+            string goPathFull, string leavePathFull )
+        {
+            using (var context = new admin_dangkythitoeicEntities())
+            {
+                Member member = new Member
+                {
+                    CreateDT = DateTime.Now,
+                    UpdateDT = DateTime.Now,
+                    Address = "",
+                    UniversityID = 0,
+                    IsDeleted = false,
+
+                };
+                context.Members.Add(member);
+                GoLeave goLeave = new GoLeave
+                {
+                    GoAvatar = goPathAvatar,
+                    GoDT = DateTime.Now,
+                    GoFull = goPathFull,
+                    GoPlate = goPathPlate,
+                    GoOCR = goPathPlate,
+                    LeavePlate = leavePathPlate,
+                    leaveAvatar = leavePathAvatar,
+                    LeaveDT = DateTime.Now,
+                    LeaveFull = leavePathFull,
+                    IsFinish = true,
+                    OutOCR = leaveText,
+                    OwnerID = member.ID,
+                };
+                context.GoLeaves.Add(goLeave);
+                context.SaveChanges();
+            }
+        }
+
+
         public void CheckGoLeave(int ID, string text, string pathAvatar, string pathPlate, string pathFull)
         {
             using (var context = new admin_dangkythitoeicEntities())
@@ -93,7 +135,7 @@ namespace Camera
                     GoAvatar = pathAvatar,
                     GoDT = DateTime.Now,
                     GoFull = pathFull,
-                    GoOcg = pathPlate,
+                    GoPlate = pathPlate,
                     GoOCR = text,
                     OwnerID = ID
                 };

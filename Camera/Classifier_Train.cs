@@ -71,10 +71,10 @@ class Classifier_Train : IDisposable
         {
             for (int i = 0; i < listFace.Count; i++)
             {
-                trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "\\" + listFace));
+                trainingImages.Add(new Image<Gray, byte>(Application.StartupPath + "\\" + listFace[i]));
             }
             Names_List_ID = listLabel;
-            _IsTrained = true;
+            
             if (trainingImages.ToArray().Length != 0)
             {
 
@@ -106,7 +106,7 @@ class Classifier_Train : IDisposable
                 recognizer = new FisherFaceRecognizer(0, 3500);//4000
 
                 recognizer.Train(trainingImages.ToArray(), Names_List_ID.ToArray());
-
+                _IsTrained = true;
                 return true;
             }
             else return false;

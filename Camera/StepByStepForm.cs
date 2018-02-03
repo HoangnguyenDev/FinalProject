@@ -298,7 +298,7 @@ namespace Camera
                 {
                     Mat cj = new Mat(_plate, r_characters[i]);
                     c.Add(cj);
-
+                   // CvInvoke.Imshow(i.ToString() + ".jpg", cj);
                 }
                 #endregion
 

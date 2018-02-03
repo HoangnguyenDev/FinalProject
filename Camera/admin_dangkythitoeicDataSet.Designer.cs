@@ -1121,7 +1121,7 @@ namespace Camera {
             
             private global::System.Data.DataColumn columnGoFull;
             
-            private global::System.Data.DataColumn columnGoOcg;
+            private global::System.Data.DataColumn columnGoPlate;
             
             private global::System.Data.DataColumn columnIsDelete;
             
@@ -1129,7 +1129,7 @@ namespace Camera {
             
             private global::System.Data.DataColumn columnLeaveFull;
             
-            private global::System.Data.DataColumn columnLeaveOcg;
+            private global::System.Data.DataColumn columnLeavePlate;
             
             private global::System.Data.DataColumn columnOutOCR;
             
@@ -1210,9 +1210,9 @@ namespace Camera {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn GoOcgColumn {
+            public global::System.Data.DataColumn GoPlateColumn {
                 get {
-                    return this.columnGoOcg;
+                    return this.columnGoPlate;
                 }
             }
             
@@ -1242,9 +1242,9 @@ namespace Camera {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn LeaveOcgColumn {
+            public global::System.Data.DataColumn LeavePlateColumn {
                 get {
-                    return this.columnLeaveOcg;
+                    return this.columnLeavePlate;
                 }
             }
             
@@ -1333,18 +1333,18 @@ namespace Camera {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public GoLeaveRow AddGoLeaveRow(string GoAvatar, System.DateTime GoDT, string GoFull, string GoOcg, bool IsDelete, System.DateTime LeaveDT, string LeaveFull, string LeaveOcg, string OutOCR, MemberRow parentMemberRowByFK_GoLeave_Member_OwnerID, string leaveAvatar, bool IsFinish, string Note, string GoOCR) {
+            public GoLeaveRow AddGoLeaveRow(string GoAvatar, System.DateTime GoDT, string GoFull, string GoPlate, bool IsDelete, System.DateTime LeaveDT, string LeaveFull, string LeavePlate, string OutOCR, MemberRow parentMemberRowByFK_GoLeave_Member_OwnerID, string leaveAvatar, bool IsFinish, string Note, string GoOCR) {
                 GoLeaveRow rowGoLeaveRow = ((GoLeaveRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         GoAvatar,
                         GoDT,
                         GoFull,
-                        GoOcg,
+                        GoPlate,
                         IsDelete,
                         LeaveDT,
                         LeaveFull,
-                        LeaveOcg,
+                        LeavePlate,
                         OutOCR,
                         null,
                         leaveAvatar,
@@ -1387,11 +1387,11 @@ namespace Camera {
                 this.columnGoAvatar = base.Columns["GoAvatar"];
                 this.columnGoDT = base.Columns["GoDT"];
                 this.columnGoFull = base.Columns["GoFull"];
-                this.columnGoOcg = base.Columns["GoOcg"];
+                this.columnGoPlate = base.Columns["GoPlate"];
                 this.columnIsDelete = base.Columns["IsDelete"];
                 this.columnLeaveDT = base.Columns["LeaveDT"];
                 this.columnLeaveFull = base.Columns["LeaveFull"];
-                this.columnLeaveOcg = base.Columns["LeaveOcg"];
+                this.columnLeavePlate = base.Columns["LeavePlate"];
                 this.columnOutOCR = base.Columns["OutOCR"];
                 this.columnOwnerID = base.Columns["OwnerID"];
                 this.columnleaveAvatar = base.Columns["leaveAvatar"];
@@ -1411,16 +1411,16 @@ namespace Camera {
                 base.Columns.Add(this.columnGoDT);
                 this.columnGoFull = new global::System.Data.DataColumn("GoFull", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGoFull);
-                this.columnGoOcg = new global::System.Data.DataColumn("GoOcg", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGoOcg);
+                this.columnGoPlate = new global::System.Data.DataColumn("GoPlate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGoPlate);
                 this.columnIsDelete = new global::System.Data.DataColumn("IsDelete", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsDelete);
                 this.columnLeaveDT = new global::System.Data.DataColumn("LeaveDT", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLeaveDT);
                 this.columnLeaveFull = new global::System.Data.DataColumn("LeaveFull", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLeaveFull);
-                this.columnLeaveOcg = new global::System.Data.DataColumn("LeaveOcg", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLeaveOcg);
+                this.columnLeavePlate = new global::System.Data.DataColumn("LeavePlate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeavePlate);
                 this.columnOutOCR = new global::System.Data.DataColumn("OutOCR", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOutOCR);
                 this.columnOwnerID = new global::System.Data.DataColumn("OwnerID", typeof(long), null, global::System.Data.MappingType.Element);
@@ -1443,10 +1443,10 @@ namespace Camera {
                 this.columnImageID.Unique = true;
                 this.columnGoAvatar.MaxLength = 2147483647;
                 this.columnGoFull.MaxLength = 2147483647;
-                this.columnGoOcg.MaxLength = 2147483647;
+                this.columnGoPlate.MaxLength = 2147483647;
                 this.columnIsDelete.AllowDBNull = false;
                 this.columnLeaveFull.MaxLength = 2147483647;
-                this.columnLeaveOcg.MaxLength = 2147483647;
+                this.columnLeavePlate.MaxLength = 2147483647;
                 this.columnOutOCR.MaxLength = 2147483647;
                 this.columnOwnerID.AllowDBNull = false;
                 this.columnleaveAvatar.MaxLength = 2147483647;
@@ -2063,17 +2063,17 @@ namespace Camera {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string GoOcg {
+            public string GoPlate {
                 get {
                     try {
-                        return ((string)(this[this.tableGoLeave.GoOcgColumn]));
+                        return ((string)(this[this.tableGoLeave.GoPlateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'GoOcg\' in table \'GoLeave\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'GoPlate\' in table \'GoLeave\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGoLeave.GoOcgColumn] = value;
+                    this[this.tableGoLeave.GoPlateColumn] = value;
                 }
             }
             
@@ -2122,17 +2122,17 @@ namespace Camera {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string LeaveOcg {
+            public string LeavePlate {
                 get {
                     try {
-                        return ((string)(this[this.tableGoLeave.LeaveOcgColumn]));
+                        return ((string)(this[this.tableGoLeave.LeavePlateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LeaveOcg\' in table \'GoLeave\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeavePlate\' in table \'GoLeave\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGoLeave.LeaveOcgColumn] = value;
+                    this[this.tableGoLeave.LeavePlateColumn] = value;
                 }
             }
             
@@ -2271,14 +2271,14 @@ namespace Camera {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsGoOcgNull() {
-                return this.IsNull(this.tableGoLeave.GoOcgColumn);
+            public bool IsGoPlateNull() {
+                return this.IsNull(this.tableGoLeave.GoPlateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetGoOcgNull() {
-                this[this.tableGoLeave.GoOcgColumn] = global::System.Convert.DBNull;
+            public void SetGoPlateNull() {
+                this[this.tableGoLeave.GoPlateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2307,14 +2307,14 @@ namespace Camera {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsLeaveOcgNull() {
-                return this.IsNull(this.tableGoLeave.LeaveOcgColumn);
+            public bool IsLeavePlateNull() {
+                return this.IsNull(this.tableGoLeave.LeavePlateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetLeaveOcgNull() {
-                this[this.tableGoLeave.LeaveOcgColumn] = global::System.Convert.DBNull;
+            public void SetLeavePlateNull() {
+                this[this.tableGoLeave.LeavePlateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3574,11 +3574,11 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
             tableMapping.ColumnMappings.Add("GoAvatar", "GoAvatar");
             tableMapping.ColumnMappings.Add("GoDT", "GoDT");
             tableMapping.ColumnMappings.Add("GoFull", "GoFull");
-            tableMapping.ColumnMappings.Add("GoOcg", "GoOcg");
+            tableMapping.ColumnMappings.Add("GoPlate", "GoPlate");
             tableMapping.ColumnMappings.Add("IsDelete", "IsDelete");
             tableMapping.ColumnMappings.Add("LeaveDT", "LeaveDT");
             tableMapping.ColumnMappings.Add("LeaveFull", "LeaveFull");
-            tableMapping.ColumnMappings.Add("LeaveOcg", "LeaveOcg");
+            tableMapping.ColumnMappings.Add("LeavePlate", "LeavePlate");
             tableMapping.ColumnMappings.Add("OutOCR", "OutOCR");
             tableMapping.ColumnMappings.Add("OwnerID", "OwnerID");
             tableMapping.ColumnMappings.Add("leaveAvatar", "leaveAvatar");
@@ -3600,17 +3600,17 @@ SELECT ID, Address, CreateDT, DateIdentityCard, DateofBirth, FirstMidName, Image
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsFinish", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsFinish", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dangkythitoeic].[GoLeave] ([GoAvatar], [GoDT], [GoFull], [GoOcg], [IsDelete], [LeaveDT], [LeaveFull], [LeaveOcg], [OutOCR], [OwnerID], [leaveAvatar], [IsFinish], [Note], [GoOCR]) VALUES (@GoAvatar, @GoDT, @GoFull, @GoOcg, @IsDelete, @LeaveDT, @LeaveFull, @LeaveOcg, @OutOCR, @OwnerID, @leaveAvatar, @IsFinish, @Note, @GoOCR);
-SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, LeaveOcg, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR FROM dangkythitoeic.GoLeave WHERE (ImageID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dangkythitoeic].[GoLeave] ([GoAvatar], [GoDT], [GoFull], [GoPlate], [IsDelete], [LeaveDT], [LeaveFull], [LeavePlate], [OutOCR], [OwnerID], [leaveAvatar], [IsFinish], [Note], [GoOCR]) VALUES (@GoAvatar, @GoDT, @GoFull, @GoPlate, @IsDelete, @LeaveDT, @LeaveFull, @LeavePlate, @OutOCR, @OwnerID, @leaveAvatar, @IsFinish, @Note, @GoOCR);
+SELECT ImageID, GoAvatar, GoDT, GoFull, GoPlate, IsDelete, LeaveDT, LeaveFull, LeavePlate, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR FROM dangkythitoeic.GoLeave WHERE (ImageID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoPlate", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoPlate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDelete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDelete", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeavePlate", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeavePlate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OutOCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OutOCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OwnerID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@leaveAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "leaveAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3619,17 +3619,17 @@ SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Lea
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoOCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoOCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dangkythitoeic].[GoLeave] SET [GoAvatar] = @GoAvatar, [GoDT] = @GoDT, [GoFull] = @GoFull, [GoOcg] = @GoOcg, [IsDelete] = @IsDelete, [LeaveDT] = @LeaveDT, [LeaveFull] = @LeaveFull, [LeaveOcg] = @LeaveOcg, [OutOCR] = @OutOCR, [OwnerID] = @OwnerID, [leaveAvatar] = @leaveAvatar, [IsFinish] = @IsFinish, [Note] = @Note, [GoOCR] = @GoOCR WHERE (([ImageID] = @Original_ImageID) AND ((@IsNull_GoDT = 1 AND [GoDT] IS NULL) OR ([GoDT] = @Original_GoDT)) AND ([IsDelete] = @Original_IsDelete) AND ((@IsNull_LeaveDT = 1 AND [LeaveDT] IS NULL) OR ([LeaveDT] = @Original_LeaveDT)) AND ([OwnerID] = @Original_OwnerID) AND ([IsFinish] = @Original_IsFinish));
-SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, LeaveOcg, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR FROM dangkythitoeic.GoLeave WHERE (ImageID = @ImageID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dangkythitoeic].[GoLeave] SET [GoAvatar] = @GoAvatar, [GoDT] = @GoDT, [GoFull] = @GoFull, [GoPlate] = @GoPlate, [IsDelete] = @IsDelete, [LeaveDT] = @LeaveDT, [LeaveFull] = @LeaveFull, [LeavePlate] = @LeavePlate, [OutOCR] = @OutOCR, [OwnerID] = @OwnerID, [leaveAvatar] = @leaveAvatar, [IsFinish] = @IsFinish, [Note] = @Note, [GoOCR] = @GoOCR WHERE (([ImageID] = @Original_ImageID) AND ((@IsNull_GoDT = 1 AND [GoDT] IS NULL) OR ([GoDT] = @Original_GoDT)) AND ([IsDelete] = @Original_IsDelete) AND ((@IsNull_LeaveDT = 1 AND [LeaveDT] IS NULL) OR ([LeaveDT] = @Original_LeaveDT)) AND ([OwnerID] = @Original_OwnerID) AND ([IsFinish] = @Original_IsFinish));
+SELECT ImageID, GoAvatar, GoDT, GoFull, GoPlate, IsDelete, LeaveDT, LeaveFull, LeavePlate, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR FROM dangkythitoeic.GoLeave WHERE (ImageID = @ImageID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GoPlate", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GoPlate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDelete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDelete", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveDT", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveDT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveFull", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveFull", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeaveOcg", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeaveOcg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LeavePlate", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LeavePlate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OutOCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OutOCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OwnerID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@leaveAvatar", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "leaveAvatar", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3660,9 +3660,9 @@ SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Lea
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Leav" +
-                "eOcg, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR FROM dangkythitoeic.Go" +
-                "Leave";
+            this._commandCollection[0].CommandText = "SELECT ImageID, GoAvatar, GoDT, GoFull, GoPlate, IsDelete, LeaveDT, LeaveFull, Le" +
+                "avePlate, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR FROM dangkythitoei" +
+                "c.GoLeave";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3764,7 +3764,7 @@ SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Lea
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string GoAvatar, global::System.Nullable<global::System.DateTime> GoDT, string GoFull, string GoOcg, bool IsDelete, global::System.Nullable<global::System.DateTime> LeaveDT, string LeaveFull, string LeaveOcg, string OutOCR, long OwnerID, string leaveAvatar, bool IsFinish, string Note, string GoOCR) {
+        public virtual int Insert(string GoAvatar, global::System.Nullable<global::System.DateTime> GoDT, string GoFull, string GoPlate, bool IsDelete, global::System.Nullable<global::System.DateTime> LeaveDT, string LeaveFull, string LeavePlate, string OutOCR, long OwnerID, string leaveAvatar, bool IsFinish, string Note, string GoOCR) {
             if ((GoAvatar == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -3783,11 +3783,11 @@ SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Lea
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(GoFull));
             }
-            if ((GoOcg == null)) {
+            if ((GoPlate == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(GoOcg));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(GoPlate));
             }
             this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(IsDelete));
             if ((LeaveDT.HasValue == true)) {
@@ -3802,11 +3802,11 @@ SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Lea
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = ((string)(LeaveFull));
             }
-            if ((LeaveOcg == null)) {
+            if ((LeavePlate == null)) {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(LeaveOcg));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(LeavePlate));
             }
             if ((OutOCR == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
@@ -3858,11 +3858,11 @@ SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Lea
                     string GoAvatar, 
                     global::System.Nullable<global::System.DateTime> GoDT, 
                     string GoFull, 
-                    string GoOcg, 
+                    string GoPlate, 
                     bool IsDelete, 
                     global::System.Nullable<global::System.DateTime> LeaveDT, 
                     string LeaveFull, 
-                    string LeaveOcg, 
+                    string LeavePlate, 
                     string OutOCR, 
                     long OwnerID, 
                     string leaveAvatar, 
@@ -3894,11 +3894,11 @@ SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Lea
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(GoFull));
             }
-            if ((GoOcg == null)) {
+            if ((GoPlate == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(GoOcg));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(GoPlate));
             }
             this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(IsDelete));
             if ((LeaveDT.HasValue == true)) {
@@ -3913,11 +3913,11 @@ SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Lea
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(LeaveFull));
             }
-            if ((LeaveOcg == null)) {
+            if ((LeavePlate == null)) {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(LeaveOcg));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(LeavePlate));
             }
             if ((OutOCR == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
@@ -3990,11 +3990,11 @@ SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Lea
                     string GoAvatar, 
                     global::System.Nullable<global::System.DateTime> GoDT, 
                     string GoFull, 
-                    string GoOcg, 
+                    string GoPlate, 
                     bool IsDelete, 
                     global::System.Nullable<global::System.DateTime> LeaveDT, 
                     string LeaveFull, 
-                    string LeaveOcg, 
+                    string LeavePlate, 
                     string OutOCR, 
                     long OwnerID, 
                     string leaveAvatar, 
@@ -4007,7 +4007,7 @@ SELECT ImageID, GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, Lea
                     global::System.Nullable<global::System.DateTime> Original_LeaveDT, 
                     long Original_OwnerID, 
                     bool Original_IsFinish) {
-            return this.Update(GoAvatar, GoDT, GoFull, GoOcg, IsDelete, LeaveDT, LeaveFull, LeaveOcg, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR, Original_ImageID, Original_GoDT, Original_IsDelete, Original_LeaveDT, Original_OwnerID, Original_IsFinish, Original_ImageID);
+            return this.Update(GoAvatar, GoDT, GoFull, GoPlate, IsDelete, LeaveDT, LeaveFull, LeavePlate, OutOCR, OwnerID, leaveAvatar, IsFinish, Note, GoOCR, Original_ImageID, Original_GoDT, Original_IsDelete, Original_LeaveDT, Original_OwnerID, Original_IsFinish, Original_ImageID);
         }
     }
     

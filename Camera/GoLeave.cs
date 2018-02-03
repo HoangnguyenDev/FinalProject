@@ -18,11 +18,11 @@ namespace Camera
         public string GoAvatar { get; set; }
         public Nullable<System.DateTime> GoDT { get; set; }
         public string GoFull { get; set; }
-        public string GoOcg { get; set; }
+        public string GoPlate { get; set; }
         public bool IsDelete { get; set; }
         public Nullable<System.DateTime> LeaveDT { get; set; }
         public string LeaveFull { get; set; }
-        public string LeaveOcg { get; set; }
+        public string LeavePlate { get; set; }
         public string OutOCR { get; set; }
         public long OwnerID { get; set; }
         public string leaveAvatar { get; set; }

@@ -24,11 +24,11 @@
     <Property Name="GoAvatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="GoDT" Type="DateTime" Precision="7" />
     <Property Name="GoFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="GoOcg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GoPlate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="IsDelete" Type="Boolean" Nullable="false" />
     <Property Name="LeaveDT" Type="DateTime" Precision="7" />
     <Property Name="LeaveFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="LeaveOcg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LeavePlate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="OutOCR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="OwnerID" Type="Int64" Nullable="false" />
     <Property Name="leaveAvatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />

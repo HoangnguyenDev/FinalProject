@@ -15,9 +15,29 @@ namespace Camera
 {
     public partial class ReasonForm : MetroForm
     {
-        public ReasonForm(string goOCG, string leaveOCG, Image<Bgr, byte> GoFull, Image<Bgr, byte> LeaveFull, Image<Bgr,byte> goAvatar, Image<Bgr,byte> leaveAvatar, Image<Bgr,byte> goPlate, Image<Bgr,byte> leavePlate)
+        public ReasonForm(string GoOCG, string LeaveOCG, Image<Bgr, byte> GoFull, Image<Bgr, byte> LeaveFull, Image<Bgr,byte> GoAvatar, Image<Bgr,byte> LeaveAvatar, Image<Bgr,byte> GoPlate, Image<Bgr,byte> LeavePlate)
         {
             InitializeComponent();
+            img_Face_Out.Image = LeaveAvatar.Bitmap;
+            img_Full_Out.Image = LeaveFull.Bitmap;
+            img_Plate_Out.Image = LeavePlate.Bitmap;
+            lXeRa.Text = LeaveOCG;
+
+            lXeVao.Text = GoOCG;
+            img_Face_In.Image = GoAvatar.Bitmap;
+            img_Full_In.Image = GoFull.Bitmap;
+            img_Plate_In.Image = LeavePlate.Bitmap;
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

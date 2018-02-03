@@ -375,24 +375,27 @@ namespace Camera
                 #region Xoa bo cac vung den nhi phan du thua
                 foreach (var item in c)
                 {
-                    double maxArea = 0.0;
-                    VectorOfVectorOfPoint contours2 = new VectorOfVectorOfPoint();
-                    Mat hierachy2 = new Mat();
-                    CvInvoke.FindContours(item, contours2, hierachy2, RetrType.External, ChainApproxMethod.ChainApproxSimple, new Point(0, 0));
-                    Mat result = new Mat();
-                    int savedContour = -1;
-                    for (int i = 0; i < contours2.Size; i++)
+                    try
                     {
-                        double area = CvInvoke.ContourArea(contours2[i]);
-                        if (area > maxArea)
+                        double maxArea = 0.0;
+                        VectorOfVectorOfPoint contours2 = new VectorOfVectorOfPoint();
+                        Mat hierachy2 = new Mat();
+                        CvInvoke.FindContours(item, contours2, hierachy2, RetrType.External, ChainApproxMethod.ChainApproxSimple, new Point(0, 0));
+                        Mat result = new Mat();
+                        int savedContour = -1;
+                        for (int i = 0; i < contours2.Size; i++)
                         {
-                            maxArea = area;
-                            savedContour = i;
+                            double area = CvInvoke.ContourArea(contours2[i]);
+                            if (area > maxArea)
+                            {
+                                maxArea = area;
+                                savedContour = i;
+                            }
                         }
+                        // Create mask
+                        CvInvoke.DrawContours(item, contours2, savedContour, new MCvScalar(255));
                     }
-                    // Create mask
-                    CvInvoke.DrawContours(item, contours2, savedContour, new MCvScalar(255));
-
+                    catch { }
                     // apply the mask:
                     cb.Add(item);
                 }

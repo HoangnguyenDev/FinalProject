@@ -18,11 +18,11 @@
           <ScalarProperty Name="leaveAvatar" ColumnName="leaveAvatar" />
           <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
           <ScalarProperty Name="OutOCR" ColumnName="OutOCR" />
-          <ScalarProperty Name="LeaveOcg" ColumnName="LeaveOcg" />
+          <ScalarProperty Name="LeavePlate" ColumnName="LeavePlate" />
           <ScalarProperty Name="LeaveFull" ColumnName="LeaveFull" />
           <ScalarProperty Name="LeaveDT" ColumnName="LeaveDT" />
           <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-          <ScalarProperty Name="GoOcg" ColumnName="GoOcg" />
+          <ScalarProperty Name="GoPlate" ColumnName="GoPlate" />
           <ScalarProperty Name="GoFull" ColumnName="GoFull" />
           <ScalarProperty Name="GoDT" ColumnName="GoDT" />
           <ScalarProperty Name="GoAvatar" ColumnName="GoAvatar" />

@@ -15,11 +15,11 @@
     <Property Name="GoAvatar" Type="nvarchar(max)" />
     <Property Name="GoDT" Type="datetime2" Precision="7" />
     <Property Name="GoFull" Type="nvarchar(max)" />
-    <Property Name="GoOcg" Type="nvarchar(max)" />
+    <Property Name="GoPlate" Type="nvarchar(max)" />
     <Property Name="IsDelete" Type="bit" Nullable="false" />
     <Property Name="LeaveDT" Type="datetime2" Precision="7" />
     <Property Name="LeaveFull" Type="nvarchar(max)" />
-    <Property Name="LeaveOcg" Type="nvarchar(max)" />
+    <Property Name="LeavePlate" Type="nvarchar(max)" />
     <Property Name="OutOCR" Type="nvarchar(max)" />
     <Property Name="OwnerID" Type="bigint" Nullable="false" />
     <Property Name="leaveAvatar" Type="nvarchar(max)" />

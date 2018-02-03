@@ -25,7 +25,7 @@ namespace Camera
     public partial class MainForm2 : MetroForm
     {
         #region định nghĩa
-        private CascadeClassifier _face = new CascadeClassifier(Application.StartupPath + "/haarcascade_frontalface_default.xml");//Our face detection method 
+        private CascadeClassifier _face = new CascadeClassifier(Application.StartupPath + "/haarcascade_frontalface_alt2.xml");//Our face detection method 
         private CascadeClassifier _plate = new CascadeClassifier(Application.StartupPath + "\\biensoxemay.xml");
         private Classifier_Train _recognition = new Classifier_Train(Classifier_Train.LoadClassifierType.Face);
         private Image<Gray, byte> _gray_frameFace = null; //grayscale current image aquired from webcam for processing
@@ -123,29 +123,29 @@ namespace Camera
             #region Khởi tạo Camera bình thường
             else
             {
-                //_capturePlateIn = new Emgu.CV.VideoCapture(0);
-                //_capturePlateIn.SetCaptureProperty(CapProp.FrameWidth, 640);
-                //_capturePlateIn.SetCaptureProperty(CapProp.FrameHeight, 480);
+                _capturePlateIn = new Emgu.CV.VideoCapture(1);
+                _capturePlateIn.SetCaptureProperty(CapProp.FrameWidth, 640);
+                _capturePlateIn.SetCaptureProperty(CapProp.FrameHeight, 480);
 
-                //_captureFaceIn = new Emgu.CV.VideoCapture(1);
-                //_captureFaceIn.SetCaptureProperty(CapProp.FrameWidth, 320);
-                //_captureFaceIn.SetCaptureProperty(CapProp.FrameHeight, 240);
+                _captureFaceIn = new Emgu.CV.VideoCapture(0);
+                _captureFaceIn.SetCaptureProperty(CapProp.FrameWidth, 320);
+                _captureFaceIn.SetCaptureProperty(CapProp.FrameHeight, 240);
 
-                //timerFaceIn.Enabled = true;
-                //timerPlateIn.Enabled = true;
+                timerFaceIn.Enabled = true;
+                timerPlateIn.Enabled = true;
 
 
 
-                _capturePlateOut = new Emgu.CV.VideoCapture(1);
-                _capturePlateOut.SetCaptureProperty(CapProp.FrameWidth, 640);
-                _capturePlateOut.SetCaptureProperty(CapProp.FrameHeight, 480);
+                //_capturePlateOut = new Emgu.CV.VideoCapture(1);
+                //_capturePlateOut.SetCaptureProperty(CapProp.FrameWidth, 640);
+                //_capturePlateOut.SetCaptureProperty(CapProp.FrameHeight, 480);
 
-                _captureFaceOut = new Emgu.CV.VideoCapture(0);
-                _captureFaceOut.SetCaptureProperty(CapProp.FrameWidth, 320);
-                _captureFaceOut.SetCaptureProperty(CapProp.FrameHeight, 240);
+                //_captureFaceOut = new Emgu.CV.VideoCapture(0);
+                //_captureFaceOut.SetCaptureProperty(CapProp.FrameWidth, 320);
+                //_captureFaceOut.SetCaptureProperty(CapProp.FrameHeight, 240);
 
-                timerFaceOut.Enabled = true;
-                timerPlateOut.Enabled = true;
+                //timerFaceOut.Enabled = true;
+                //timerPlateOut.Enabled = true;
             }
             #endregion
 
@@ -325,6 +325,7 @@ namespace Camera
                                 if (name == "Unknown" || name == "")
                                 {
                                     _countNotReFace++;
+                                    lbID.Text = "New user";
                                     _IsExistFaceIn = false;
                                 }
                                 else
@@ -341,6 +342,7 @@ namespace Camera
                                 Image_ID.Image = imageShow.Bitmap;
                                 _image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
                                 _isFinishFaceIn = true;
+                                lbID.Text = "New user";
                             }
                         }
                         else
@@ -349,7 +351,9 @@ namespace Camera
                             _image_Store_FaceIn = new Image<Bgr, byte>(imageShow.Bitmap);
                             _isFinishFaceIn = true;
                             _IsExistFaceIn = false;
+                            lbID.Text = "New user";
                         }
+                        Image_Xe_Vao_Sau.Image = capFaceImageIn.Resize(Image_Xe_Vao_Sau.Width, Image_Xe_Ra_Truoc.Height, Inter.Cubic).Bitmap;
                     }
                     catch
                     {
@@ -653,7 +657,7 @@ namespace Camera
                                 {
                                     if (_IsExistFaceOut)
                                     {
-                                        _dataContext.CreateGoLeave(Int32.Parse(lbID.Text), biensoxe, pathface, pathPlate, pathFull);
+                                        _dataContext.CheckGoLeave(Int32.Parse(lbID.Text), biensoxe, pathface, pathPlate, pathFull);
                                         _captureFaceOut.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
                                         imagePlate.Save(pathPlate);
                                         _image_Store_FaceOut.Save(pathface);
@@ -666,6 +670,11 @@ namespace Camera
                                     }
                                     else
                                     {
+                                        ReasonForm reasonForm = new ReasonForm(null, biensoxe,
+                                            null, _captureFaceOut.QueryFrame().ToImage<Bgr, byte>(), 
+                                            null, _image_Store_FaceOut, 
+                                            null,new Image<Bgr, byte>(imagePlate));
+                                        reasonForm.Show();
                                         _dataContext.CreateMember(biensoxe, pathface, pathPlate, pathFull);
                                         _captureFaceOut.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
                                         imagePlate.Save(pathPlate);

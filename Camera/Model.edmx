@@ -20,11 +20,11 @@
           <Property Name="GoAvatar" Type="nvarchar(max)" />
           <Property Name="GoDT" Type="datetime2" Precision="7" />
           <Property Name="GoFull" Type="nvarchar(max)" />
-          <Property Name="GoOcg" Type="nvarchar(max)" />
+          <Property Name="GoPlate" Type="nvarchar(max)" />
           <Property Name="IsDelete" Type="bit" Nullable="false" />
           <Property Name="LeaveDT" Type="datetime2" Precision="7" />
           <Property Name="LeaveFull" Type="nvarchar(max)" />
-          <Property Name="LeaveOcg" Type="nvarchar(max)" />
+          <Property Name="LeavePlate" Type="nvarchar(max)" />
           <Property Name="OutOCR" Type="nvarchar(max)" />
           <Property Name="OwnerID" Type="bigint" Nullable="false" />
           <Property Name="leaveAvatar" Type="nvarchar(max)" />
@@ -104,11 +104,11 @@
           <Property Name="GoAvatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="GoDT" Type="DateTime" Precision="7" />
           <Property Name="GoFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GoOcg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GoPlate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDelete" Type="Boolean" Nullable="false" />
           <Property Name="LeaveDT" Type="DateTime" Precision="7" />
           <Property Name="LeaveFull" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LeaveOcg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeavePlate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="OutOCR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="OwnerID" Type="Int64" Nullable="false" />
           <Property Name="leaveAvatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -176,11 +176,11 @@
                 <ScalarProperty Name="leaveAvatar" ColumnName="leaveAvatar" />
                 <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
                 <ScalarProperty Name="OutOCR" ColumnName="OutOCR" />
-                <ScalarProperty Name="LeaveOcg" ColumnName="LeaveOcg" />
+                <ScalarProperty Name="LeavePlate" ColumnName="LeavePlate" />
                 <ScalarProperty Name="LeaveFull" ColumnName="LeaveFull" />
                 <ScalarProperty Name="LeaveDT" ColumnName="LeaveDT" />
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="GoOcg" ColumnName="GoOcg" />
+                <ScalarProperty Name="GoPlate" ColumnName="GoPlate" />
                 <ScalarProperty Name="GoFull" ColumnName="GoFull" />
                 <ScalarProperty Name="GoDT" ColumnName="GoDT" />
                 <ScalarProperty Name="GoAvatar" ColumnName="GoAvatar" />
