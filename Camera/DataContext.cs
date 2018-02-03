@@ -142,15 +142,15 @@ namespace Camera
                 context.SaveChanges();
             }
         }
+        
 
-
-        public bool CheckGoLeave(int ID, string text, string pathAvatar, string pathPlate, string pathFull)
+        public LeaveError CheckGoLeave(int ID, string text, string pathAvatar, string pathPlate, string pathFull)
         {
             try
             {
                 using (var context = new admin_dangkythitoeicEntities())
                 {
-                    var single = context.GoLeaves.Where(p => p.OwnerID == ID && !p.IsFinish).OrderByDescending(p => p.GoDT).First();
+                    var single = context.GoLeaves.Where(p => p.OwnerID == ID && !p.IsFinish).OrderByDescending(p => p.GoDT).FirstOrDefault();
                     if (single != null)
                     {
                         if (single.GoOCR == text)
@@ -163,15 +163,19 @@ namespace Camera
                             single.IsFinish = true;
                             context.Entry(single).State = EntityState.Modified;
                             context.SaveChanges();
-                            return true;
+                            return LeaveError.SUCCESSS;
                         }
                         else
-                            return false;
+                            return LeaveError.WRONGOCG;
                     }
+                    else
+                        return LeaveError.NOTFOUND;
+
+
                 }
             }
             catch { }
-            return false;
+            return LeaveError.UNKNWON;
         }
         public void LoadTraningFace(out List<string> listString, out List<int> listInt)
         {
@@ -191,5 +195,17 @@ namespace Camera
                 catch { }
             }
         }
+    }
+    public enum LeaveError
+    {
+        NOTFOUND,
+        WRONGOCG,
+        SUCCESSS,
+        UNKNWON,
+    }
+    public enum MODE
+    {
+        IN,
+        OUT,
     }
 }

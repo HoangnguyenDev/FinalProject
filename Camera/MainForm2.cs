@@ -89,6 +89,8 @@ namespace Camera
         private bool _isLeave = false;
         private string _faceOldID = "";
         private string _faceOldIDOut = "";
+        private int _countErrorPlate = 0;
+        private MODE mode = MODE.IN;
         #endregion
         public MainForm2()
         {
@@ -296,6 +298,7 @@ namespace Camera
                 else if(_isFinishPlateIn)
                 {
                     lbNotify.Text = Global.TEXT_WAITING;
+                    
                 }
             }
             if (capFaceImageIn != null && !_isFinishPlateIn)
@@ -682,7 +685,8 @@ namespace Camera
                                 {
                                     if (_IsExistFaceOut)
                                     {
-                                        if (_dataContext.CheckGoLeave(Int32.Parse(lbID.Text), biensoxe, pathface, pathPlate, pathFull))
+                                        LeaveError resultDB = _dataContext.CheckGoLeave(Int32.Parse(lbID.Text), biensoxe, pathface, pathPlate, pathFull);
+                                        if (resultDB == LeaveError.SUCCESSS)
                                         {
                                             _captureFaceOut.QueryFrame().ToImage<Bgr, byte>().Save(pathFull);
                                             imagePlate.Save(pathPlate);
@@ -695,16 +699,33 @@ namespace Camera
                                             _isFinishOut = true;
                                             _startWatingTimeFaceOut = DateTime.Now;
                                             _isLeave = false;
+                                            _countErrorPlate = 0;
                                         }
-                                        else
+                                        else if (resultDB == LeaveError.NOTFOUND)
                                         {
                                             if (_isLeave)
                                             {
                                                 lbNotify.Text = Global.TEXT_SUCCESS;
-                                                MessageBox.Show("Xe ra thất bại, có thể khuôn mặt không đúng. Vui lòng kiểm tra lại ");
+                                                MessageBox.Show("Xe ra thất bại, có thể khuôn mặt không đúng hoặc là xe mới. Vui lòng kiểm tra lại ");
 
                                                 _isLeave = false;
                                             }
+                                        }
+                                        else if (resultDB == LeaveError.WRONGOCG && _countErrorPlate <= 5)
+                                            _countErrorPlate++;
+                                        else if (resultDB == LeaveError.WRONGOCG && _countErrorPlate > 5)
+                                        {
+                                            ReasonForm reasonForm = new ReasonForm(null, biensoxe,
+                                            null, _captureFaceOut.QueryFrame().ToImage<Bgr, byte>(),
+                                            null, _image_Store_FaceOut,
+                                            null, new Image<Bgr, byte>(imagePlate));
+                                            reasonForm.ShowDialog();
+                                            // _dataContext.CreateMember(biensoxe, pathface, pathPlate, pathFull);
+                                            string OCR = biensoxe;
+                                            lbPlate.Text = OCR;
+                                            _isFinishFaceOut = false;
+                                            _isFinishOut = true;
+                                            _startWatingTimeFaceOut = DateTime.Now;
                                         }
                                     }
                                     else
@@ -756,25 +777,49 @@ namespace Camera
 
         private void btnSwitchCamera_Click(object sender, EventArgs e)
         {
-            timerFaceIn.Enabled = false;
-            timerPlateIn.Enabled = false;
-            _captureFaceIn.Pause();
-            _captureFaceIn.Dispose();
-            _capturePlateIn.Pause();
-            _capturePlateIn.Dispose();
-            Thread.Sleep(500);
-            _capturePlateOut = new Emgu.CV.VideoCapture(1);
-            _capturePlateOut.SetCaptureProperty(CapProp.FrameWidth, 640);
-            _capturePlateOut.SetCaptureProperty(CapProp.FrameHeight, 480);
+            if (mode == MODE.IN) //changle to mode Out
+            {
+                timerFaceIn.Enabled = false;
+                timerPlateIn.Enabled = false;
+                _captureFaceIn.Pause();
+                _captureFaceIn.Dispose();
+                _capturePlateIn.Pause();
+                _capturePlateIn.Dispose();
+                Thread.Sleep(200);
+                _capturePlateOut = new Emgu.CV.VideoCapture(1);
+                _capturePlateOut.SetCaptureProperty(CapProp.FrameWidth, 640);
+                _capturePlateOut.SetCaptureProperty(CapProp.FrameHeight, 480);
 
-            _captureFaceOut = new Emgu.CV.VideoCapture(0);
-            _captureFaceOut.SetCaptureProperty(CapProp.FrameWidth, 320);
-            _captureFaceOut.SetCaptureProperty(CapProp.FrameHeight, 240);
+                _captureFaceOut = new Emgu.CV.VideoCapture(0);
+                _captureFaceOut.SetCaptureProperty(CapProp.FrameWidth, 320);
+                _captureFaceOut.SetCaptureProperty(CapProp.FrameHeight, 240);
 
-            
-            timerFaceOut.Enabled = true;
-            timerPlateOut.Enabled = true;
-            
+                timerFaceOut.Enabled = true;
+                timerPlateOut.Enabled = true;
+                mode = MODE.OUT;
+            }
+            else
+            {
+                timerFaceOut.Enabled = false;
+                timerPlateOut.Enabled = false;
+                _captureFaceOut.Pause();
+                _captureFaceOut.Dispose();
+                _capturePlateOut.Pause();
+                _capturePlateOut.Dispose();
+                Thread.Sleep(200);
+                _capturePlateIn = new Emgu.CV.VideoCapture(1);
+                _capturePlateIn.SetCaptureProperty(CapProp.FrameWidth, 640);
+                _capturePlateIn.SetCaptureProperty(CapProp.FrameHeight, 480);
+
+                _captureFaceIn = new Emgu.CV.VideoCapture(0);
+                _captureFaceIn.SetCaptureProperty(CapProp.FrameWidth, 320);
+                _captureFaceIn.SetCaptureProperty(CapProp.FrameHeight, 240);
+
+                timerFaceIn.Enabled = true;
+                timerPlateIn.Enabled = true;
+                mode = MODE.IN;
+            }
+
         }
 
         private void Image_Xe_Ra_Sau_Click(object sender, EventArgs e)
